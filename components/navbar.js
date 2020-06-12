@@ -7,13 +7,77 @@ import Button from "react-bootstrap/Button";
 import FormControl from "react-bootstrap/FormControl";
 import styled from "styled-components";
 
+let univLocation;
+let univColor;
+let nextPath;
+let btnColor;
+
+const StyledNavbar = styled(Navbar)`
+  background-color: #f8f7f8;
+  height: 5.5rem;
+  padding: 0px;
+  padding-left: 4rem;
+  width: 100%;
+`;
+
+const StyledLink = styled(Nav.Link)`
+  color: ${props => props.univcolor} !important;
+`;
+
+const StyledNavBrand = styled(Navbar.Brand)`
+  font-size: 2rem;
+  font-weight: lighter;
+  padding: 20px;
+`;
+
+const StyledCollapse = styled(Navbar.Collapse)`
+  background-color: #f8f7f8;
+`;
+
+const StyledToggle = styled(Navbar.Toggle)`
+  padding: 20px;
+  border: none;
+
+  &:focus {
+    outline: 0;
+    box-shadow: none !important;
+  }
+`;
+
+const StyledForm = styled(Form)`
+  @media only screen and (min-width: 768px) and (max-width: 959px) {
+    padding-top: 1rem;
+    width: 50% !important;
+  }
+`;
+
+const DivCollapse = styled.div`
+  padding: 20px;
+  width: 100%;
+  display: flex;
+
+  @media only screen and (max-width: 959px) {
+    flex-direction: column;
+  }
+`;
+
+const StyledButton = styled(Button)`
+  background-color: ${props => props.btncolor};
+
+  &:hover {
+    background-color: ${props => props.btncolor};
+  }
+  &:active {
+    background-color: ${props => props.btncolor};
+  }
+  &:focus {
+    outline: 0;
+    box-shadow: none !important;
+  }
+`;
 
 function GlobalNavbar() {
   const router = useRouter();
-  let univLocation;
-  let univColor;
-  let nextPath;
-  let btnColor;
 
   switch (router.pathname) {
     case "/seoul":
@@ -32,72 +96,6 @@ function GlobalNavbar() {
       univLocation = "undefined";
   }
 
-  const StyledNavbar = styled(Navbar)`
-    background-color: #F8F7F8;
-    height: 5.5rem;
-    padding: 0px;
-    padding-left: 4rem;
-    width: 100%;
-  `;
-
-  const StyledLink = styled(Nav.Link)`
-    color: ${univColor} !important;
-  `;
-
-  const StyledNavBrand = styled(Navbar.Brand)`
-    font-size: 2rem;
-    font-weight: lighter;
-    padding: 20px;
-  `;
-
-  const StyledCollapse = styled(Navbar.Collapse)`
-    background-color: #F8F7F8;
-  `;
-
-  const StyledToggle = styled(Navbar.Toggle)`
-    padding: 20px;
-    border: none;
-
-    &:focus {
-      outline: 0;
-      box-shadow: none !important;
-    }
-  `;
-
-  const StyledForm = styled(Form)`
-  
-    @media only screen and (min-width: 768px) and (max-width: 959px) {
-      padding-top: 1rem;
-      width: 50% !important;
-      
-    }
-  `;
-
-  const DivCollapse = styled.div`
-    padding: 20px;
-    width: 100%;
-    display: flex;
-
-    @media only screen and (max-width: 959px) {
-      flex-direction: column;
-    }
-  `;
-
-  const StyledButton = styled(Button)`
-    background-color: ${btnColor};
-
-    &:hover {
-      background-color: ${btnColor};
-    }
-    &:active {
-      background-color: ${btnColor};
-    }
-    &:focus {
-      outline: 0;
-      box-shadow: none !important;
-    }
-  `;
-
   return (
     <div>
       <StyledNavbar fixed="top" expand="lg">
@@ -109,7 +107,7 @@ function GlobalNavbar() {
               <Nav.Link href="#home">중앙동아리</Nav.Link>
               <Nav.Link href="#features">학회</Nav.Link>
               <Nav.Link href="#pricing">소개</Nav.Link>
-              <StyledLink href={"/" + nextPath}>
+              <StyledLink univcolor={univColor} href={"/" + nextPath}>
                 {univLocation} 캠퍼스 🎓
               </StyledLink>
             </Nav>
@@ -119,7 +117,7 @@ function GlobalNavbar() {
                 placeholder="Search"
                 className="mr-sm-2"
               />
-              <StyledButton>검색</StyledButton>
+              <StyledButton btncolor={btnColor}>검색</StyledButton>
             </StyledForm>
           </DivCollapse>
         </StyledCollapse>

@@ -8,7 +8,7 @@ import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import Button from "react-bootstrap/Button";
 import React, { useState } from "react";
 
-const CardNoSSR = dynamic(() => import("../components/card"));
+const CardNoSSR = dynamic(() => import("../components/card"), { ssr: false });
 
 const StyledCardDeck = styled(CardDeck)`
   width: 100%;
@@ -30,13 +30,13 @@ const StyledFilterButtonContainer = styled(ButtonToolbar)`
 
 const StyledButton = styled(Button)`
   background-color: #fff;
-  border: 1px solid #E5E5E5;
+  border: 1px solid #e5e5e5;
   border-radius: 25px;
   color: black;
   padding: 5px 50px;
   margin-left: 20px;
   margin-top: 10px;
-`
+`;
 //const StyledFilterButtonContainer = styled()``;
 
 function CardGallery() {
@@ -108,7 +108,6 @@ function CardGallery() {
             return (
               <CardNoSSR
                 name={club.동아리명}
-                imgURL={`../${univLocation}/${club.동아리명}.jpg`}
                 category={club.중분류1}
               ></CardNoSSR>
             );
@@ -135,7 +134,6 @@ function CardGallery() {
               return (
                 <CardNoSSR
                   name={club.동아리명}
-                  imgURL={`../${univLocation}/${club.동아리명}.jpg`}
                   category={club.중분류1}
                 ></CardNoSSR>
               );

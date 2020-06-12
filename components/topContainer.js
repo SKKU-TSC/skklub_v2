@@ -2,8 +2,32 @@ import Typed from "react-typed";
 import { useRouter } from "next/router";
 import CountUp from "react-countup";
 import styled from "styled-components";
-import Container from "react-bootstrap/Container";
-import { Row, Col } from "react-bootstrap";
+
+const GlobalContainer = styled.div`
+  width: 100%;
+  background-color: #f8f7f8;
+  padding: 110px 0 20px 5rem;
+`;
+
+const Title = styled.h1`
+  margin: 0;
+  font-weight: 500;
+`;
+
+const TitleContainer = styled.div``;
+
+const DescContainer = styled.div`
+  margin-top: 50px;
+`;
+
+const UnivName = styled.span`
+color: ${props => props.color};
+padding: 0;
+`;
+
+const ClubNum = styled.span`
+color: ${props => props.color};
+`;
 
 function TopContainer() {
   let clubNum = 120;
@@ -25,38 +49,12 @@ function TopContainer() {
       univLocation = "undefined";
   }
 
-  const GlobalContainer = styled.div`
-    width: 100%;
-    background-color: #F8F7F8;
-    padding: 110px 0 20px 5rem;
-  `;
-
-  const Title = styled.h1`
-    margin: 0;
-    font-weight: 500;
-  `;
-
-  const TitleContainer = styled.div``;
-
-  const UnivName = styled.span`
-    color: ${color};
-    padding: 0;
-  `;
-
-  const ClubNum = styled.span`
-    color: ${color};
-  `;
-
-  const DescContainer = styled.div`
-    margin-top: 50px;
-  `;
-
   return (
     <div>
       <GlobalContainer>
         <TitleContainer>
           <Title>
-            <UnivName>
+            <UnivName color={color}>
               <Typed strings={[`성대 ${univLocation}`]} typeSpeed={60} />
             </UnivName>
             <br />
@@ -67,7 +65,7 @@ function TopContainer() {
         <DescContainer>
           <p>
             현재{" "}
-            <ClubNum>
+            <ClubNum color={color}>
               <CountUp end={clubNum} />
             </ClubNum>
             개의 동아리들이 등록되어 있습니다.
