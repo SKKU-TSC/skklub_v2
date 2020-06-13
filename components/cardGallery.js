@@ -36,6 +36,10 @@ const StyledButton = styled(Button)`
   padding: 5px 50px;
   margin-left: 20px;
   margin-top: 10px;
+
+  &:hover {
+    background-color: ${(props) => props.univcolor}
+  }
 `;
 //const StyledFilterButtonContainer = styled()``;
 
@@ -47,6 +51,7 @@ function CardGallery() {
   let univLocation;
   let useData;
   let typeData;
+  let univColor;
 
   function shuffle(array) {
     array.sort(() => Math.random() - 0.5);
@@ -58,6 +63,7 @@ function CardGallery() {
       univLocation = "seoul";
       shuffle(seoulClubs);
       useData = seoulClubs;
+      univColor = "green"
       typeData = [
         "전체",
         "평면예술",
@@ -74,6 +80,7 @@ function CardGallery() {
       univLocation = "suwon";
       shuffle(suwonClubs);
       useData = suwonClubs;
+      univColor = "#4d5dff"
       typeData = [
         "전체",
         "연행예술",
@@ -97,7 +104,12 @@ function CardGallery() {
         <StyledFilterButtonContainer size="lg" className="mb-2">
           {typeData.map((name) => {
             return (
-              <StyledButton type="submit" onClick={() => setCount(name)}>
+              <StyledButton
+                key={name}
+                type="submit"
+                univcolor={univColor}
+                onClick={() => setCount(name)}
+              >
                 {name}
               </StyledButton>
             );
@@ -107,6 +119,7 @@ function CardGallery() {
           {useData.map((club) => {
             return (
               <CardNoSSR
+                key={club.동아리명}
                 name={club.동아리명}
                 category={club.중분류1}
               ></CardNoSSR>
@@ -121,7 +134,11 @@ function CardGallery() {
         <StyledFilterButtonContainer size="lg" className="mb-2">
           {typeData.map((name) => {
             return (
-              <StyledButton type="submit" onClick={() => setCount(name)}>
+              <StyledButton
+                key={name}
+                type="submit"
+                onClick={() => setCount(name)}
+              >
                 {name}
               </StyledButton>
             );

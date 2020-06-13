@@ -16,9 +16,7 @@ const FirstContainer = styled.section`
   }
 `;
 
-
-
-export default function Home() {
+function Home() {
   return (
     <div className="container">
       <Head>
@@ -36,3 +34,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home;

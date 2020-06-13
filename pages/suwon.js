@@ -1,18 +1,12 @@
-import Head from 'next/head';
-import TopContainer from '../components/topContainer'
-import CardGallery from "../components/cardGallery"
-import dynamic from 'next/dynamic';
-import styled from 'styled-components'
-import Navbar from '../components/navbar'
-
-/*const NavbarWithNoSSR = dynamic(
-  () => import('../components/navbar'),
-  { ssr: false }
-)*/
+import Head from "next/head";
+import TopContainer from "../components/topContainer";
+import CardGallery from "../components/cardGallery";
+import styled from "styled-components";
+import Navbar from "../components/navbar";
 
 const Main = styled.main`
-width: 100%;
-`
+  width: 100%;
+`;
 
 export default function Suwon() {
   return (
@@ -28,5 +22,5 @@ export default function Suwon() {
         <CardGallery></CardGallery>
       </Main>
     </div>
-  )
+  );
 }

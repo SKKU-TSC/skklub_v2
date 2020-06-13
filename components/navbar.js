@@ -21,7 +21,7 @@ const StyledNavbar = styled(Navbar)`
 `;
 
 const StyledLink = styled(Nav.Link)`
-  color: ${props => props.univcolor} !important;
+  color: ${(props) => props.univcolor} !important;
 `;
 
 const StyledNavBrand = styled(Navbar.Brand)`
@@ -62,13 +62,13 @@ const DivCollapse = styled.div`
 `;
 
 const StyledButton = styled(Button)`
-  background-color: ${props => props.btncolor};
+  background-color: ${(props) => props.btncolor};
 
   &:hover {
-    background-color: ${props => props.btncolor};
+    background-color: ${(props) => props.btncolor};
   }
   &:active {
-    background-color: ${props => props.btncolor};
+    background-color: ${(props) => props.btncolor};
   }
   &:focus {
     outline: 0;
@@ -76,25 +76,29 @@ const StyledButton = styled(Button)`
   }
 `;
 
-function GlobalNavbar() {
-  const router = useRouter();
 
-  switch (router.pathname) {
-    case "/seoul":
+function GlobalNavbar(props) {
+  const router = useRouter();
+  let checkRoute = router.pathname.includes("/seoul")
+
+  switch (checkRoute) {
+    case true:
       univLocation = "수원";
       nextPath = "suwon";
       univColor = "#4d5dff";
       btnColor = "green";
       break;
-    case "/suwon":
+    case false:
       univLocation = "명륜";
       univColor = "green";
       nextPath = "seoul";
       btnColor = "#4d5dff";
       break;
     default:
-      univLocation = "undefined";
+      console.log("error")
   }
+
+  console.log(props.history)
 
   return (
     <div>

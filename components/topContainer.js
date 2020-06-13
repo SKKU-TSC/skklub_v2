@@ -2,6 +2,8 @@ import Typed from "react-typed";
 import { useRouter } from "next/router";
 import CountUp from "react-countup";
 import styled from "styled-components";
+import seoulClubs from "../data/seoul.json";
+import suwonClubs from "../data/suwon.json";
 
 const GlobalContainer = styled.div`
   width: 100%;
@@ -33,6 +35,7 @@ function TopContainer() {
   let clubNum = 120;
   let univLocation;
   let color;
+  let useData;
 
   const router = useRouter();
 
@@ -40,10 +43,12 @@ function TopContainer() {
     case "/seoul":
       univLocation = "명륜";
       color = "green";
+      useData = seoulClubs;
       break;
     case "/suwon":
       univLocation = "율전";
       color = "#4d5dff";
+      useData = suwonClubs;
       break;
     default:
       univLocation = "undefined";
@@ -66,7 +71,7 @@ function TopContainer() {
           <p>
             현재{" "}
             <ClubNum color={color}>
-              <CountUp end={clubNum} />
+              <CountUp end={useData.length} />
             </ClubNum>
             개의 동아리들이 등록되어 있습니다.
           </p>

@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const CardImg = styled.div`
-  background-image: url(${props => props.imgURL}), url(../alt.jpg);
+  background-image: url(${(props) => props.imgURL}), url(../alt.jpg);
   visibility: hidden;
   background-size: cover;
   background-position: 50% 50%, 0 0;
@@ -13,7 +14,7 @@ const CardImg = styled.div`
 `;
 
 const CardImgHover = styled.div`
-  background-image: url(${props => props.imgURL}), url(../alt.jpg);
+  background-image: url(${(props) => props.imgURL}), url(../alt.jpg);
   transition: 0.2s all ease-out;
   background-size: cover;
   background-position: 50% 50%, 0 0;
@@ -73,6 +74,13 @@ const CardComp = styled.div`
   }
 `;
 
+const StyledA = styled.a`
+  text-decoration: none;
+  &:hover ${StyledA} {
+    cursor: pointer;
+  }
+`
+
 function Card(props) {
   const router = useRouter();
   let univLocation;
@@ -92,13 +100,17 @@ function Card(props) {
     <div>
       <CardComp>
         <CardImg imgURL={`../${univLocation}/${props.name}.jpg`}></CardImg>
-        <a>
-          <CardImgHover imgURL={`../${univLocation}/${props.name}.jpg`}></CardImgHover>
-        </a>
-        <CardInfo>
-          <CardCategory>{props.category}</CardCategory>
-          <CardTitle>{props.name}</CardTitle>
-        </CardInfo>
+        <Link href={`/${univLocation}/${props.name}`}>
+          <StyledA>
+            <CardImgHover
+              imgURL={`../${univLocation}/${props.name}.jpg`}
+            ></CardImgHover>
+            <CardInfo>
+              <CardCategory>{props.category}</CardCategory>
+              <CardTitle>{props.name}</CardTitle>
+            </CardInfo>
+          </StyledA>
+        </Link>
       </CardComp>
     </div>
   );

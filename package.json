@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "bootstrap": "^4.5.0",
+    "color-thief-react": "^1.0.2",
+    "colorthief": "^2.3.0",
     "next": "latest",
     "react": "^16.8.0",
     "react-bootstrap": "^1.0.1",
@@ -20,7 +22,7 @@
   "devDependencies": {
     "@babel/core": "^7.10.2",
     "@babel/preset-env": "^7.10.2",
-    "babel-plugin-styled-components": "^1.8.0"
+    "babel-plugin-styled-components": "^1.10.7"
   },
   "license": "ISC"
 }
