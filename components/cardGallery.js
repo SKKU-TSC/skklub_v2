@@ -2,20 +2,27 @@ import styled from "styled-components";
 import seoulClubs from "../data/seoul.json";
 import suwonClubs from "../data/suwon.json";
 import CardDeck from "react-bootstrap/CardDeck";
+import AlertType from "../components/alert";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
-import Button from "react-bootstrap/Button";
+import Dropdown from "react-bootstrap/Dropdown";
 import React, { useState } from "react";
 
 const CardNoSSR = dynamic(() => import("../components/card"), { ssr: false });
 
 const StyledCardDeck = styled(CardDeck)`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-  justify-content: center;
+  list-style: none;
+  display: grid;
+  grid-gap: 20px;
+  grid-auto-flow: dense;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  margin: 0 10%;
+  padding-top: 20px;
+
+  @media (max-width: 425px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 const StyledFilterButtonContainer = styled(ButtonToolbar)`
@@ -24,27 +31,42 @@ const StyledFilterButtonContainer = styled(ButtonToolbar)`
   flex-direction: row;
   flex: 1;
   justify-content: flex-start;
-  padding-left: 60px;
+  padding: 0 10%;
   margin-top: 20px;
 `;
 
-const StyledButton = styled(Button)`
+const StyledButton = styled.div`
   background-color: #fff;
   border: 1px solid #e5e5e5;
   border-radius: 25px;
   color: black;
-  padding: 5px 50px;
-  margin-left: 20px;
+  padding: 0.5rem 3rem;
+  margin-right: 20px;
   margin-top: 10px;
 
   &:hover {
-    background-color: ${(props) => props.univcolor}
+    background-color: ${(props) => props.univcolor};
+    color: white;
+  }
+
+  &:focus {
+    background-color: ${(props) => props.univcolor};
+    color: white;
+  }
+  @media (max-width: 425px) {
+    display: none;
   }
 `;
-//const StyledFilterButtonContainer = styled()``;
+
+const StyledDropdown = styled(Dropdown)`
+  margin-left: 10%;
+  @media (min-width: 426px) {
+    display: none;
+  }
+`;
 
 function CardGallery() {
-  const [count, setCount] = useState("전체");
+  const [type, setType] = useState("전체");
 
   console.log("card initialized");
   const router = useRouter();
@@ -63,7 +85,7 @@ function CardGallery() {
       univLocation = "seoul";
       shuffle(seoulClubs);
       useData = seoulClubs;
-      univColor = "green"
+      univColor = "green";
       typeData = [
         "전체",
         "평면예술",
@@ -80,7 +102,7 @@ function CardGallery() {
       univLocation = "suwon";
       shuffle(suwonClubs);
       useData = suwonClubs;
-      univColor = "#4d5dff"
+      univColor = "#4d5dff";
       typeData = [
         "전체",
         "연행예술",
@@ -95,26 +117,45 @@ function CardGallery() {
       break;
     default:
       univLocation = "undefined";
+      console.log("undefined");
   }
   console.log("sorted use Data");
 
-  if (count === "전체") {
+  if (type === "전체") {
     return (
       <div>
-        <StyledFilterButtonContainer size="lg" className="mb-2">
+        <StyledFilterButtonContainer>
           {typeData.map((name) => {
             return (
               <StyledButton
                 key={name}
                 type="submit"
                 univcolor={univColor}
-                onClick={() => setCount(name)}
+                onClick={() => setType(name)}
               >
                 {name}
               </StyledButton>
             );
           })}
         </StyledFilterButtonContainer>
+        <StyledDropdown>
+          <Dropdown.Toggle>분과 선택하기</Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            {typeData.map((name) => {
+              return (
+                <Dropdown.Item
+                  key={name}
+                  type="submit"
+                  univcolor={univColor}
+                  onClick={() => setType(name)}
+                >
+                  {name}
+                </Dropdown.Item>
+              );
+            })}
+          </Dropdown.Menu>
+        </StyledDropdown>
         <StyledCardDeck>
           {useData.map((club) => {
             return (
@@ -131,22 +172,41 @@ function CardGallery() {
   } else {
     return (
       <div>
-        <StyledFilterButtonContainer size="lg" className="mb-2">
+        <StyledFilterButtonContainer>
           {typeData.map((name) => {
             return (
               <StyledButton
                 key={name}
                 type="submit"
-                onClick={() => setCount(name)}
+                univcolor={univColor}
+                onClick={() => setType(name)}
               >
                 {name}
               </StyledButton>
             );
           })}
         </StyledFilterButtonContainer>
+        <StyledDropdown>
+          <Dropdown.Toggle>분과 선택하기</Dropdown.Toggle>
+          <Dropdown.Menu>
+            {typeData.map((name) => {
+              return (
+                <Dropdown.Item
+                  key={name}
+                  type="submit"
+                  univcolor={univColor}
+                  onClick={() => setType(name)}
+                >
+                  {name}
+                </Dropdown.Item>
+              );
+            })}
+          </Dropdown.Menu>
+        </StyledDropdown>
+        <AlertType type={type}></AlertType>
         <StyledCardDeck>
           {useData
-            .filter((club) => club.중분류1 == count)
+            .filter((club) => club.중분류1 == type)
             .map((club) => {
               return (
                 <CardNoSSR

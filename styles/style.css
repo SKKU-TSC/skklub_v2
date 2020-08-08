@@ -2,6 +2,8 @@
 
 * {
   font-family: "NanumSquare", sans-serif !important;
+  word-break: keep-all;
+  white-space: pre-line;
 }
 
 body {

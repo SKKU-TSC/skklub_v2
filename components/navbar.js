@@ -1,11 +1,12 @@
 import { useRouter } from "next/router";
-import Link from "next/link";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import FormControl from "react-bootstrap/FormControl";
 import styled from "styled-components";
+import Router from "next/router";
+
 
 let univLocation;
 let univColor;
@@ -16,7 +17,8 @@ const StyledNavbar = styled(Navbar)`
   background-color: #f8f7f8;
   height: 5.5rem;
   padding: 0px;
-  padding-left: 4rem;
+  padding-left: 10%;
+  padding-right: 10%;
   width: 100%;
 `;
 
@@ -27,7 +29,6 @@ const StyledLink = styled(Nav.Link)`
 const StyledNavBrand = styled(Navbar.Brand)`
   font-size: 2rem;
   font-weight: lighter;
-  padding: 20px;
 `;
 
 const StyledCollapse = styled(Navbar.Collapse)`
@@ -45,7 +46,7 @@ const StyledToggle = styled(Navbar.Toggle)`
 `;
 
 const StyledForm = styled(Form)`
-  @media only screen and (min-width: 768px) and (max-width: 959px) {
+  @media (max-width: 425px) {
     padding-top: 1rem;
     width: 50% !important;
   }
@@ -76,10 +77,9 @@ const StyledButton = styled(Button)`
   }
 `;
 
-
 function GlobalNavbar(props) {
   const router = useRouter();
-  let checkRoute = router.pathname.includes("/seoul")
+  let checkRoute = router.pathname.includes("/seoul");
 
   switch (checkRoute) {
     case true:
@@ -95,22 +95,22 @@ function GlobalNavbar(props) {
       btnColor = "#4d5dff";
       break;
     default:
-      console.log("error")
+      console.log("error");
   }
 
-  console.log(props.history)
+  console.log(props.history);
 
   return (
     <div>
       <StyledNavbar fixed="top" expand="lg">
-        <StyledNavBrand href="#home">SKKLUB</StyledNavBrand>
+        <StyledNavBrand href={"/"}>SKKLUB</StyledNavBrand>
         <StyledToggle aria-controls="basic-navbar-nav"></StyledToggle>
         <StyledCollapse>
           <DivCollapse>
             <Nav className="mr-auto">
-              <Nav.Link href="#home">중앙동아리</Nav.Link>
-              <Nav.Link href="#features">학회</Nav.Link>
-              <Nav.Link href="#pricing">소개</Nav.Link>
+              <Nav.Link>중앙동아리</Nav.Link>
+              <Nav.Link>학회</Nav.Link>
+              <Nav.Link>소개</Nav.Link>
               <StyledLink univcolor={univColor} href={"/" + nextPath}>
                 {univLocation} 캠퍼스 🎓
               </StyledLink>

@@ -8,18 +8,20 @@ import suwonClubs from "../data/suwon.json";
 const GlobalContainer = styled.div`
   width: 100%;
   background-color: #f8f7f8;
-  padding: 110px 0 20px 5rem;
+  padding: 110px 0 20px 0;
 `;
 
 const Title = styled.h1`
   margin: 0;
   font-weight: 500;
+  padding-left: 10%;
 `;
 
 const TitleContainer = styled.div``;
 
 const DescContainer = styled.div`
   margin-top: 50px;
+  padding-left: 10%;
 `;
 
 const UnivName = styled.span`

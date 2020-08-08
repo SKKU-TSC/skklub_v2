@@ -1,77 +1,18 @@
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Card from "react-bootstrap/Card";
+import CardImg from "react-bootstrap/CardImg";
+import Button from "react-bootstrap/Button";
 
-const CardImg = styled.div`
-  background-image: url(${(props) => props.imgURL}), url(../alt.jpg);
-  visibility: hidden;
-  background-size: cover;
-  background-position: 50% 50%, 0 0;
-  background-repeat: no-repeat, repeat;
+let StyledCard = styled(Card)`
+  border-radius: 25px;
+  margin: 0 !important;
   width: 100%;
-  height: 235px;
-  border-top-left-radius: 12px;
 `;
 
-const CardImgHover = styled.div`
-  background-image: url(${(props) => props.imgURL}), url(../alt.jpg);
-  transition: 0.2s all ease-out;
-  background-size: cover;
-  background-position: 50% 50%, 0 0;
-  background-repeat: no-repeat, repeat;
-  width: 100%;
-  position: absolute;
-  height: 235px;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  top: 0;
-`;
-
-const CardInfo = styled.div`
-  z-index: 2;
-  background-color: #fff;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  padding: 16px 24px 24px 24px;
-`;
-
-const CardCategory = styled.span`
-  text-transform: uppercase;
-  font-size: 13px;
-  letter-spacing: 2px;
-  font-weight: 500;
-  color: #868686;
-`;
-
-const CardTitle = styled.h3`
-  margin-top: 5px;
-  margin-bottom: 10px;
-`;
-
-const CardComp = styled.div`
-  margin: 25px;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
-  background-color: #fff;
-  width: 280px;
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 5px 10px 8px 10px rgba(0, 0, 0, 0.1);
-
-  &:hover {
-    box-shadow: 0px 30px 18px -8px rgba(0, 0, 0, 0.1);
-    transform: scale(1.1, 1.1);
-  }
-
-  &:hover ${CardImgHover} {
-    height: 100%;
-    opacity: 0.3;
-  }
-
-  &:hover ${CardInfo} {
-    background-color: transparent;
-    position: relative;
-  }
+let StyledImg = styled(Card.Img)`
+  border-radius: 25px 25px 0 0;
 `;
 
 const StyledA = styled.a`
@@ -79,9 +20,9 @@ const StyledA = styled.a`
   &:hover ${StyledA} {
     cursor: pointer;
   }
-`
+`;
 
-function Card(props) {
+function ClubCard(props) {
   const router = useRouter();
   let univLocation;
 
@@ -98,24 +39,27 @@ function Card(props) {
 
   return (
     <div>
-      <CardComp>
-        <CardImg imgURL={`../${univLocation}/${props.name}.jpg`}></CardImg>
+      <StyledCard>
         <Link href={`/${univLocation}/${props.name}`}>
           <StyledA>
-            <CardImgHover
-              imgURL={`../${univLocation}/${props.name}.jpg`}
-            ></CardImgHover>
-            <CardInfo>
-              <CardCategory>{props.category}</CardCategory>
-              <CardTitle>{props.name}</CardTitle>
-            </CardInfo>
+            <StyledImg
+              variant="top"
+              src={`../${univLocation}/${props.name}.jpg`}
+              onError={(e) => {
+                e.target.src = "../alt.jpg";
+              }}
+            />
+            <Card.Body>
+              <Card.Title>{props.name}</Card.Title>
+              <Card.Text>{props.category}</Card.Text>
+            </Card.Body>
           </StyledA>
         </Link>
-      </CardComp>
+      </StyledCard>
     </div>
   );
 }
 
 console.log("initialized");
 
-export default Card;
+export default ClubCard;
