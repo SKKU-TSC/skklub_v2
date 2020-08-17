@@ -2,17 +2,15 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Card from "react-bootstrap/Card";
-import CardImg from "react-bootstrap/CardImg";
-import Button from "react-bootstrap/Button";
 
 let StyledCard = styled(Card)`
-  border-radius: 25px;
+  border-radius: 15px;
   margin: 0 !important;
   width: 100%;
 `;
 
 let StyledImg = styled(Card.Img)`
-  border-radius: 25px 25px 0 0;
+  border-radius: 15px 15px 0 0;
 `;
 
 const StyledA = styled.a`

@@ -1,8 +1,8 @@
 import Head from "next/head";
 import styled, { keyframes } from "styled-components";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
+import Button from 'react-bootstrap/Button'
 import UserForm from "../components/userForm";
+import Navbar from "../components/navbar";
 
 const FullPage = styled.div`
   width: 100%;
@@ -20,13 +20,10 @@ const IndexContainer = styled.div`
   flex-direction: column;
   -webkit-box-orient: vertical !important;
   -webkit-box-direction: normal !important;
-  text-align: center;
+  
 `;
 
-const StyledNavBrand = styled(Navbar.Brand)`
-  font-size: 2rem;
-  font-weight: lighter;
-`;
+
 
 const StyledTitle = styled.h1`
   font-size: 2rem;
@@ -34,13 +31,14 @@ const StyledTitle = styled.h1`
 `;
 
 const StyledTitle2 = styled.h2`
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: lighter;
 `;
 
 const FrontContainer = styled.div`
-  margin-top: 10%;
-  margin-bottom: 10%;
+  padding-top: 40%;
+  padding-bottom: 40%;
+  text-align: center;
 `;
 
 const StyledImg = styled.img`
@@ -57,26 +55,22 @@ export default function Index() {
       </Head>
       <FullPage>
         <IndexContainer>
-          <Navbar expand="lg">
-            <StyledNavBrand>SKKLUB</StyledNavBrand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="justify-content-end">
-                <Nav.Link href="#home">Home</Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Navbar>
+          <Navbar></Navbar>
           <FrontContainer>
             <StyledImg src="../indexpic.jpg"></StyledImg>
-            <StyledTitle>성균관대학교 모든 동아리/단체를 한눈에!</StyledTitle>
+            <StyledTitle>성균관대학교<br />모든 동아리/단체를 한눈에!</StyledTitle>
             <StyledTitle2>
               SKKLUB은 우리 학교의 모든 동아리/학회/단체를 한눈에 볼 수 있는
               플랫폼입니다.
             </StyledTitle2>
+            <Button size="lg" variant="outline-success" href="/seoul">명륜 캠퍼스</Button>{' '}
+            <Button size="lg" variant="outline-primary" href="/suwon">수원 캠퍼스</Button>
           </FrontContainer>
-          <UserForm></UserForm>
+  
         </IndexContainer>
       </FullPage>
     </div>
   );
 }
+
+//User Form 대체

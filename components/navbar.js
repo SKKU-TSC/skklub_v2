@@ -1,22 +1,21 @@
 import { useRouter } from "next/router";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import FormControl from "react-bootstrap/FormControl";
 import styled from "styled-components";
-import Router from "next/router";
-
+import NavDropdown from "react-bootstrap/NavDropdown";
 
 let univLocation;
 let univColor;
 let nextPath;
-let btnColor;
+let hrefLink;
+let linkDisplay;
+let navBrand;
+let navBrandFont;
 
 const StyledNavbar = styled(Navbar)`
   background-color: #f8f7f8;
-  height: 5.5rem;
-  padding: 0px;
+  padding-top: 1%;
+  padding-bottom: 1%;
   padding-left: 10%;
   padding-right: 10%;
   width: 100%;
@@ -24,107 +23,83 @@ const StyledNavbar = styled(Navbar)`
 
 const StyledLink = styled(Nav.Link)`
   color: ${(props) => props.univcolor} !important;
+  display: ${(props) => props.linkdisplay} !important;
 `;
 
 const StyledNavBrand = styled(Navbar.Brand)`
-  font-size: 2rem;
+  font-size: ${(props) => props.navbrandfont} !important;
   font-weight: lighter;
 `;
 
-const StyledCollapse = styled(Navbar.Collapse)`
-  background-color: #f8f7f8;
-`;
-
-const StyledToggle = styled(Navbar.Toggle)`
-  padding: 20px;
-  border: none;
-
-  &:focus {
-    outline: 0;
-    box-shadow: none !important;
-  }
-`;
-
-const StyledForm = styled(Form)`
-  @media (max-width: 425px) {
-    padding-top: 1rem;
-    width: 50% !important;
-  }
-`;
-
-const DivCollapse = styled.div`
-  padding: 20px;
-  width: 100%;
-  display: flex;
-
-  @media only screen and (max-width: 959px) {
-    flex-direction: column;
-  }
-`;
-
-const StyledButton = styled(Button)`
-  background-color: ${(props) => props.btncolor};
-
-  &:hover {
-    background-color: ${(props) => props.btncolor};
-  }
-  &:active {
-    background-color: ${(props) => props.btncolor};
-  }
-  &:focus {
-    outline: 0;
-    box-shadow: none !important;
-  }
-`;
+const StyledToggle = styled(Navbar.Toggle)``;
 
 function GlobalNavbar(props) {
   const router = useRouter();
-  let checkRoute = router.pathname.includes("/seoul");
+  let checkRoute = router.pathname;
 
   switch (checkRoute) {
-    case true:
+    case "/seoul":
       univLocation = "수원";
       nextPath = "suwon";
       univColor = "#4d5dff";
-      btnColor = "green";
+
+      linkDisplay = "inline";
+      navBrand = "SKKLUB";
+      navBrandFont = "2rem";
+      hrefLink="/"
       break;
-    case false:
+    case "/suwon":
       univLocation = "명륜";
       univColor = "green";
       nextPath = "seoul";
-      btnColor = "#4d5dff";
+
+      linkDisplay = "inline";
+      navBrand = "SKKLUB";
+      navBrandFont = "2rem";
+      hrefLink="/"
+      break;
+    case "/":
+      linkDisplay = "none";
+      navBrand = "SKKLUB";
+      navBrandFont = "2rem";
+      hrefLink="/"
       break;
     default:
-      console.log("error");
+      linkDisplay = "none";
+      navBrand = "뒤로가기";
+      navBrandFont = "1.2rem";
+      hrefLink="javascript:history.back()"
   }
 
   console.log(props.history);
 
   return (
     <div>
-      <StyledNavbar fixed="top" expand="lg">
-        <StyledNavBrand href={"/"}>SKKLUB</StyledNavBrand>
+      <StyledNavbar fixed="top" bg="light" expand="lg">
+        <StyledNavBrand navbrandfont={navBrandFont} href={hrefLink}>
+          {navBrand}
+        </StyledNavBrand>
         <StyledToggle aria-controls="basic-navbar-nav"></StyledToggle>
-        <StyledCollapse>
-          <DivCollapse>
-            <Nav className="mr-auto">
-              <Nav.Link>중앙동아리</Nav.Link>
-              <Nav.Link>학회</Nav.Link>
-              <Nav.Link>소개</Nav.Link>
-              <StyledLink univcolor={univColor} href={"/" + nextPath}>
-                {univLocation} 캠퍼스 🎓
-              </StyledLink>
-            </Nav>
-            <StyledForm inline>
-              <FormControl
-                type="text"
-                placeholder="Search"
-                className="mr-sm-2"
-              />
-              <StyledButton btncolor={btnColor}>검색</StyledButton>
-            </StyledForm>
-          </DivCollapse>
-        </StyledCollapse>
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <NavDropdown title="중앙동아리" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/seoul">명륜 캠퍼스</NavDropdown.Item>
+              <NavDropdown.Item href="/suwon">율전 캠퍼스</NavDropdown.Item>
+            </NavDropdown>
+            <Nav.Link>학회</Nav.Link>
+            <NavDropdown title="소개" id="basic-nav-dropdown">
+              <NavDropdown.Item href="">동아리연합회 소개</NavDropdown.Item>
+              <NavDropdown.Item href="">SKKLUB 소개</NavDropdown.Item>
+            </NavDropdown>
+            <StyledLink
+              linkdisplay={linkDisplay}
+              univcolor={univColor}
+              href={"/" + nextPath}
+            >
+              {univLocation} 캠퍼스 🎓
+            </StyledLink>
+          </Nav>
+        </Navbar.Collapse>
       </StyledNavbar>
     </div>
   );

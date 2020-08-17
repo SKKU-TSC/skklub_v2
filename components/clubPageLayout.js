@@ -8,11 +8,11 @@ import Badge from "react-bootstrap/Badge";
 import React, { useState } from "react";
 import CardDeck from "react-bootstrap/CardDeck";
 import Card from "react-bootstrap/Card";
-import Footer from "../components/footer"
+import Footer from "../components/footer";
 
-const StyledSection = styled.section`
-  padding: 5%;
-`;
+const StyledCardDeck = styled(CardDeck)`
+  margin-top: 20px;
+`
 
 const StyledTitle = styled.h1`
   font-size: 2.5rem;
@@ -38,21 +38,21 @@ const StyledHr = styled.hr`
   height: 1px;
   visibility: visible;
   border: none;
-  border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+  border-bottom: 1px solid rgba(55, 53, 47, 0.39);
 `;
 
 const ProfileImage = styled.img`
   margin-top: 5%;
   display: block;
-  width: 20%;
+  max-width: 200px;
   border-radius: 20px;
 `;
 
 const StyledDiv = styled.div`
   padding-top: 100px;
   padding-bottom: 5%;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 10%;
+  margin-right: 10%;
   text-align: left;
 `;
 
@@ -101,7 +101,7 @@ const ClubPageLayout = (props) => {
         <StyledHr></StyledHr>
         <h5>
           <Badge variant="secondary">
-            {club.대분류}>{club.중분류1}>{club.소분류}
+            {club.대분류}&gt;{club.중분류1}&gt;{club.소분류}
           </Badge>{" "}
         </h5>
         <p>{club.소개글}</p>
@@ -112,46 +112,38 @@ const ClubPageLayout = (props) => {
 
         <StyledH2>Recruiting</StyledH2>
         <StyledHr></StyledHr>
-        <CardDeck>
+        <StyledCardDeck>
           <Card>
             <Card.Img variant="top" src="../모집시기.png" />
             <Card.Body>
               <Card.Title>모집시기</Card.Title>
-              <Card.Text>
-                {club.모집시기}
-              </Card.Text>
+              <Card.Text>{club.모집시기}</Card.Text>
             </Card.Body>
           </Card>
           <Card>
             <Card.Img variant="top" src="../모집인원.png" />
             <Card.Body>
               <Card.Title>모집인원</Card.Title>
-              <Card.Text>
-                {club.모집인원}
-              </Card.Text>
+              <Card.Text>{club.모집인원}</Card.Text>
             </Card.Body>
           </Card>
+        </StyledCardDeck>
+        <StyledCardDeck>
           <Card>
             <Card.Img variant="top" src="../활동기간.png" />
             <Card.Body>
               <Card.Title>의무 활동기간</Card.Title>
-              <Card.Text>
-                {club.활동기간}
-              </Card.Text>
+              <Card.Text>{club.활동기간}</Card.Text>
             </Card.Body>
           </Card>
           <Card>
             <Card.Img variant="top" src="../모집방식.png" />
             <Card.Body>
               <Card.Title>모집방식</Card.Title>
-              <Card.Text>
-                {club.모집전형}
-                
-                
-              </Card.Text>
+              <Card.Text>{club.모집전형}</Card.Text>
             </Card.Body>
           </Card>
-        </CardDeck>
+        </StyledCardDeck>
       </StyledDiv>
       <Footer></Footer>
     </div>

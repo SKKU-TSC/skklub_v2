@@ -21,7 +21,8 @@ const StyledCardDeck = styled(CardDeck)`
   padding-top: 20px;
 
   @media (max-width: 425px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
   }
 `;
 
