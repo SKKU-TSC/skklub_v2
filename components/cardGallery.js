@@ -1,13 +1,17 @@
+import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+import React, { useState, useEffect } from "react";
+
 import styled from "styled-components";
+
 import seoulClubs from "../data/seoul.json";
 import suwonClubs from "../data/suwon.json";
-import CardDeck from "react-bootstrap/CardDeck";
-import AlertType from "../components/alert";
-import { useRouter } from "next/router";
-import dynamic from "next/dynamic";
+
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import Dropdown from "react-bootstrap/Dropdown";
-import React, { useState } from "react";
+import CardDeck from "react-bootstrap/CardDeck";
+
+import AlertType from "../components/alert";
 
 const CardNoSSR = dynamic(() => import("../components/card"), { ssr: false });
 
@@ -76,6 +80,10 @@ function CardGallery() {
   let typeData;
   let univColor;
 
+  let LikedClubsArray = [];
+
+
+
   function shuffle(array) {
     array.sort(() => Math.random() - 0.5);
   }
@@ -97,6 +105,7 @@ function CardGallery() {
         "종교분과",
         "학술분과",
         "인문사회",
+        "찜한 동아리",
       ];
       break;
     case "/suwon":
@@ -114,6 +123,7 @@ function CardGallery() {
         "종교",
         "학술",
         "건강체육",
+        "찜한 동아리",
       ];
       break;
     default:
@@ -121,7 +131,6 @@ function CardGallery() {
       console.log("undefined");
   }
   console.log("sorted use Data");
-
   if (type === "전체") {
     return (
       <div>
@@ -164,8 +173,83 @@ function CardGallery() {
                 key={club.동아리명}
                 name={club.동아리명}
                 category={club.중분류1}
+                campus={club.캠퍼스}
               ></CardNoSSR>
             );
+          })}
+        </StyledCardDeck>
+      </div>
+    );
+  } else if (type === "찜한 동아리") {
+    let likedClubs = () => {
+      for (let key in localStorage) {
+        if (JSON.parse(localStorage.getItem(`${key}`)) === "❤️") {
+          LikedClubsArray.push(key);
+        }
+      }
+      console.log(LikedClubsArray);
+    };
+    likedClubs();
+    return (
+      <div>
+        <StyledFilterButtonContainer>
+          {typeData.map((name) => {
+            return (
+              <StyledButton
+                key={name}
+                type="submit"
+                univcolor={univColor}
+                onClick={() => {
+                  setType(name);
+                }}
+              >
+                {name}
+              </StyledButton>
+            );
+          })}
+        </StyledFilterButtonContainer>
+        <StyledDropdown>
+          <Dropdown.Toggle>분과 선택하기</Dropdown.Toggle>
+          <Dropdown.Menu>
+            {typeData.map((name) => {
+              return (
+                <Dropdown.Item
+                  key={name}
+                  type="submit"
+                  univcolor={univColor}
+                  onClick={() => setType(name)}
+                >
+                  {name}
+                </Dropdown.Item>
+              );
+            })}
+          </Dropdown.Menu>
+        </StyledDropdown>
+        <AlertType type={type}></AlertType>
+        <StyledCardDeck>
+          {useData
+            .filter((club) => club.중분류1 == type)
+            .map((club) => {
+              return (
+                <CardNoSSR
+                  name={club.동아리명}
+                  category={club.중분류1}
+                  campus={club.캠퍼스}
+                ></CardNoSSR>
+              );
+            })}
+          {LikedClubsArray.map((clubName) => {
+            for (let i = 0; i < useData.length; i++) {
+              if (useData[i].동아리명 == clubName) {
+                return (
+                  <CardNoSSR
+                    name={useData[i].동아리명}
+                    category={useData[i].중분류1}
+                    campus={useData[i].캠퍼스}
+                  ></CardNoSSR>
+                );
+              }
+            }
           })}
         </StyledCardDeck>
       </div>
@@ -213,6 +297,7 @@ function CardGallery() {
                 <CardNoSSR
                   name={club.동아리명}
                   category={club.중분류1}
+                  campus={club.캠퍼스}
                 ></CardNoSSR>
               );
             })}

@@ -1,8 +1,10 @@
 import { useRouter } from "next/router";
+
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import styled from "styled-components";
 import NavDropdown from "react-bootstrap/NavDropdown";
+
+import styled from "styled-components";
 
 let univLocation;
 let univColor;
@@ -86,7 +88,6 @@ function GlobalNavbar(props) {
               <NavDropdown.Item href="/seoul">명륜 캠퍼스</NavDropdown.Item>
               <NavDropdown.Item href="/suwon">율전 캠퍼스</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link>학회</Nav.Link>
             <NavDropdown title="소개" id="basic-nav-dropdown">
               <NavDropdown.Item href="">동아리연합회 소개</NavDropdown.Item>
               <NavDropdown.Item href="">SKKLUB 소개</NavDropdown.Item>

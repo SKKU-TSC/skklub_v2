@@ -1,7 +1,9 @@
-import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
+
 import Desc from "../data/type.json";
+
 import styled from "styled-components";
+
 
 const StyledAlert = styled(Alert)`
   margin: 20px 10% 10px 10%;

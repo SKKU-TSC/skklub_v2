@@ -1,9 +1,11 @@
 import Head from "next/head";
-import TopContainer from "../components/topContainer";
-import CardGallery from "../components/cardGallery";
+
 import styled from "styled-components";
+
 import Navbar from "../components/navbar";
 import Footer from "../components/footer"
+import TopContainer from "../components/topContainer";
+import CardGallery from "../components/cardGallery";
 
 const Main = styled.main`
   padding-bottom: 5%;

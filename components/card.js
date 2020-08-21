@@ -1,6 +1,12 @@
-import styled from "styled-components";
 import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+
+import { useLocalStorage } from "../hooks/useLocalStorage";
+
+import styled from "styled-components";
+
+import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 let StyledCard = styled(Card)`
@@ -13,14 +19,63 @@ let StyledImg = styled(Card.Img)`
   border-radius: 15px 15px 0 0;
 `;
 
-const StyledA = styled.a`
+let StyledTitle = styled(Card.Title)`
+  font-size: 1.2em;
+  font-weight: bold;
+  @media (max-width: 426px) {
+    font-size: 1em;
+  }
+`;
+
+let StyledText = styled(Card.Text)`
+  font-size: 0.9em;
+  font-weight: lighter;
+`;
+
+const StyledA = styled.div`
   text-decoration: none;
   &:hover ${StyledA} {
     cursor: pointer;
   }
 `;
 
+let LikeDiv = styled.div`
+  
+`;
+
+let LikeButton = styled(Button)`
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: white;
+  z-index: 100;
+  border: none;
+  position: absolute;
+  background-color: transparent !important;
+  font-size: 1.6em;
+  &:hover {
+    background-color: transparent !important;
+    border: none;
+  }
+  &:focus {
+    background-color: transparent !important;
+    border: none;
+    outline: none !important;
+    outline-offset: none !important;
+    box-shadow: none !important;
+  }
+  &:active {
+    background-color: transparent !important;
+    border: none !important;
+    outline: none !important;
+    outline-offset: none !important;
+    box-shadow: none;
+  }
+`;
+
 function ClubCard(props) {
+  const [like, setLike] = useLocalStorage(`${props.name}`, "🤍");
+
   const router = useRouter();
   let univLocation;
 
@@ -38,6 +93,19 @@ function ClubCard(props) {
   return (
     <div>
       <StyledCard>
+      <LikeButton
+          onClick={() => {
+            if (like === "❤️") {
+              setLike("🤍");
+              localStorage.removeItem(props.name);
+            } else {
+              setLike("❤️");
+            }
+          }}
+          likeState={like}
+        >
+          {like}
+        </LikeButton>
         <Link href={`/${univLocation}/${props.name}`}>
           <StyledA>
             <StyledImg
@@ -48,8 +116,13 @@ function ClubCard(props) {
               }}
             />
             <Card.Body>
-              <Card.Title>{props.name}</Card.Title>
-              <Card.Text>{props.category}</Card.Text>
+              <StyledTitle>{props.name}</StyledTitle>
+
+              <StyledText>
+                {props.category}
+                <br></br>
+                {props.campus}
+              </StyledText>
             </Card.Body>
           </StyledA>
         </Link>

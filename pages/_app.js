@@ -51,6 +51,7 @@ export default class MyApp extends App {
       <ThemeProvider theme={theme}>
         <Component history={this.state.history} {...pageProps} />
       </ThemeProvider>
+    
     );
   }
 }
