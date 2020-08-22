@@ -68,7 +68,6 @@ let LikeButton = styled(Button)`
   background-color: white;
   z-index: 100;
   border: none;
-
   background-color: transparent !important;
   font-size: 1.9rem;
   &:hover {

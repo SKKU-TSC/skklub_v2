@@ -39,11 +39,9 @@ const StyledA = styled.div`
   }
 `;
 
-let LikeDiv = styled.div`
-  
-`;
 
 let LikeButton = styled(Button)`
+  float: right;
   width: 50px;
   height: 50px;
   border-radius: 25px;
@@ -51,6 +49,7 @@ let LikeButton = styled(Button)`
   z-index: 100;
   border: none;
   position: absolute;
+  right: 0;
   background-color: transparent !important;
   font-size: 1.6em;
   &:hover {
@@ -93,19 +92,19 @@ function ClubCard(props) {
   return (
     <div>
       <StyledCard>
-      <LikeButton
-          onClick={() => {
-            if (like === "❤️") {
-              setLike("🤍");
-              localStorage.removeItem(props.name);
-            } else {
-              setLike("❤️");
-            }
-          }}
-          likeState={like}
-        >
-          {like}
-        </LikeButton>
+          <LikeButton
+            onClick={() => {
+              if (like === "❤️") {
+                setLike("🤍");
+                localStorage.removeItem(props.name);
+              } else {
+                setLike("❤️");
+              }
+            }}
+            likeState={like}
+          >
+            {like}
+          </LikeButton>
         <Link href={`/${univLocation}/${props.name}`}>
           <StyledA>
             <StyledImg
