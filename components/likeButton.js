@@ -18,7 +18,6 @@ let likedClubs = () => {
       LikedClubsArray.push(key);
     }
   }
-  console.log(LikedClubsArray);
 };
 
 let LikeButton = styled(Button)`

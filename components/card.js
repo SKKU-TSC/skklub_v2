@@ -39,7 +39,6 @@ const StyledA = styled.div`
   }
 `;
 
-
 let LikeButton = styled(Button)`
   float: right;
   width: 50px;
@@ -89,22 +88,22 @@ function ClubCard(props) {
       univLocation = "undefined";
   }
 
+
   return (
     <div>
       <StyledCard>
-          <LikeButton
-            onClick={() => {
-              if (like === "❤️") {
-                setLike("🤍");
-                localStorage.removeItem(props.name);
-              } else {
-                setLike("❤️");
-              }
-            }}
-            likeState={like}
-          >
-            {like}
-          </LikeButton>
+        <LikeButton
+          onClick={() => {
+            if (like === "❤️") {
+              setLike("🤍");
+              localStorage.removeItem(props.name);
+            } else {
+              setLike("❤️");
+            }
+          }}
+        >
+          {like}
+        </LikeButton>
         <Link href={`/${univLocation}/${props.name}`}>
           <StyledA>
             <StyledImg
@@ -129,7 +128,5 @@ function ClubCard(props) {
     </div>
   );
 }
-
-console.log("initialized");
 
 export default ClubCard;

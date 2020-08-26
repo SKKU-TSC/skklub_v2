@@ -4,6 +4,8 @@ import { useState } from "react";
 import seoulClubs from "../data/seoul.json";
 import suwonClubs from "../data/suwon.json";
 
+import EventContainer from "../components/eventContainer";
+
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
 
@@ -44,6 +46,16 @@ let EventBox = styled.div`
   margin-top: 20px;
 `;
 
+let StyledP = styled.p`
+  font-size: 17px;
+  line-height: 35px;
+
+  @media (max-width: 426px) {
+    font-size: 15px;
+    line-height: 30px;
+  }
+`
+
 function TopContainer() {
   const [open, setOpen] = useState(false);
 
@@ -53,6 +65,8 @@ function TopContainer() {
   let useData;
 
   const router = useRouter();
+
+  let event = true;
 
   switch (router.pathname) {
     case "/seoul":
@@ -69,7 +83,7 @@ function TopContainer() {
       univLocation = "undefined";
   }
 
-  if (router.pathname === "/seoul") {
+  if (event === true) {
     return (
       <div>
         <GlobalContainer>
@@ -84,13 +98,16 @@ function TopContainer() {
             </Title>
           </TitleContainer>
           <DescContainer>
-            <p>
+            <StyledP>
               현재{" "}
               <ClubNum color={color}>
                 <CountUp end={useData.length} />
               </ClubNum>
-              개의 동아리들이 등록되어 있습니다.<br />🤍 를 누르면 좋아하는 동아리를 찜할 수 있어요!
-            </p>
+              개의 동아리들이 등록되어 있습니다.
+              <br />
+              🤍 를 눌러 동아리를 찜해보세요!
+            </StyledP>
+            <EventContainer display=""></EventContainer>
           </DescContainer>
         </GlobalContainer>
       </div>
@@ -110,27 +127,16 @@ function TopContainer() {
             </Title>
           </TitleContainer>
           <DescContainer>
-            <p>
+            <StyledP>
               현재{" "}
               <ClubNum color={color}>
                 <CountUp end={useData.length} />
               </ClubNum>
-              개의 동아리들이 등록되어 있습니다.<br />🤍 를 누르면 좋아하는 동아리를 찜할 수 있어요!
-            </p>
-            <Button
-              onClick={() => setOpen(!open)}
-              aria-controls="collapse-text"
-              aria-expanded={open}
-            >
-              🎉 이벤트 진행중!
-            </Button>
+              개의 동아리들이 등록되어 있습니다.
+              <br />
+              🤍 를 눌러 동아리를 찜해보세요!
+            </StyledP>
           </DescContainer>
-          <Collapse in={open}>
-            <EventBox id="collapse-text">
-              <p>율정에서 동아리 지원 사업 진행중 </p>
-              <Button>동아리 지원하기</Button>
-            </EventBox>
-          </Collapse>
         </GlobalContainer>
       </div>
     );

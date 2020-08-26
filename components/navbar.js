@@ -41,39 +41,36 @@ function GlobalNavbar(props) {
 
   switch (checkRoute) {
     case "/seoul":
-      univLocation = "수원";
+      univLocation = "율전";
       nextPath = "suwon";
       univColor = "#4d5dff";
-
       linkDisplay = "inline";
       navBrand = "SKKLUB";
       navBrandFont = "2rem";
-      hrefLink="/"
+      hrefLink = "/";
       break;
     case "/suwon":
       univLocation = "명륜";
       univColor = "green";
       nextPath = "seoul";
-
       linkDisplay = "inline";
       navBrand = "SKKLUB";
       navBrandFont = "2rem";
-      hrefLink="/"
+      hrefLink = "/";
       break;
     case "/":
       linkDisplay = "none";
       navBrand = "SKKLUB";
       navBrandFont = "2rem";
-      hrefLink="/"
+      hrefLink = "/";
       break;
     default:
       linkDisplay = "none";
       navBrand = "뒤로가기";
       navBrandFont = "1.2rem";
-      hrefLink="javascript:history.back()"
+      hrefLink = "javascript:history.back()";
   }
 
-  console.log(props.history);
 
   return (
     <div>

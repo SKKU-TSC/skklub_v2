@@ -18,6 +18,12 @@ import Footer from "../components/footer";
 
 const StyledCardDeck = styled(CardDeck)`
   margin-top: 20px;
+
+  @media (max-width: 425px) {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+  }
 `;
 
 const StyledTitle = styled.h1`
@@ -61,6 +67,10 @@ const StyledDiv = styled.div`
   margin-right: 15%;
   text-align: left;
   word-wrap: break-word;
+  @media (max-width: 426px) {
+    margin-left: 5%;
+  margin-right: 5%;
+  }
 `;
 
 let LikeButton = styled(Button)`
@@ -90,10 +100,16 @@ let LikeButton = styled(Button)`
   }
 `;
 
+let StyledP = styled.p`
+  font-size: 17px;
+  color: #333;
+  letter-spacing: -0.34px;
+  line-height: 27.625px;
+`;
+
 const ClubPageLayout = (props) => {
-  console.log("loaded Page layout");
   const [key, setKey] = useState("home");
-  
+
   let router = useRouter();
   let { pid } = router.query;
   let checkRoute = router.pathname.includes("/seoul");
@@ -116,11 +132,13 @@ const ClubPageLayout = (props) => {
   let index = useData.findIndex((club) => club.동아리명 === pid);
   let club = useData[index];
   let clubImg = `../${univLocation}/${club.동아리명}.jpg`;
-  let [checkLike, setCheckLike] = useState(localStorage.getItem(club.동아리명) === null ? "🤍" : "❤️");
+  let [checkLike, setCheckLike] = useState(
+    localStorage.getItem(club.동아리명) === null ? "🤍" : "❤️"
+  );
   function addDefaultSrc(ev) {
     ev.target.src = "../alt.jpg";
   }
-  
+
   if (club.대페 === "") {
     return (
       <div>
@@ -134,11 +152,14 @@ const ClubPageLayout = (props) => {
             <LikeButton
               onClick={() => {
                 if (checkLike != "❤️") {
-                  localStorage.setItem(`${club.동아리명}`, JSON.stringify("❤️"))
-                  setCheckLike("❤️")
+                  localStorage.setItem(
+                    `${club.동아리명}`,
+                    JSON.stringify("❤️")
+                  );
+                  setCheckLike("❤️");
                 } else {
                   localStorage.removeItem(`${club.동아리명}`);
-                  setCheckLike("🤍")
+                  setCheckLike("🤍");
                 }
               }}
             >
@@ -156,10 +177,10 @@ const ClubPageLayout = (props) => {
               {club.대분류}&gt;{club.중분류1}&gt;{club.소분류}
             </Badge>{" "}
           </h5>
-          <p>{club.소개글}</p>
+          <StyledP>{club.소개글}</StyledP>
           <StyledH2>Activity</StyledH2>
           <StyledHr></StyledHr>
-          <p>{club.활동정보}</p>
+          <StyledP>{club.활동정보}</StyledP>
 
           <StyledH2>Recruiting</StyledH2>
           <StyledHr></StyledHr>
@@ -210,11 +231,14 @@ const ClubPageLayout = (props) => {
             <LikeButton
               onClick={() => {
                 if (checkLike != "❤️") {
-                  localStorage.setItem(`${club.동아리명}`, JSON.stringify("❤️"))
-                  setCheckLike("❤️")
+                  localStorage.setItem(
+                    `${club.동아리명}`,
+                    JSON.stringify("❤️")
+                  );
+                  setCheckLike("❤️");
                 } else {
                   localStorage.removeItem(`${club.동아리명}`);
-                  setCheckLike("🤍")
+                  setCheckLike("🤍");
                 }
               }}
             >
@@ -232,7 +256,7 @@ const ClubPageLayout = (props) => {
               {club.대분류}&gt;{club.중분류1}&gt;{club.소분류}
             </Badge>{" "}
           </h5>
-          <p>{club.소개글}</p>
+          <StyledP>{club.소개글}</StyledP>
           <Button
             variant="info"
             target="_blank"
@@ -243,7 +267,7 @@ const ClubPageLayout = (props) => {
           </Button>
           <StyledH2>Activity</StyledH2>
           <StyledHr></StyledHr>
-          <p>{club.활동정보}</p>
+          <StyledP>{club.활동정보}</StyledP>
 
           <StyledH2>Recruiting</StyledH2>
           <StyledHr></StyledHr>

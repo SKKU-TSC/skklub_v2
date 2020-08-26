@@ -72,8 +72,6 @@ const StyledDropdown = styled(Dropdown)`
 
 function CardGallery() {
   const [type, setType] = useState("전체");
-
-  console.log("card initialized");
   const router = useRouter();
   let univLocation;
   let useData;
@@ -82,12 +80,9 @@ function CardGallery() {
 
   let LikedClubsArray = [];
 
-
-
   function shuffle(array) {
     array.sort(() => Math.random() - 0.5);
   }
-  console.log("sort function initialized");
 
   switch (router.pathname) {
     case "/seoul":
@@ -105,7 +100,7 @@ function CardGallery() {
         "종교분과",
         "학술분과",
         "인문사회",
-        "찜한 동아리",
+        "찜한 동아리 ❤️",
       ];
       break;
     case "/suwon":
@@ -123,22 +118,21 @@ function CardGallery() {
         "종교",
         "학술",
         "건강체육",
-        "찜한 동아리",
+        "찜한 동아리 ❤️",
       ];
       break;
     default:
       univLocation = "undefined";
-      console.log("undefined");
   }
-  console.log("sorted use Data");
+
   if (type === "전체") {
     return (
       <div>
         <StyledFilterButtonContainer>
-          {typeData.map((name) => {
+          {typeData.map((name, i) => {
             return (
               <StyledButton
-                key={name}
+                key={i}
                 type="submit"
                 univcolor={univColor}
                 onClick={() => setType(name)}
@@ -152,10 +146,10 @@ function CardGallery() {
           <Dropdown.Toggle>분과 선택하기</Dropdown.Toggle>
 
           <Dropdown.Menu>
-            {typeData.map((name) => {
+            {typeData.map((name, i) => {
               return (
                 <Dropdown.Item
-                  key={name}
+                  key={i}
                   type="submit"
                   univcolor={univColor}
                   onClick={() => setType(name)}
@@ -167,36 +161,36 @@ function CardGallery() {
           </Dropdown.Menu>
         </StyledDropdown>
         <StyledCardDeck>
-          {useData.map((club) => {
+          {useData.map((club, i) => {
             return (
               <CardNoSSR
-                key={club.동아리명}
+                key={i}
                 name={club.동아리명}
                 category={club.중분류1}
                 campus={club.캠퍼스}
+                
               ></CardNoSSR>
             );
           })}
         </StyledCardDeck>
       </div>
     );
-  } else if (type === "찜한 동아리") {
+  } else if (type === "찜한 동아리 ❤️") {
     let likedClubs = () => {
       for (let key in localStorage) {
         if (JSON.parse(localStorage.getItem(`${key}`)) === "❤️") {
           LikedClubsArray.push(key);
         }
       }
-      console.log(LikedClubsArray);
     };
     likedClubs();
     return (
       <div>
         <StyledFilterButtonContainer>
-          {typeData.map((name) => {
+          {typeData.map((name, i) => {
             return (
               <StyledButton
-                key={name}
+                key={i}
                 type="submit"
                 univcolor={univColor}
                 onClick={() => {
@@ -211,10 +205,10 @@ function CardGallery() {
         <StyledDropdown>
           <Dropdown.Toggle>분과 선택하기</Dropdown.Toggle>
           <Dropdown.Menu>
-            {typeData.map((name) => {
+            {typeData.map((name, i) => {
               return (
                 <Dropdown.Item
-                  key={name}
+                  key={i}
                   type="submit"
                   univcolor={univColor}
                   onClick={() => setType(name)}
@@ -232,17 +226,19 @@ function CardGallery() {
             .map((club) => {
               return (
                 <CardNoSSR
+                  key={i}
                   name={club.동아리명}
                   category={club.중분류1}
                   campus={club.캠퍼스}
                 ></CardNoSSR>
               );
             })}
-          {LikedClubsArray.map((clubName) => {
+          {LikedClubsArray.map((clubName, i) => {
             for (let i = 0; i < useData.length; i++) {
               if (useData[i].동아리명 == clubName) {
                 return (
                   <CardNoSSR
+                    key={i}
                     name={useData[i].동아리명}
                     category={useData[i].중분류1}
                     campus={useData[i].캠퍼스}
@@ -258,10 +254,10 @@ function CardGallery() {
     return (
       <div>
         <StyledFilterButtonContainer>
-          {typeData.map((name) => {
+          {typeData.map((name, i) => {
             return (
               <StyledButton
-                key={name}
+                key={i}
                 type="submit"
                 univcolor={univColor}
                 onClick={() => setType(name)}
@@ -274,10 +270,10 @@ function CardGallery() {
         <StyledDropdown>
           <Dropdown.Toggle>분과 선택하기</Dropdown.Toggle>
           <Dropdown.Menu>
-            {typeData.map((name) => {
+            {typeData.map((name, i) => {
               return (
                 <Dropdown.Item
-                  key={name}
+                  key={i}
                   type="submit"
                   univcolor={univColor}
                   onClick={() => setType(name)}
@@ -292,9 +288,10 @@ function CardGallery() {
         <StyledCardDeck>
           {useData
             .filter((club) => club.중분류1 == type)
-            .map((club) => {
+            .map((club, i) => {
               return (
                 <CardNoSSR
+                  key={i}
                   name={club.동아리명}
                   category={club.중분류1}
                   campus={club.캠퍼스}
