@@ -104,9 +104,9 @@ function TopContainer() {
                 <CountUp end={useData.length} />
               </ClubNum>
               개의 동아리들이 등록되어 있습니다.
-              <br />
-              🤍 를 눌러 동아리를 찜해보세요!
+              
             </StyledP>
+            <StyledP>각 동아리의 상세 페이지에 하트를 눌러<br></br>동아리를 찜해보세요!</StyledP>
             <EventContainer display=""></EventContainer>
           </DescContainer>
         </GlobalContainer>
@@ -133,9 +133,8 @@ function TopContainer() {
                 <CountUp end={useData.length} />
               </ClubNum>
               개의 동아리들이 등록되어 있습니다.
-              <br />
-              🤍 를 눌러 동아리를 찜해보세요!
             </StyledP>
+            <StyledP>각 동아리의 상세 페이지에 하트를 눌러<br></br>동아리를 찜해보세요!</StyledP>
           </DescContainer>
         </GlobalContainer>
       </div>

@@ -2,30 +2,15 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 
 import styled from "styled-components";
 
-let Heart = styled(MdHeart)`
-  z-index: 100;
-`;
-
-let HeartOutline = styled(MdHeartOutline)`
-  z-index: 100;
-`;
+import Button from "react-bootstrap/Button";
 
 let StyledA = styled.a``;
-
-let likedClubs = () => {
-  for (let key in localStorage) {
-    if (JSON.parse(localStorage.getItem(`${key}`)) === "❤️") {
-      LikedClubsArray.push(key);
-    }
-  }
-};
 
 let LikeButton = styled(Button)`
   width: 50px;
   height: 50px;
   border-radius: 25px;
   background-color: white;
-  z-index: 100;
   border: none;
   position: absolute;
   background-color: transparent !important;
@@ -52,7 +37,7 @@ let LikeButton = styled(Button)`
 
 export default function LikeButtons(props) {
   const [like, setLike] = useLocalStorage(`${props.name}`, "🤍");
-  likedClubs();
+
   return (
     <LikeButton
       onClick={() => {
@@ -69,3 +54,5 @@ export default function LikeButtons(props) {
     </LikeButton>
   );
 }
+
+

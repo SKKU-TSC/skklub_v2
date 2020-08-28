@@ -2,18 +2,20 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 
+import { useLocalStorage } from "../hooks/useLocalStorage";
+
 import styled from "styled-components";
 
 import seoulClubs from "../data/seoul.json";
 import suwonClubs from "../data/suwon.json";
 
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
-import Dropdown from "react-bootstrap/Dropdown";
+import { Dropdown } from "semantic-ui-react";
 import CardDeck from "react-bootstrap/CardDeck";
-
-import AlertType from "../components/alert";
+import Button from "react-bootstrap/Button";
 
 const CardNoSSR = dynamic(() => import("../components/card"), { ssr: false });
+const AlertNoSSR = dynamic(() => import("../components/alert"), { ssr: false });
 
 const StyledCardDeck = styled(CardDeck)`
   list-style: none;
@@ -66,12 +68,20 @@ const StyledButton = styled.div`
 const StyledDropdown = styled(Dropdown)`
   margin-left: 10%;
   @media (min-width: 426px) {
+    display: none !important;
+  }
+`;
+
+let LikeMenuButton = styled(Button)`
+  margin-left: 10px;
+  @media (min-width: 426px) {
     display: none;
   }
 `;
 
 function CardGallery() {
-  const [type, setType] = useState("전체");
+  
+
   const router = useRouter();
   let univLocation;
   let useData;
@@ -86,6 +96,7 @@ function CardGallery() {
 
   switch (router.pathname) {
     case "/seoul":
+
       univLocation = "seoul";
       shuffle(seoulClubs);
       useData = seoulClubs;
@@ -104,6 +115,7 @@ function CardGallery() {
       ];
       break;
     case "/suwon":
+
       univLocation = "suwon";
       shuffle(suwonClubs);
       useData = suwonClubs;
@@ -125,6 +137,8 @@ function CardGallery() {
       univLocation = "undefined";
   }
 
+  let [type, setType] = useLocalStorage(univLocation, "전체");
+
   if (type === "전체") {
     return (
       <div>
@@ -142,9 +156,8 @@ function CardGallery() {
             );
           })}
         </StyledFilterButtonContainer>
-        <StyledDropdown>
-          <Dropdown.Toggle>분과 선택하기</Dropdown.Toggle>
 
+        <StyledDropdown text={type} selection>
           <Dropdown.Menu>
             {typeData.map((name, i) => {
               return (
@@ -153,13 +166,20 @@ function CardGallery() {
                   type="submit"
                   univcolor={univColor}
                   onClick={() => setType(name)}
-                >
-                  {name}
-                </Dropdown.Item>
+                  text={name}
+                ></Dropdown.Item>
               );
             })}
           </Dropdown.Menu>
         </StyledDropdown>
+
+        <LikeMenuButton
+          variant="secondary"
+          onClick={() => setType("찜한 동아리 ❤️")}
+        >
+          찜한 동아리
+        </LikeMenuButton>
+
         <StyledCardDeck>
           {useData.map((club, i) => {
             return (
@@ -168,7 +188,6 @@ function CardGallery() {
                 name={club.동아리명}
                 category={club.중분류1}
                 campus={club.캠퍼스}
-                
               ></CardNoSSR>
             );
           })}
@@ -202,8 +221,7 @@ function CardGallery() {
             );
           })}
         </StyledFilterButtonContainer>
-        <StyledDropdown>
-          <Dropdown.Toggle>분과 선택하기</Dropdown.Toggle>
+        <StyledDropdown text={type} selection>
           <Dropdown.Menu>
             {typeData.map((name, i) => {
               return (
@@ -212,14 +230,20 @@ function CardGallery() {
                   type="submit"
                   univcolor={univColor}
                   onClick={() => setType(name)}
-                >
-                  {name}
-                </Dropdown.Item>
+                  text={name}
+                ></Dropdown.Item>
               );
             })}
           </Dropdown.Menu>
         </StyledDropdown>
-        <AlertType type={type}></AlertType>
+
+        <LikeMenuButton
+          variant="secondary"
+          onClick={() => setType("찜한 동아리 ❤️")}
+        >
+          찜한 동아리
+        </LikeMenuButton>
+        <AlertNoSSR type={localStorage.getItem("Type")}></AlertNoSSR>
         <StyledCardDeck>
           {useData
             .filter((club) => club.중분류1 == type)
@@ -267,35 +291,40 @@ function CardGallery() {
             );
           })}
         </StyledFilterButtonContainer>
-        <StyledDropdown>
-          <Dropdown.Toggle>분과 선택하기</Dropdown.Toggle>
+        <StyledDropdown text={type} selection>
           <Dropdown.Menu>
             {typeData.map((name, i) => {
               return (
                 <Dropdown.Item
-                  key={i}
                   type="submit"
                   univcolor={univColor}
                   onClick={() => setType(name)}
-                >
-                  {name}
-                </Dropdown.Item>
+                  text={name}
+                ></Dropdown.Item>
               );
             })}
           </Dropdown.Menu>
         </StyledDropdown>
-        <AlertType type={type}></AlertType>
+
+        <LikeMenuButton
+          variant="secondary"
+          onClick={() => setType("찜한 동아리 ❤️")}
+        >
+          찜한 동아리
+        </LikeMenuButton>
+        <AlertNoSSR type={type}></AlertNoSSR>
         <StyledCardDeck>
           {useData
             .filter((club) => club.중분류1 == type)
             .map((club, i) => {
               return (
-                <CardNoSSR
-                  key={i}
-                  name={club.동아리명}
-                  category={club.중분류1}
-                  campus={club.캠퍼스}
-                ></CardNoSSR>
+                <div>
+                  <CardNoSSR
+                    name={club.동아리명}
+                    category={club.중분류1}
+                    campus={club.캠퍼스}
+                  ></CardNoSSR>
+                </div>
               );
             })}
         </StyledCardDeck>

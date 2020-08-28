@@ -77,7 +77,7 @@ export default function Index() {
                 명륜 캠퍼스
               </Button>{" "}
               <Button size="lg" variant="outline-primary" href="/suwon">
-                수원 캠퍼스
+                율전 캠퍼스
               </Button>
             </ButtonDiv>
           </FrontContainer>

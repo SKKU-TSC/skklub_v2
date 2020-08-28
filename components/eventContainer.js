@@ -29,19 +29,23 @@ function EventContainer(props) {
   let useData;
   let eventText;
   let displayCheck;
+  let eventHref;
 
   switch (router.pathname) {
     case "/seoul":
       univLocation = "명륜";
       color = "success";
-      eventText = "동아리 지원 사업";
+      eventText = "🎊동아리 지원하고, 경품 받아가세요!! 🎉";
       displayCheck = props.display === "seoulOff" ? "none" : "";
+      eventHref =
+        "https://docs.google.com/forms/d/e/1FAIpQLScg7Oejn1CxVJDz_xxotqcvxKSXsroVQGVbhJ0MbEDQ1B4aBw/viewform?usp=send_form";
       break;
     case "/suwon":
       univLocation = "율전";
       color = "primary";
-      eventText = "";
+      eventText = "🎊동아리 지원하고, 경품 받아가세요!! 🎉";
       displayCheck = props.display === "suwonOff" ? "none" : "";
+      eventHref = "https://forms.gle/bjrV3A4ek8wCZtzt6";
       break;
     default:
       univLocation = "undefined";
@@ -61,7 +65,12 @@ function EventContainer(props) {
         <StyledCollapse in={open}>
           <EventBox id="collapse-text">
             <p>{eventText}</p>
-            <Button variant={color} href="" target="_blank" rel="noopener noreferrer">
+            <Button
+              variant={color}
+              href={eventHref}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               동아리 지원하기
             </Button>
           </EventBox>

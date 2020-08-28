@@ -45,7 +45,6 @@ let LikeButton = styled(Button)`
   height: 50px;
   border-radius: 25px;
   background-color: white;
-  z-index: 100;
   border: none;
   position: absolute;
   right: 0;
@@ -88,22 +87,9 @@ function ClubCard(props) {
       univLocation = "undefined";
   }
 
-
   return (
     <div>
       <StyledCard>
-        <LikeButton
-          onClick={() => {
-            if (like === "❤️") {
-              setLike("🤍");
-              localStorage.removeItem(props.name);
-            } else {
-              setLike("❤️");
-            }
-          }}
-        >
-          {like}
-        </LikeButton>
         <Link href={`/${univLocation}/${props.name}`}>
           <StyledA>
             <StyledImg
@@ -128,5 +114,21 @@ function ClubCard(props) {
     </div>
   );
 }
+
+/*
+Under StyledCard
+<LikeButton
+          onClick={() => {
+            if (like === "❤️") {
+              setLike("🤍");
+              localStorage.removeItem(props.name);
+            } else {
+              setLike("❤️");
+            }
+          }}
+        >
+          {like}
+        </LikeButton>
+*/
 
 export default ClubCard;

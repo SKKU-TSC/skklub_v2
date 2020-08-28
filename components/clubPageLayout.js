@@ -14,7 +14,10 @@ import CardDeck from "react-bootstrap/CardDeck";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
+import { Popup } from "semantic-ui-react";
+
 import Footer from "../components/footer";
+import ClubWebsiteButton from "./clubWebsiteButton";
 
 const StyledCardDeck = styled(CardDeck)`
   margin-top: 20px;
@@ -69,7 +72,7 @@ const StyledDiv = styled.div`
   word-wrap: break-word;
   @media (max-width: 426px) {
     margin-left: 5%;
-  margin-right: 5%;
+    margin-right: 5%;
   }
 `;
 
@@ -139,173 +142,88 @@ const ClubPageLayout = (props) => {
     ev.target.src = "../alt.jpg";
   }
 
-  if (club.대페 === "") {
-    return (
-      <div>
-        <Head>
-          <title>{club.동아리명}</title>
-        </Head>
-        <StyledDiv>
-          <ProfileImage onError={addDefaultSrc} src={clubImg} />
-          <StyledTitle>
-            {club.동아리명}
-            <LikeButton
-              onClick={() => {
-                if (checkLike != "❤️") {
-                  localStorage.setItem(
-                    `${club.동아리명}`,
-                    JSON.stringify("❤️")
-                  );
-                  setCheckLike("❤️");
-                } else {
-                  localStorage.removeItem(`${club.동아리명}`);
-                  setCheckLike("🤍");
-                }
-              }}
-            >
-              {checkLike}
-            </LikeButton>
-          </StyledTitle>
-          <StyledSlogan>
-            <em>&quot;{club.핵심문구}&quot;</em>
-          </StyledSlogan>
+  return (
+    <div>
+      <Head>
+        <title>{club.동아리명}</title>
+      </Head>
+      <StyledDiv>
+        <ProfileImage onError={addDefaultSrc} src={clubImg} />
+        
+        <StyledTitle>
+          {club.동아리명}
+          
+          <LikeButton
+                onClick={() => {
+                  if (checkLike != "❤️") {
+                    localStorage.setItem(
+                      `${club.동아리명}`,
+                      JSON.stringify("❤️")
+                    );
+                    setCheckLike("❤️");
+                  } else {
+                    localStorage.removeItem(`${club.동아리명}`);
+                    setCheckLike("🤍");
+                  }
+                }}
+              >
+                {checkLike}
+              </LikeButton>
 
-          <StyledH2>About</StyledH2>
-          <StyledHr></StyledHr>
-          <h5>
-            <Badge variant="info">
-              {club.대분류}&gt;{club.중분류1}&gt;{club.소분류}
-            </Badge>{" "}
-          </h5>
-          <StyledP>{club.소개글}</StyledP>
-          <StyledH2>Activity</StyledH2>
-          <StyledHr></StyledHr>
-          <StyledP>{club.활동정보}</StyledP>
+        </StyledTitle>
+        <StyledSlogan>
+          <em>&quot;{club.핵심문구}&quot;</em>
+        </StyledSlogan>
 
-          <StyledH2>Recruiting</StyledH2>
-          <StyledHr></StyledHr>
-          <StyledCardDeck>
-            <Card>
-              <Card.Img variant="top" src="../모집시기.png" />
-              <Card.Body>
-                <Card.Title>모집시기</Card.Title>
-                <Card.Text>{club.모집시기}</Card.Text>
-              </Card.Body>
-            </Card>
-            <Card>
-              <Card.Img variant="top" src="../모집인원.png" />
-              <Card.Body>
-                <Card.Title>모집인원</Card.Title>
-                <Card.Text>{club.모집인원}</Card.Text>
-              </Card.Body>
-            </Card>
-            <Card>
-              <Card.Img variant="top" src="../활동기간.png" />
-              <Card.Body>
-                <Card.Title>의무 활동기간</Card.Title>
-                <Card.Text>{club.활동기간}</Card.Text>
-              </Card.Body>
-            </Card>
-            <Card>
-              <Card.Img variant="top" src="../모집방식.png" />
-              <Card.Body>
-                <Card.Title>모집방식</Card.Title>
-                <Card.Text>{club.모집전형}</Card.Text>
-              </Card.Body>
-            </Card>
-          </StyledCardDeck>
-        </StyledDiv>
-        <Footer></Footer>
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <Head>
-          <title>{club.동아리명}</title>
-        </Head>
-        <StyledDiv>
-          <ProfileImage onError={addDefaultSrc} src={clubImg} />
-          <StyledTitle>
-            {club.동아리명}
-            <LikeButton
-              onClick={() => {
-                if (checkLike != "❤️") {
-                  localStorage.setItem(
-                    `${club.동아리명}`,
-                    JSON.stringify("❤️")
-                  );
-                  setCheckLike("❤️");
-                } else {
-                  localStorage.removeItem(`${club.동아리명}`);
-                  setCheckLike("🤍");
-                }
-              }}
-            >
-              {checkLike}
-            </LikeButton>
-          </StyledTitle>
-          <StyledSlogan>
-            <em>&quot;{club.핵심문구}&quot;</em>
-          </StyledSlogan>
+        <StyledH2>About</StyledH2>
+        <StyledHr></StyledHr>
+        <h5>
+          <Badge variant="info">
+            {club.대분류}&gt;{club.중분류1}&gt;{club.소분류}
+          </Badge>{" "}
+        </h5>
+        <StyledP>{club.소개글}</StyledP>
+        <ClubWebsiteButton link={club.대페} name={club.동아리명}></ClubWebsiteButton>
+        <StyledH2>Activity</StyledH2>
+        <StyledHr></StyledHr>
+        <StyledP>{club.활동정보}</StyledP>
 
-          <StyledH2>About</StyledH2>
-          <StyledHr></StyledHr>
-          <h5>
-            <Badge variant="info">
-              {club.대분류}&gt;{club.중분류1}&gt;{club.소분류}
-            </Badge>{" "}
-          </h5>
-          <StyledP>{club.소개글}</StyledP>
-          <Button
-            variant="info"
-            target="_blank"
-            rel="noopener noreferrer"
-            href={club.대페}
-          >
-            동아리 대표 페이지
-          </Button>
-          <StyledH2>Activity</StyledH2>
-          <StyledHr></StyledHr>
-          <StyledP>{club.활동정보}</StyledP>
-
-          <StyledH2>Recruiting</StyledH2>
-          <StyledHr></StyledHr>
-          <StyledCardDeck>
-            <Card>
-              <Card.Img variant="top" src="../모집시기.png" />
-              <Card.Body>
-                <Card.Title>모집시기</Card.Title>
-                <Card.Text>{club.모집시기}</Card.Text>
-              </Card.Body>
-            </Card>
-            <Card>
-              <Card.Img variant="top" src="../모집인원.png" />
-              <Card.Body>
-                <Card.Title>모집인원</Card.Title>
-                <Card.Text>{club.모집인원}</Card.Text>
-              </Card.Body>
-            </Card>
-            <Card>
-              <Card.Img variant="top" src="../활동기간.png" />
-              <Card.Body>
-                <Card.Title>의무 활동기간</Card.Title>
-                <Card.Text>{club.활동기간}</Card.Text>
-              </Card.Body>
-            </Card>
-            <Card>
-              <Card.Img variant="top" src="../모집방식.png" />
-              <Card.Body>
-                <Card.Title>모집방식</Card.Title>
-                <Card.Text>{club.모집전형}</Card.Text>
-              </Card.Body>
-            </Card>
-          </StyledCardDeck>
-        </StyledDiv>
-        <Footer></Footer>
-      </div>
-    );
-  }
+        <StyledH2>Recruiting</StyledH2>
+        <StyledHr></StyledHr>
+        <StyledCardDeck>
+          <Card>
+            <Card.Img variant="top" src="../1.png" />
+            <Card.Body>
+              <Card.Title>모집시기</Card.Title>
+              <Card.Text>{club.모집시기}</Card.Text>
+            </Card.Body>
+          </Card>
+          <Card>
+            <Card.Img variant="top" src="../2.png" />
+            <Card.Body>
+              <Card.Title>모집인원</Card.Title>
+              <Card.Text>{club.모집인원}</Card.Text>
+            </Card.Body>
+          </Card>
+          <Card>
+            <Card.Img variant="top" src="../3.png" />
+            <Card.Body>
+              <Card.Title>의무 활동기간</Card.Title>
+              <Card.Text>{club.활동기간}</Card.Text>
+            </Card.Body>
+          </Card>
+          <Card>
+            <Card.Img variant="top" src="../4.png" />
+            <Card.Body>
+              <Card.Title>모집방식</Card.Title>
+              <Card.Text>{club.모집전형}</Card.Text>
+            </Card.Body>
+          </Card>
+        </StyledCardDeck>
+      </StyledDiv>
+      <Footer></Footer>
+    </div>
+  );
 };
 
 export default ClubPageLayout;

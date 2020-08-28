@@ -3,8 +3,9 @@ import Head from "next/head";
 import styled from "styled-components";
 
 import Navbar from "../components/navbar";
-import Footer from "../components/footer"
+import Footer from "../components/footer";
 import TopContainer from "../components/topContainer";
+
 import CardGallery from "../components/cardGallery";
 
 const Main = styled.main`

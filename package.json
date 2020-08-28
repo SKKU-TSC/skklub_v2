@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start -p 80"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
@@ -14,15 +14,19 @@
     "color-thief-react": "^1.0.2",
     "colorthief": "^2.3.0",
     "next": "latest",
+    "nextjs-redirect": "^5.0.0",
     "react": "^16.8.0",
     "react-bootstrap": "^1.0.1",
     "react-countup": "^4.3.3",
     "react-dom": "^16.8.0",
+    "react-ga": "^3.1.2",
     "react-ionicons": "^3.1.4",
     "react-redux": "^7.2.1",
     "react-scripts": "^3.4.3",
     "react-typed": "^1.2.0",
     "redux": "^4.0.5",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^1.2.1",
     "styled-components": "^5.0.0"
   },
   "devDependencies": {

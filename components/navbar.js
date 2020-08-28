@@ -16,8 +16,8 @@ let navBrandFont;
 
 const StyledNavbar = styled(Navbar)`
   background-color: #f8f7f8;
-  padding-top: 1%;
-  padding-bottom: 1%;
+  padding-top: 20px;
+  padding-bottom: 20px;
   padding-left: 10%;
   padding-right: 10%;
   width: 100%;
@@ -34,6 +34,10 @@ const StyledNavBrand = styled(Navbar.Brand)`
 `;
 
 const StyledToggle = styled(Navbar.Toggle)``;
+
+const StyledCollapse = styled(Navbar.Collapse)`
+  padding-top: 10px;
+`;
 
 function GlobalNavbar(props) {
   const router = useRouter();
@@ -71,7 +75,6 @@ function GlobalNavbar(props) {
       hrefLink = "javascript:history.back()";
   }
 
-
   return (
     <div>
       <StyledNavbar fixed="top" bg="light" expand="lg">
@@ -79,15 +82,27 @@ function GlobalNavbar(props) {
           {navBrand}
         </StyledNavBrand>
         <StyledToggle aria-controls="basic-navbar-nav"></StyledToggle>
-        <Navbar.Collapse id="basic-navbar-nav">
+        <StyledCollapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <NavDropdown title="중앙동아리" id="basic-nav-dropdown">
               <NavDropdown.Item href="/seoul">명륜 캠퍼스</NavDropdown.Item>
               <NavDropdown.Item href="/suwon">율전 캠퍼스</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="소개" id="basic-nav-dropdown">
-              <NavDropdown.Item href="">동아리연합회 소개</NavDropdown.Item>
-              <NavDropdown.Item href="">SKKLUB 소개</NavDropdown.Item>
+              <NavDropdown.Item
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.notion.so/daniel2231/32c22fccdb6f440ba414638956455cc8"
+              >
+                동아리연합회 소개
+              </NavDropdown.Item>
+              <NavDropdown.Item
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.notion.so/daniel2231/9f2a5b7d93a54fedb36c961afa1fb254"
+              >
+                SKKLUB 소개
+              </NavDropdown.Item>
             </NavDropdown>
             <StyledLink
               linkdisplay={linkDisplay}
@@ -97,7 +112,7 @@ function GlobalNavbar(props) {
               {univLocation} 캠퍼스 🎓
             </StyledLink>
           </Nav>
-        </Navbar.Collapse>
+        </StyledCollapse>
       </StyledNavbar>
     </div>
   );
