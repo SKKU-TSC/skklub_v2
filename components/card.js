@@ -20,7 +20,7 @@ let StyledImg = styled(Card.Img)`
 `;
 
 let StyledTitle = styled(Card.Title)`
-  font-size: 1.2em;
+  font-size: 20px;
   font-weight: bold;
   @media (max-width: 426px) {
     font-size: 1em;
@@ -28,7 +28,7 @@ let StyledTitle = styled(Card.Title)`
 `;
 
 let StyledText = styled(Card.Text)`
-  font-size: 19x;
+  font-size: 17px;
   font-weight: lighter;
 `;
 
