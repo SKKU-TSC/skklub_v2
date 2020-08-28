@@ -71,7 +71,7 @@ function EventContainer(props) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              동아리 지원하기
+              {univLocation} 동아리 지원하기
             </Button>
           </EventBox>
         </StyledCollapse>
