@@ -23,13 +23,19 @@ let StyledTitle = styled(Card.Title)`
   font-size: 20px;
   font-weight: bold;
   @media (max-width: 426px) {
-    font-size: 1em;
+    font-size: 18px;
   }
 `;
 
 let StyledText = styled(Card.Text)`
   font-size: 17px;
   font-weight: lighter;
+  overflow: hidden;
+white-space: nowrap;
+  text-overflow: ellipsis;
+@media (max-width: 426px) {
+    font-size: 15px;
+  }
 `;
 
 const StyledA = styled.div`

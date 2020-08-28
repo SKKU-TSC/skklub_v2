@@ -30,12 +30,11 @@ const ButtonDiv = styled.div`
 `;
 
 const StyledTitle = styled.h1`
-  font-size: 2rem;
-  font-weight: bold;
+  font-size: 3rem;
 `;
 
-const StyledTitle2 = styled.h2`
-  font-size: 1rem;
+const StyledTitle2 = styled.p`
+  font-size: 1.5rem;
   font-weight: lighter;
 `;
 

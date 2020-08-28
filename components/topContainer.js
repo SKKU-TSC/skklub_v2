@@ -20,6 +20,7 @@ const GlobalContainer = styled.div`
 `;
 
 const Title = styled.h1`
+  font-size: 40px;
   margin: 0;
   font-weight: 500;
   padding-left: 10%;

@@ -43,6 +43,8 @@ const StyledFilterButtonContainer = styled(ButtonToolbar)`
 `;
 
 const StyledButton = styled.div`
+  font-size: 16px;
+  font-weight: lighter;
   background-color: #fff;
   border: 1px solid #e5e5e5;
   border-radius: 25px;
@@ -111,7 +113,7 @@ function CardGallery() {
         "종교분과",
         "학술분과",
         "인문사회",
-        "찜한 동아리 ❤️",
+        "찜한 동아리",
       ];
       break;
     case "/suwon":
@@ -130,7 +132,7 @@ function CardGallery() {
         "종교",
         "학술",
         "건강체육",
-        "찜한 동아리 ❤️",
+        "찜한 동아리",
       ];
       break;
     default:

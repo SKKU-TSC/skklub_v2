@@ -10,6 +10,10 @@ const StyledAlert = styled(Alert)`
   padding: 20px;
 `;
 
+const StyledP = styled.p`
+  font-size: 17px;
+`
+
 function AlertType(props) {
   let descData = props.type;
 
@@ -17,7 +21,7 @@ function AlertType(props) {
     <>
       <StyledAlert variant="secondary">
         <Alert.Heading>{descData}</Alert.Heading>
-        <p>{Desc[descData]}</p>
+        <StyledP>{Desc[descData]}</StyledP>
       </StyledAlert>
     </>
   );

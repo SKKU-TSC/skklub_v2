@@ -19,6 +19,10 @@ let StyledCollapse = styled(Collapse)`
   padding: 0;
 `;
 
+let StyledP = styled.p`
+  font-size: 16px;
+`
+
 function EventContainer(props) {
   const [open, setOpen] = useState(false);
 
@@ -59,17 +63,19 @@ function EventContainer(props) {
           aria-controls="collapse-text"
           aria-expanded={open}
           variant={color}
+          size="lg"
         >
           🎉 이벤트 진행중!
         </Button>
         <StyledCollapse in={open}>
           <EventBox id="collapse-text">
-            <p>{eventText}</p>
+            <StyledP>{eventText}</StyledP>
             <Button
               variant={color}
               href={eventHref}
               target="_blank"
               rel="noopener noreferrer"
+              size = "lg"
             >
               {univLocation} 동아리 지원하기
             </Button>
