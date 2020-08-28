@@ -149,41 +149,38 @@ const ClubPageLayout = (props) => {
       </Head>
       <StyledDiv>
         <ProfileImage onError={addDefaultSrc} src={clubImg} />
-        
+
         <StyledTitle>
           {club.동아리명}
-          
-          <LikeButton
-                onClick={() => {
-                  if (checkLike != "❤️") {
-                    localStorage.setItem(
-                      `${club.동아리명}`,
-                      JSON.stringify("❤️")
-                    );
-                    setCheckLike("❤️");
-                  } else {
-                    localStorage.removeItem(`${club.동아리명}`);
-                    setCheckLike("🤍");
-                  }
-                }}
-              >
-                {checkLike}
-              </LikeButton>
 
+          <LikeButton
+            onClick={() => {
+              if (checkLike != "❤️") {
+                localStorage.setItem(`${club.동아리명}`, JSON.stringify("❤️"));
+                setCheckLike("❤️");
+              } else {
+                localStorage.removeItem(`${club.동아리명}`);
+                setCheckLike("🤍");
+              }
+            }}
+          >
+            {checkLike}
+          </LikeButton>
         </StyledTitle>
         <StyledSlogan>
           <em>&quot;{club.핵심문구}&quot;</em>
         </StyledSlogan>
 
         <StyledH2>About</StyledH2>
+        
         <StyledHr></StyledHr>
-        <h5>
-          <Badge variant="info">
-            {club.대분류}&gt;{club.중분류1}&gt;{club.소분류}
-          </Badge>{" "}
-        </h5>
+        
+
         <StyledP>{club.소개글}</StyledP>
-        <ClubWebsiteButton link={club.대페} name={club.동아리명}></ClubWebsiteButton>
+        <ClubWebsiteButton
+          link={club.대페}
+          name={club.동아리명}
+        ></ClubWebsiteButton>
         <StyledH2>Activity</StyledH2>
         <StyledHr></StyledHr>
         <StyledP>{club.활동정보}</StyledP>

@@ -28,7 +28,7 @@ let StyledTitle = styled(Card.Title)`
 `;
 
 let StyledText = styled(Card.Text)`
-  font-size: 0.9em;
+  font-size: 19x;
   font-weight: lighter;
 `;
 

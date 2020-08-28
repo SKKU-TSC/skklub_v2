@@ -186,7 +186,7 @@ function CardGallery() {
               <CardNoSSR
                 key={i}
                 name={club.동아리명}
-                category={club.중분류1}
+                category={club.소분류}
                 campus={club.캠퍼스}
               ></CardNoSSR>
             );
@@ -252,7 +252,7 @@ function CardGallery() {
                 <CardNoSSR
                   key={i}
                   name={club.동아리명}
-                  category={club.중분류1}
+                  category={club.소분류}
                   campus={club.캠퍼스}
                 ></CardNoSSR>
               );
@@ -264,7 +264,7 @@ function CardGallery() {
                   <CardNoSSR
                     key={i}
                     name={useData[i].동아리명}
-                    category={useData[i].중분류1}
+                    category={useData[i].소분류}
                     campus={useData[i].캠퍼스}
                   ></CardNoSSR>
                 );
@@ -321,7 +321,7 @@ function CardGallery() {
                 <div>
                   <CardNoSSR
                     name={club.동아리명}
-                    category={club.중분류1}
+                    category={club.소분류}
                     campus={club.캠퍼스}
                   ></CardNoSSR>
                 </div>
