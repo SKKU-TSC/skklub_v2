@@ -177,7 +177,7 @@ function CardGallery() {
 
         <LikeMenuButton
           variant="secondary"
-          onClick={() => setType("찜한 동아리 ❤️")}
+          onClick={() => setType("찜한 동아리")}
         >
           찜한 동아리
         </LikeMenuButton>
@@ -196,7 +196,7 @@ function CardGallery() {
         </StyledCardDeck>
       </div>
     );
-  } else if (type === "찜한 동아리 ❤️") {
+  } else if (type === "찜한 동아리") {
     let likedClubs = () => {
       for (let key in localStorage) {
         if (JSON.parse(localStorage.getItem(`${key}`)) === "❤️") {
@@ -241,11 +241,11 @@ function CardGallery() {
 
         <LikeMenuButton
           variant="secondary"
-          onClick={() => setType("찜한 동아리 ❤️")}
+          onClick={() => setType("찜한 동아리")}
         >
           찜한 동아리
         </LikeMenuButton>
-        <AlertNoSSR type={localStorage.getItem("Type")}></AlertNoSSR>
+        <AlertNoSSR type={type}></AlertNoSSR>
         <StyledCardDeck>
           {useData
             .filter((club) => club.중분류1 == type)
@@ -310,7 +310,7 @@ function CardGallery() {
 
         <LikeMenuButton
           variant="secondary"
-          onClick={() => setType("찜한 동아리 ❤️")}
+          onClick={() => setType("찜한 동아리")}
         >
           찜한 동아리
         </LikeMenuButton>
