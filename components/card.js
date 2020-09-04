@@ -38,9 +38,9 @@ white-space: nowrap;
   }
 `;
 
-const StyledA = styled.div`
+const StyledDiv = styled.div`
   text-decoration: none;
-  &:hover ${StyledA} {
+  &:hover {
     cursor: pointer;
   }
 `;
@@ -97,7 +97,7 @@ function ClubCard(props) {
     <div>
       <StyledCard>
         <Link href={`/${univLocation}/${props.name}`}>
-          <StyledA>
+          <StyledDiv>
             <StyledImg
               variant="top"
               src={`../${univLocation}/${props.name}.jpg`}
@@ -114,7 +114,7 @@ function ClubCard(props) {
                 {props.campus}
               </StyledText>
             </Card.Body>
-          </StyledA>
+          </StyledDiv>
         </Link>
       </StyledCard>
     </div>

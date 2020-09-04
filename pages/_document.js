@@ -1,9 +1,6 @@
-
-
+import { ServerStyleSheet } from "styled-components";
 
 import { GA_TRACKING_ID } from "../lib/gtag";
-
-
 
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
@@ -45,4 +42,3 @@ class MyDocument extends Document {
 }
 
 export default MyDocument;
-

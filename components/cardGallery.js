@@ -14,7 +14,7 @@ import { Dropdown } from "semantic-ui-react";
 import CardDeck from "react-bootstrap/CardDeck";
 import Button from "react-bootstrap/Button";
 
-const CardNoSSR = dynamic(() => import("../components/card"), { ssr: false });
+const CardNoSSR = dynamic(() => import("../components/card"), { ssr: true });
 const AlertNoSSR = dynamic(() => import("../components/alert"), { ssr: false });
 
 const StyledCardDeck = styled(CardDeck)`
