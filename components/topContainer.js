@@ -67,7 +67,7 @@ function TopContainer() {
 
   const router = useRouter();
 
-  let event = true;
+  let event = false;
 
   switch (router.pathname) {
     case "/seoul":
