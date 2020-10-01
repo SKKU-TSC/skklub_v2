@@ -14,6 +14,8 @@ import { Dropdown } from "semantic-ui-react";
 import CardDeck from "react-bootstrap/CardDeck";
 import Button from "react-bootstrap/Button";
 
+import { getClubData } from "../hooks/datas";
+
 const CardNoSSR = dynamic(() => import("../components/card"), { ssr: false });
 const AlertNoSSR = dynamic(() => import("../components/alert"), { ssr: false });
 
@@ -82,8 +84,6 @@ let LikeMenuButton = styled(Button)`
 `;
 
 function CardGallery() {
-  
-
   const router = useRouter();
   let univLocation;
   let useData;
@@ -98,7 +98,6 @@ function CardGallery() {
 
   switch (router.pathname) {
     case "/seoul":
-
       univLocation = "seoul";
       shuffle(seoulClubs);
       useData = seoulClubs;
@@ -117,7 +116,6 @@ function CardGallery() {
       ];
       break;
     case "/suwon":
-
       univLocation = "suwon";
       shuffle(suwonClubs);
       useData = suwonClubs;
@@ -333,6 +331,13 @@ function CardGallery() {
       </div>
     );
   }
+}
+
+CardGallery.getInitialProps = (ctx) => {
+  const resClubData = getClubData();
+  console.log(resClubData);
+  console.log("res")
+  return resClubData;
 }
 
 export default CardGallery;

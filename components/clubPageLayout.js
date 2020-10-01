@@ -172,19 +172,17 @@ const ClubPageLayout = (props) => {
         </StyledSlogan>
 
         <StyledH2>About</StyledH2>
-        
-        <StyledHr></StyledHr>
-        
 
-        <StyledP>{club.소개글}</StyledP>
+        <StyledHr></StyledHr>
+
+        <StyledP dangerouslySetInnerHTML={{ __html: club.소개글 }}></StyledP>
         <ClubWebsiteButton
           link={club.대페}
           name={club.동아리명}
         ></ClubWebsiteButton>
         <StyledH2>Activity</StyledH2>
         <StyledHr></StyledHr>
-        <StyledP>{club.활동정보}</StyledP>
-
+        <StyledP dangerouslySetInnerHTML={{ __html: club.활동정보 }}></StyledP>
         <StyledH2>Recruiting</StyledH2>
         <StyledHr></StyledHr>
         <StyledCardDeck>
