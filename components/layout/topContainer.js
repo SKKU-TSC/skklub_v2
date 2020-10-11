@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-import seoulClubs from "../data/seoul.json";
-import suwonClubs from "../data/suwon.json";
+import seoulClubs from "../../data/seoul.json";
+import suwonClubs from "../../data/suwon.json";
 
-import EventContainer from "../components/eventContainer";
+import EventContainer from "../eventContainer";
 
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
@@ -105,7 +105,7 @@ function TopContainer() {
                 <CountUp end={useData.length} />
               </ClubNum>
               개의 동아리들이 등록되어 있습니다.
-              
+
             </StyledP>
             <StyledP>각 동아리의 상세 페이지에 하트를 눌러<br></br>동아리를 찜해보세요!</StyledP>
             <EventContainer display=""></EventContainer>

@@ -2,22 +2,22 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 
-import { useLocalStorage } from "../hooks/useLocalStorage";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 import styled from "styled-components";
 
-import seoulClubs from "../data/seoul.json";
-import suwonClubs from "../data/suwon.json";
+import seoulClubs from "../../data/seoul.json";
+import suwonClubs from "../../data/suwon.json";
 
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import { Dropdown } from "semantic-ui-react";
 import CardDeck from "react-bootstrap/CardDeck";
 import Button from "react-bootstrap/Button";
 
-import { getClubData } from "../hooks/datas";
+import { getClubData } from "../../hooks/datas";
 
-const CardNoSSR = dynamic(() => import("../components/card"), { ssr: false });
-const AlertNoSSR = dynamic(() => import("../components/alert"), { ssr: false });
+const CardNoSSR = dynamic(() => import("../card"), { ssr: false });
+const AlertNoSSR = dynamic(() => import("../alert"), { ssr: false });
 
 const StyledCardDeck = styled(CardDeck)`
   list-style: none;
@@ -162,11 +162,11 @@ function CardGallery() {
             {typeData.map((name, i) => {
               return (
                 <Dropdown.Item
-                  key={i}
-                  type="submit"
-                  univcolor={univColor}
-                  onClick={() => setType(name)}
-                  text={name}
+                    key={i}
+                    type="submit"
+                    univcolor={univColor}
+                    onClick={() => setType(name)}
+                    text={name}
                 ></Dropdown.Item>
               );
             })}

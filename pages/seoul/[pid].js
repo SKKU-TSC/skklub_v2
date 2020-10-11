@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 import Navbar from "../../components/navbar";
 
 const NoSSRClubPageLayout = dynamic(
-  () => import('../../components/clubPageLayout'),
+  () => import('../../components/layout/clubPageLayout'),
   { ssr: false }
 )
 
