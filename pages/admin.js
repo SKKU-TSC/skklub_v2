@@ -1,2 +1,2 @@
 import redirect from "nextjs-redirect";
-export default redirect("http://15.164.169.45:5000/", { statusCode: 302 });
+export default redirect("http://3.35.251.203/:5000/", { statusCode: 302 });

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 let StyledDiv = styled.div`
   padding-top: 100px;
+  text-align: center !important;
 `;
 
 function StyledHr(props) {

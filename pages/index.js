@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Button from "react-bootstrap/Button";
 
 import Navbar from "../components/navbar";
-import Footer from "../components/footer"
+import Footer from "../components/footer";
 
 const FullPage = styled.div`
   width: 100%;
@@ -27,6 +27,9 @@ const IndexContainer = styled.div`
 
 const ButtonDiv = styled.div`
   margin-top: 50px;
+  .second{
+    margin-top: -30px;
+  }
 `;
 
 const StyledTitle = styled.h1`
@@ -77,12 +80,11 @@ export default function Index() {
               </Button>{" "}
               <Button size="lg" variant="outline-primary" href="/suwon">
                 율전 캠퍼스
-              </Button>
+              </Button>{" "}
             </ButtonDiv>
           </FrontContainer>
         </IndexContainer>
         <Footer></Footer>
-        
       </FullPage>
     </div>
   );

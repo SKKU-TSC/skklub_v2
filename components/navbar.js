@@ -48,7 +48,6 @@ function GlobalNavbar(props) {
       univLocation = "율전";
       nextPath = "suwon";
       univColor = "#4d5dff";
-      linkDisplay = "inline";
       navBrand = "SKKLUB";
       navBrandFont = "2rem";
       hrefLink = "/";
@@ -57,7 +56,6 @@ function GlobalNavbar(props) {
       univLocation = "명륜";
       univColor = "green";
       nextPath = "seoul";
-      linkDisplay = "inline";
       navBrand = "SKKLUB";
       navBrandFont = "2rem";
       hrefLink = "/";

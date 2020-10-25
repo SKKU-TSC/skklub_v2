@@ -61,9 +61,11 @@ export default class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <ThemeProvider theme={theme}>
-        <Component history={this.state.history} {...pageProps} />
-      </ThemeProvider>
+      <>
+        <ThemeProvider theme={theme}>
+          <Component history={this.state.history} {...pageProps} />
+        </ThemeProvider>
+      </>
     );
   }
 }
