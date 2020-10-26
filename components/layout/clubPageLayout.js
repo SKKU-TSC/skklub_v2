@@ -180,7 +180,7 @@ const ClubPageLayout = (props) => {
   let [checkLike, setCheckLike] = useState();
 
   useEffect(async () => {
-    await fetch("http://3.35.251.203:5000/api")
+    await fetch("https://3.35.251.203:5000/api")
       .then((res) => res.json())
       .then(
         (result) => {
