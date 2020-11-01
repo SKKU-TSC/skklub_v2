@@ -4,8 +4,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start -p 80",
-    "export": "next export"
+    "start": "next start -p 8080"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
