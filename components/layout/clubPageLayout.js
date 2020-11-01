@@ -179,8 +179,9 @@ const ClubPageLayout = (props) => {
   const [info, setInfo] = useState([]);
   let [checkLike, setCheckLike] = useState();
 
-  useEffect(async () => {
-    await fetch("https://3.35.251.203:5000/api")
+  useEffect(() => {
+    async function getData() {
+      await fetch("https://admin.skklub.com/api")
       .then((res) => res.json())
       .then(
         (result) => {
@@ -188,18 +189,18 @@ const ClubPageLayout = (props) => {
           setInfo(result);
           setIsLoaded(true);
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         (error) => {
           setIsLoaded(true);
           setError(error);
         }
       );
+    }
+    getData()
   }, []);
 
   let index = info.findIndex((club) => club.cname === pid);
   let club = info[index];
+  console.log(club)
 
   switch (checkRoute) {
     case true:
@@ -231,10 +232,10 @@ const ClubPageLayout = (props) => {
   } else if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
-    let clubImg = `../${univLocation}/${info[index].cname}.jpg`;
+    let clubImg = `../${univLocation}/${club.cname}.jpg`;
 
     setCheckLike =
-      localStorage.getItem(info[index].cname) === null ? "🤍" : "❤️";
+      localStorage.getItem(club.cname) === null ? "🤍" : "❤️";
 
     return (
       <div>
