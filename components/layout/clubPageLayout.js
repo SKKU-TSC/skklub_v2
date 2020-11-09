@@ -179,30 +179,20 @@ const ClubPageLayout = (props) => {
   const [key, setKey] = useState("home");
 
   let router = useRouter();
+  let urlPath = router.pathname;
   let { pid } = router.query;
 
-  let univLocation;
   let category;
   let clubImg;
-
-  switch (router.pathname) {
-    case "/central-clubs/seoul":
-      category = "중앙동아리";
-      univLocation = "명륜";
-      break;
-    case "/central-clubs/suwon":
-      category = "중앙동아리";
-      univLocation = "율전";
-      break;
-    default:
-      univLocation = "undefined";
-  }
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [info, setInfo] = useState([]);
   const [image, setImage] = useState("false");
-  const [checkLike, setCheckLike] = useLocalStorage(`${props.name}`, "🤍");
+  const [checkLike, setCheckLike] = useLocalStorage(`${pid}`, "🤍");
+  const [univLocation, setUnivLocation] = useState(
+    urlPath.includes("seoul") ? "명륜" : "율전"
+  );
 
   let check = (url) => {
     let img = new Image();
@@ -216,12 +206,13 @@ const ClubPageLayout = (props) => {
 
   useEffect(() => {
     async function getData() {
-      await fetch(`https://admin.skklub.com/api/중앙동아리/명륜/${pid}`)
+      await fetch(
+        `https://admin.skklub.com/api/중앙동아리/${univLocation}/${pid}`
+      )
         .then((res) => res.json())
         .then(setImage(check(`https://admin.skklub.com/img/logo/${pid}.jpg`)))
         .then(
           (result) => {
-
             setInfo(result);
             setIsLoaded(true);
           },
@@ -269,12 +260,12 @@ const ClubPageLayout = (props) => {
                           onClick={() => {
                             if (checkLike != "❤️") {
                               localStorage.setItem(
-                                `${info[0].cname}`,
+                                `${pid}`,
                                 JSON.stringify("❤️")
                               );
                               setCheckLike("❤️");
                             } else {
-                              localStorage.removeItem(`${info[0].cname}`);
+                              localStorage.removeItem(`${pid}`);
                               setCheckLike("🤍");
                             }
                           }}

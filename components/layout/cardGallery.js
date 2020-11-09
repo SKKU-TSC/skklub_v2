@@ -299,9 +299,9 @@ function CardGallery() {
                   ></CardNoSSR>
                 );
               })}
-            {LikedClubsArray.map((clubName, i) => {
+            {LikedClubsArray.map((clubId, i) => {
               for (let i = 0; i < useData.length; i++) {
-                if (useData[i].cname == clubName) {
+                if (useData[i].cid == clubId) {
                   return (
                     <CardNoSSR
                       key={i}

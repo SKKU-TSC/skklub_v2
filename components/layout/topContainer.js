@@ -91,7 +91,7 @@ function TopContainer() {
           <TitleContainer>
             <Title>
               <UnivName color={color}>
-                <Typed strings={[`성대 ${univLocation}`]} typeSpeed={60} />
+                <Typed strings={[`성대 ${univLocation}`]} typeSpeed={60} showCursor={false} />
               </UnivName>
               <br />
               모든 동아리를

@@ -70,7 +70,7 @@ function GlobalNavbar(props) {
       linkDisplay = "none";
       navBrand = "뒤로가기";
       navBrandFont = "1.2rem";
-      hrefLink = "javascript:history.back()";
+      hrefLink = ((checkRoute.includes("seoul") === true) ? "/central-clubs/seoul" : "/central-clubs/suwon");
   }
 
   return (
@@ -105,7 +105,7 @@ function GlobalNavbar(props) {
             <StyledLink
               linkdisplay={linkDisplay}
               univcolor={univColor}
-              href={"/" + nextPath}
+              href={"/central-clubs/" + nextPath}
             >
               {univLocation} 캠퍼스 🎓
             </StyledLink>
