@@ -55,7 +55,7 @@ let StyledP = styled.p`
     font-size: 15px;
     line-height: 30px;
   }
-`
+`;
 
 function TopContainer() {
   const [open, setOpen] = useState(false);
@@ -70,12 +70,12 @@ function TopContainer() {
   let event = false;
 
   switch (router.pathname) {
-    case "/seoul":
+    case "/central-clubs/seoul":
       univLocation = "명륜";
       color = "green";
       useData = seoulClubs;
       break;
-    case "/suwon":
+    case "/central-clubs/suwon":
       univLocation = "율전";
       color = "#4d5dff";
       useData = suwonClubs;
@@ -105,9 +105,10 @@ function TopContainer() {
                 <CountUp end={useData.length} />
               </ClubNum>
               개의 동아리들이 등록되어 있습니다.
-
             </StyledP>
-            <StyledP>각 동아리의 상세 페이지에 하트를 눌러<br></br>동아리를 찜해보세요!</StyledP>
+            <StyledP>
+              각 동아리의 상세 페이지에 하트를 눌러<br></br>동아리를 찜해보세요!
+            </StyledP>
             <EventContainer display=""></EventContainer>
           </DescContainer>
         </GlobalContainer>
@@ -135,7 +136,9 @@ function TopContainer() {
               </ClubNum>
               개의 동아리들이 등록되어 있습니다.
             </StyledP>
-            <StyledP>각 동아리의 상세 페이지에 하트를 눌러<br></br>동아리를 찜해보세요!</StyledP>
+            <StyledP>
+              각 동아리의 상세 페이지에 하트를 눌러<br></br>동아리를 찜해보세요!
+            </StyledP>
           </DescContainer>
         </GlobalContainer>
       </div>

@@ -44,7 +44,7 @@ function GlobalNavbar(props) {
   let checkRoute = router.pathname;
 
   switch (checkRoute) {
-    case "/seoul":
+    case "/central-clubs/seoul":
       univLocation = "율전";
       nextPath = "suwon";
       univColor = "#4d5dff";
@@ -52,7 +52,7 @@ function GlobalNavbar(props) {
       navBrandFont = "2rem";
       hrefLink = "/";
       break;
-    case "/suwon":
+    case "/central-clubs/suwon":
       univLocation = "명륜";
       univColor = "green";
       nextPath = "seoul";
@@ -83,8 +83,8 @@ function GlobalNavbar(props) {
         <StyledCollapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <NavDropdown title="중앙동아리" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/seoul">명륜 캠퍼스</NavDropdown.Item>
-              <NavDropdown.Item href="/suwon">율전 캠퍼스</NavDropdown.Item>
+              <NavDropdown.Item href="/central-clubs/seoul">명륜 캠퍼스</NavDropdown.Item>
+              <NavDropdown.Item href="/central-clubs/suwon">율전 캠퍼스</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="소개" id="basic-nav-dropdown">
               <NavDropdown.Item

@@ -2,11 +2,10 @@ import Head from "next/head";
 
 import styled from "styled-components";
 
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
-
-import TopContainer from "../components/layout/topContainer";
-import CardGallery from "../components/layout/cardGallery";
+import Navbar from "../../components/navbar";
+import Footer from "../../components/footer";
+import TopContainer from "../../components/layout/topContainer";
+import CardGallery from "../../components/layout/cardGallery";
 
 const Main = styled.main`
   padding-bottom: 5%;
@@ -16,9 +15,9 @@ const Main = styled.main`
 
 export default function Suwon() {
   return (
-    <div className="globalContainer">
+    <div>
       <Head>
-        <title>SKKLUB - 율전</title>
+        <title>중앙동아리 - 율전</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

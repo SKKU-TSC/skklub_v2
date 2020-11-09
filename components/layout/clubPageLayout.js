@@ -3,9 +3,6 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useEffect } from "react";
 
-import seoulClubs from "../../data/seoul.json";
-import suwonClubs from "../../data/suwon.json";
-
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 import styled from "styled-components";
@@ -18,6 +15,7 @@ import Table from "react-bootstrap/Table";
 import StyledHr from "../styledHr";
 import Footer from "../footer";
 import ClubWebsiteButton from "../clubWebsiteButton";
+import Loading from "../loading";
 
 import { Palette } from "color-thief-react";
 import idealTextColor from "../../hooks/textColor";
@@ -167,51 +165,44 @@ let StyledCardLogo = styled.h1`
   font-size: 40px;
 `;
 
+let LoadingDiv = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: center;
+  padding: 0 10%;
+  margin-top: 20px;
+`;
+
 const ClubPageLayout = (props) => {
   const [key, setKey] = useState("home");
 
   let router = useRouter();
   let { pid } = router.query;
-  let checkRoute = router.pathname.includes("/seoul");
+
   let univLocation;
+  let category;
+  let clubImg;
+
+  switch (router.pathname) {
+    case "/central-clubs/seoul":
+      category = "중앙동아리";
+      univLocation = "명륜";
+      break;
+    case "/central-clubs/suwon":
+      category = "중앙동아리";
+      univLocation = "율전";
+      break;
+    default:
+      univLocation = "undefined";
+  }
+
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [info, setInfo] = useState([]);
-  let [checkLike, setCheckLike] = useState();
-
-  useEffect(() => {
-    async function getData() {
-      await fetch("https://admin.skklub.com/api")
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          console.log(result);
-          setInfo(result);
-          setIsLoaded(true);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      );
-    }
-    getData()
-  }, []);
-
-  let index = info.findIndex((club) => club.cname === pid);
-  let club = info[index];
-  console.log(club)
-
-  switch (checkRoute) {
-    case true:
-      univLocation = "seoul";
-      break;
-    case false:
-      univLocation = "suwon";
-      break;
-    default:
-      console.log("error");
-  }
+  const [image, setImage] = useState("false");
+  const [checkLike, setCheckLike] = useLocalStorage(`${props.name}`, "🤍");
 
   let check = (url) => {
     let img = new Image();
@@ -219,144 +210,182 @@ const ClubPageLayout = (props) => {
     if (img.height !== 0) {
       return url;
     } else {
-      return "../alt.jpg";
+      return "/alt.jpg";
     }
   };
 
-  function addDefaultSrc(ev) {
-    ev.target.src = "../alt.jpg";
-  }
+  useEffect(() => {
+    async function getData() {
+      await fetch(`https://admin.skklub.com/api/중앙동아리/명륜/${pid}`)
+        .then((res) => res.json())
+        .then(setImage(check(`https://admin.skklub.com/img/logo/${pid}.jpg`)))
+        .then(
+          (result) => {
+
+            setInfo(result);
+            setIsLoaded(true);
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        );
+    }
+    getData();
+  }, []);
 
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    return (
+      <LoadingDiv>
+        <Loading />
+      </LoadingDiv>
+    );
   } else {
-    let clubImg = `../${univLocation}/${club.cname}.jpg`;
-
-    setCheckLike =
-      localStorage.getItem(club.cname) === null ? "🤍" : "❤️";
-
     return (
       <div>
         <Head>
-          <title>{club.cname}</title>
+          <title>{info[0].cname}</title>
         </Head>
-        <Palette src={check(clubImg)} colorCount={8} format={"hex"}>
-          {({ data, loading, error }) => (
-            <div>
-              <TopDiv bgColor={data[4]}>
-                <ProfileImage onError={addDefaultSrc} src={clubImg} />
-                <TopDivGroup
-                  textColor={loading === false && idealTextColor(data[4])}
-                >
-                  <StyledTitle>
-                    {club.cname}
+        <Palette
+          src={image}
+          crossOrigin="anonymous"
+          colorCount={8}
+          format={"hex"}
+        >
+          {({ data, loading, error }) => {
+            if (loading === true) {
+              return <div> Loading </div>;
+            } else {
+              return (
+                <div>
+                  <TopDiv bgColor={data[4]}>
+                    <ProfileImage src={image} />
+                    <TopDivGroup textColor={idealTextColor(data[4])}>
+                      <StyledTitle>
+                        {info[0].cname}
+                        <LikeButton
+                          onClick={() => {
+                            if (checkLike != "❤️") {
+                              localStorage.setItem(
+                                `${info[0].cname}`,
+                                JSON.stringify("❤️")
+                              );
+                              setCheckLike("❤️");
+                            } else {
+                              localStorage.removeItem(`${info[0].cname}`);
+                              setCheckLike("🤍");
+                            }
+                          }}
+                        >
+                          {checkLike}
+                        </LikeButton>
+                      </StyledTitle>
 
-                    <LikeButton
-                      onClick={() => {
-                        if (checkLike != "❤️") {
-                          localStorage.setItem(
-                            `${club.cname}`,
-                            JSON.stringify("❤️")
-                          );
-                          setCheckLike("❤️");
-                        } else {
-                          localStorage.removeItem(`${club.cname}`);
-                          setCheckLike("🤍");
-                        }
+                      <StyledSlogan>
+                        <em>&quot;{info[0].intro_sentence}&quot;</em>
+                      </StyledSlogan>
+                      <SinceH3>
+                        {info[0].estab_year == "" ? "" : "Since"}
+                      </SinceH3>
+                      <SinceTime>{info[0].estab_year}</SinceTime>
+                    </TopDivGroup>
+                  </TopDiv>
+                  <StyledDiv>
+                    <StyledHr className="hr" color={data[4]}></StyledHr>
+                    <StyledH2>Info</StyledH2>
+                    <Table bordered size="md">
+                      <tbody>
+                        <tr>
+                          <td style={{ fontWeight: "bolder" }}>캠퍼스</td>
+                          <td>{info[0].campus}</td>
+                          <td style={{ fontWeight: "bolder" }}>중분류</td>
+                          <td>{info[0].category1}</td>
+                        </tr>
+                        <tr>
+                          <td style={{ fontWeight: "bolder" }}>위치</td>
+                          <td>{info[0].activity_location}</td>
+                          <td style={{ fontWeight: "bolder" }}>활동인원</td>
+                          <td>{info[0].activity_num}</td>
+                        </tr>
+                      </tbody>
+                    </Table>
+                    <StyledHr className="hr" color={data[4]}></StyledHr>
+                    <StyledH2>About</StyledH2>
+                    <StyledP
+                      dangerouslySetInnerHTML={{ __html: info[0].intro_text }}
+                    ></StyledP>
+                    <ClubWebsiteButton
+                      textColor={loading === false && idealTextColor(data[4])}
+                      color={data[4]}
+                      link={info[0].website_link}
+                      name={info[0].cname}
+                    ></ClubWebsiteButton>
+                    <StyledHr className="hr" color={data[4]}></StyledHr>
+                    <StyledH2>Activity</StyledH2>
+                    <StyledP
+                      dangerouslySetInnerHTML={{
+                        __html: info[0].activity_info,
                       }}
-                    >
-                      {checkLike}
-                    </LikeButton>
-                  </StyledTitle>
-
-                  <StyledSlogan>
-                    <em>&quot;{club.intro_sentence}&quot;</em>
-                  </StyledSlogan>
-                  <SinceH3>{club.estab_year == "" ? "" : "Since"}</SinceH3>
-                  <SinceTime>{club.estab_year}</SinceTime>
-                </TopDivGroup>
-              </TopDiv>
-              <StyledDiv>
-                <StyledHr className="hr" color={data[4]}></StyledHr>
-                <StyledH2>Info</StyledH2>
-                <Table bordered size="md">
-                  <tbody>
-                    <tr>
-                      <td style={{ fontWeight: "bolder" }}>캠퍼스</td>
-                      <td>{club.campus}</td>
-                      <td style={{ fontWeight: "bolder" }}>중분류</td>
-                      <td>{club.category1}</td>
-                    </tr>
-                    <tr>
-                      <td style={{ fontWeight: "bolder" }}>위치</td>
-                      <td>{club.activity_location}</td>
-                      <td style={{ fontWeight: "bolder" }}>활동인원</td>
-                      <td>{club.activity_num}</td>
-                    </tr>
-                  </tbody>
-                </Table>
-                <StyledHr className="hr" color={data[4]}></StyledHr>
-                <StyledH2>About</StyledH2>
-                <StyledP
-                  dangerouslySetInnerHTML={{ __html: club.intro_text }}
-                ></StyledP>
-                <ClubWebsiteButton
-                  textColor={loading === false && idealTextColor(data[4])}
-                  color={data[4]}
-                  link={club.website_link}
-                  name={club.cname}
-                ></ClubWebsiteButton>
-                <StyledHr className="hr" color={data[4]}></StyledHr>
-                <StyledH2>Activity</StyledH2>
-                <StyledP
-                  dangerouslySetInnerHTML={{ __html: club.activity_info }}
-                ></StyledP>
-                <StyledHr className="hr" color={data[4]}></StyledHr>
-                <StyledH2>Recruiting</StyledH2>
-                <StyledCardDeck>
-                  <StyledCard bgColor={data[4]} borderColor={"none"}>
-                    <StyledCardLogo>🗓</StyledCardLogo>
-                    <StyledCardName
-                      textColor={loading === false && idealTextColor(data[4])}
-                    >
-                      모집시기
-                    </StyledCardName>
-                    <StyledCardDesc
-                      textColor={loading === false && idealTextColor(data[4])}
-                    >
-                      {club.recruit_season}
-                    </StyledCardDesc>
-                  </StyledCard>
-                  <StyledCard borderColor={`2px ${data[4]} solid`}>
-                    <StyledCardLogo>🙌</StyledCardLogo>
-                    <StyledCardName>모집인원</StyledCardName>
-                    <StyledCardDesc>{club.recruit_num}</StyledCardDesc>
-                  </StyledCard>
-                  <StyledCard borderColor={"none"} bgColor={data[4]}>
-                    <StyledCardLogo>🔍</StyledCardLogo>
-                    <StyledCardName
-                      textColor={loading === false && idealTextColor(data[4])}
-                    >
-                      모집방식
-                    </StyledCardName>
-                    <StyledCardDesc
-                      textColor={loading === false && idealTextColor(data[4])}
-                    >
-                      {club.recruit_process}
-                    </StyledCardDesc>
-                  </StyledCard>
-                  <StyledCard borderColor={`2px ${data[4]} solid`}>
-                    <StyledCardLogo>⏰</StyledCardLogo>
-                    <StyledCardName>의무 활동기간</StyledCardName>
-                    <StyledCardDesc>{club.activity_period}</StyledCardDesc>
-                  </StyledCard>
-                </StyledCardDeck>
-              </StyledDiv>
-            </div>
-          )}
+                    ></StyledP>
+                    <StyledHr className="hr" color={data[4]}></StyledHr>
+                    <StyledH2>Recruiting</StyledH2>
+                    <StyledCardDeck>
+                      <StyledCard bgColor={data[4]} borderColor={"none"}>
+                        <StyledCardLogo>🗓</StyledCardLogo>
+                        <StyledCardName
+                          textColor={
+                            loading === false && idealTextColor(data[4])
+                          }
+                        >
+                          모집시기
+                        </StyledCardName>
+                        <StyledCardDesc
+                          textColor={
+                            loading === false && idealTextColor(data[4])
+                          }
+                        >
+                          {info[0].recruit_season}
+                        </StyledCardDesc>
+                      </StyledCard>
+                      <StyledCard borderColor={`2px ${data[4]} solid`}>
+                        <StyledCardLogo>🙌</StyledCardLogo>
+                        <StyledCardName>모집인원</StyledCardName>
+                        <StyledCardDesc>{info[0].recruit_num}</StyledCardDesc>
+                      </StyledCard>
+                      <StyledCard borderColor={"none"} bgColor={data[4]}>
+                        <StyledCardLogo>🔍</StyledCardLogo>
+                        <StyledCardName
+                          textColor={
+                            loading === false && idealTextColor(data[4])
+                          }
+                        >
+                          모집방식
+                        </StyledCardName>
+                        <StyledCardDesc
+                          textColor={
+                            loading === false && idealTextColor(data[4])
+                          }
+                        >
+                          {info[0].recruit_process}
+                        </StyledCardDesc>
+                      </StyledCard>
+                      <StyledCard borderColor={`2px ${data[4]} solid`}>
+                        <StyledCardLogo>⏰</StyledCardLogo>
+                        <StyledCardName>의무 활동기간</StyledCardName>
+                        <StyledCardDesc>
+                          {info[0].activity_period}
+                        </StyledCardDesc>
+                      </StyledCard>
+                    </StyledCardDeck>
+                  </StyledDiv>
+                </div>
+              );
+            }
+          }}
         </Palette>
+
         <Footer></Footer>
       </div>
     );

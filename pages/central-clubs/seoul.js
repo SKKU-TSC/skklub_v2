@@ -2,10 +2,10 @@ import Head from "next/head";
 
 import styled from "styled-components";
 
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
-import TopContainer from "../components/layout/topContainer";
-import CardGallery from "../components/layout/cardGallery";
+import Navbar from "../../components/navbar";
+import Footer from "../../components/footer";
+import TopContainer from "../../components/layout/topContainer";
+import CardGallery from "../../components/layout/cardGallery";
 
 const Main = styled.main`
   padding-bottom: 5%;
@@ -17,7 +17,7 @@ export default function Seoul() {
   return (
     <div>
       <Head>
-        <title>SKKLUB - 명륜</title>
+        <title>중앙동아리 - 명륜</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

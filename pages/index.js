@@ -75,10 +75,10 @@ export default function Index() {
               플랫폼입니다.
             </StyledTitle2>
             <ButtonDiv>
-              <Button size="lg" variant="outline-success" href="/seoul">
+              <Button size="lg" variant="outline-success" href="/central-clubs/seoul">
                 명륜 캠퍼스
               </Button>{" "}
-              <Button size="lg" variant="outline-primary" href="/suwon">
+              <Button size="lg" variant="outline-primary" href="/central-clubs/suwon">
                 율전 캠퍼스
               </Button>{" "}
             </ButtonDiv>

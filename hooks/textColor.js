@@ -1,5 +1,6 @@
 function idealTextColor(bgColor) {
-  console.log(bgColor)
+
+
   var nThreshold = 105;
   var components = getRGBComponents(bgColor);
   var bgDelta =
@@ -9,6 +10,7 @@ function idealTextColor(bgColor) {
 }
 
 function getRGBComponents(color) {
+
   var r = color.substring(1, 3);
   var g = color.substring(3, 5);
   var b = color.substring(5, 7);
@@ -20,5 +22,4 @@ function getRGBComponents(color) {
   };
 }
 
-
-export default idealTextColor
+export default idealTextColor;

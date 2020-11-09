@@ -31,9 +31,9 @@ let StyledText = styled(Card.Text)`
   font-size: 17px;
   font-weight: lighter;
   overflow: hidden;
-white-space: nowrap;
+  white-space: nowrap;
   text-overflow: ellipsis;
-@media (max-width: 426px) {
+  @media (max-width: 426px) {
     font-size: 15px;
   }
 `;
@@ -79,28 +79,17 @@ let LikeButton = styled(Button)`
 function ClubCard(props) {
   const [like, setLike] = useLocalStorage(`${props.name}`, "🤍");
 
-  const router = useRouter();
-  let univLocation;
-
-  switch (router.pathname) {
-    case "/seoul":
-      univLocation = "seoul";
-      break;
-    case "/suwon":
-      univLocation = "suwon";
-      break;
-    default:
-      univLocation = "undefined";
-  }
-
   return (
     <div>
       <StyledCard>
-        <Link href={`/${univLocation}/${props.name}`}>
+        <Link
+          category1={props.category1}
+          href={`/central-clubs/seoul/${props.id}`}
+        >
           <StyledDiv>
             <StyledImg
               variant="top"
-              src={`../${univLocation}/${props.name}.jpg`}
+              src={`https://admin.skklub.com/img/logo/${props.id}.jpg`}
               onError={(e) => {
                 e.target.src = "../alt.jpg";
               }}
