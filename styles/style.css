@@ -1,5 +1,5 @@
 @import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css");
-
+@import '~antd/dist/antd.css';
 
 * {
   font-family: "NanumSquare", sans-serif;
