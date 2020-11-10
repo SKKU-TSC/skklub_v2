@@ -70,7 +70,10 @@ function GlobalNavbar(props) {
       linkDisplay = "none";
       navBrand = "뒤로가기";
       navBrandFont = "1.2rem";
-      hrefLink = ((checkRoute.includes("seoul") === true) ? "/central-clubs/seoul" : "/central-clubs/suwon");
+      hrefLink =
+        checkRoute.includes("seoul") === true
+          ? "/central-clubs/seoul"
+          : "/central-clubs/suwon";
   }
 
   return (
@@ -82,24 +85,39 @@ function GlobalNavbar(props) {
         <StyledToggle aria-controls="basic-navbar-nav"></StyledToggle>
         <StyledCollapse id="basic-navbar-nav">
           <Nav className="mr-auto">
+            <Nav.Item>
+              <Nav.Link target="blank" href="https://www.notion.so/daniel2231/32c22fccdb6f440ba414638956455cc8">동아리연합회란?</Nav.Link>
+            </Nav.Item>
             <NavDropdown title="중앙동아리" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/central-clubs/seoul">명륜 캠퍼스</NavDropdown.Item>
-              <NavDropdown.Item href="/central-clubs/suwon">율전 캠퍼스</NavDropdown.Item>
-            </NavDropdown>
-            <NavDropdown title="소개" id="basic-nav-dropdown">
-              <NavDropdown.Item
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://www.notion.so/daniel2231/32c22fccdb6f440ba414638956455cc8"
-              >
-                동아리연합회 소개
+              <NavDropdown.Item href="/central-clubs/seoul">
+                명륜 캠퍼스
               </NavDropdown.Item>
-              <NavDropdown.Item
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://www.notion.so/daniel2231/9f2a5b7d93a54fedb36c961afa1fb254"
-              >
-                SKKLUB 소개
+              <NavDropdown.Item href="/central-clubs/suwon">
+                율전 캠퍼스
+              </NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown title="기타동아리" id="basic-nav-dropdown" disabled>
+              <NavDropdown.Item>
+                준둥앙동아리
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                독립동아리
+              </NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown title="소모임" id="basic-nav-dropdown" disabled>
+              <NavDropdown.Item>
+                소모임
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                준소모임
+              </NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown title="기타단체" id="basic-nav-dropdown" disabled>
+              <NavDropdown.Item>
+                학생단체
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                학회
               </NavDropdown.Item>
             </NavDropdown>
             <StyledLink

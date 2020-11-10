@@ -11,14 +11,14 @@ const FooterP = styled.p`
   padding-bottom: 2rem;
   padding-top: 2rem;
   margin-bottom: 0 !important;
-  font-size: 70%;
+  font-size: 80%;
 `;
 
 function Footer() {
   return (
     <div>
       <StyledFooter>
-        <FooterP>SKKLUB, by Daniel.K and Mingman, Likelion SKKU</FooterP>
+        <FooterP>SKKLUB - 기술지원위원회</FooterP>
       </StyledFooter>
     </div>
   );

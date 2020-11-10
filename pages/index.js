@@ -27,7 +27,7 @@ const IndexContainer = styled.div`
 
 const ButtonDiv = styled.div`
   margin-top: 50px;
-  .second{
+  .second {
     margin-top: -30px;
   }
 `;
@@ -75,13 +75,33 @@ export default function Index() {
               플랫폼입니다.
             </StyledTitle2>
             <ButtonDiv>
-              <Button size="lg" variant="outline-success" href="/central-clubs/seoul">
+              <Button
+                size="lg"
+                variant="outline-success"
+                href="/central-clubs/seoul"
+              >
                 명륜 캠퍼스
               </Button>{" "}
-              <Button size="lg" variant="outline-primary" href="/central-clubs/suwon">
+              <Button
+                size="lg"
+                variant="outline-primary"
+                href="/central-clubs/suwon"
+              >
                 율전 캠퍼스
               </Button>{" "}
+              <br />
             </ButtonDiv>
+            <div>
+              <Button
+                className="mt-2"
+                size="lg"
+                variant="outline-secondary"
+                target="blank"
+                href="https://www.notion.so/daniel2231/32c22fccdb6f440ba414638956455cc8"
+              >
+                동아리연합회란?
+              </Button>
+            </div>
           </FrontContainer>
         </IndexContainer>
         <Footer></Footer>
