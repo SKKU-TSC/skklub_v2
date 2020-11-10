@@ -23,4 +23,24 @@ const Spinner = styled.div`
   border-radius: 50%;
 `;
 
-export default Spinner;
+let LoadingDiv = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10%;
+  margin-top: 20px;
+`;
+
+export default function Loading(){
+  return(
+    <div>
+      <LoadingDiv>
+        <Spinner />
+      </LoadingDiv>
+    </div>
+  )
+}

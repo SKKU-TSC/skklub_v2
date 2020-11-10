@@ -14,19 +14,19 @@ function StyledHr(props) {
             transform="matrix(1.000884 0 0 1.005717 3.485073 3.608523)"
             d="M0 49.5L51 0"
             stroke={props.color}
-            stroke-width="10"
+            strokeWidth="10"
           />
           <path
             transform="matrix(1.000884 0 0 1.005717 90.46991 3.608523)"
             d="M0 49.5L51 0"
             stroke={props.color}
-            stroke-width="10"
+            strokeWidth="10"
           />
           <path
             transform="matrix(1.000884 0 0 1.005717 46.97746 3.608523)"
             d="M0 49.5L51 0"
             stroke={props.color}
-            stroke-width="10"
+            strokeWidth="10"
           />
         </g>
       </svg>

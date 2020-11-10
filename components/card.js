@@ -98,7 +98,7 @@ function ClubCard(props) {
               <StyledTitle>{props.name}</StyledTitle>
 
               <StyledText>
-                {props.category}
+                {props.category3}
                 <br></br>
                 {props.campus}
               </StyledText>
@@ -110,20 +110,5 @@ function ClubCard(props) {
   );
 }
 
-/*
-Under StyledCard
-<LikeButton
-          onClick={() => {
-            if (like === "❤️") {
-              setLike("🤍");
-              localStorage.removeItem(props.name);
-            } else {
-              setLike("❤️");
-            }
-          }}
-        >
-          {like}
-        </LikeButton>
-*/
 
 export default ClubCard;

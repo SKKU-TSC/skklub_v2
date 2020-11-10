@@ -98,7 +98,7 @@ let StyledP = styled.p`
 let TopDiv = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: ${(props) => props.bgColor};
+  background-color: ${(props) => props.bgcolor};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -142,8 +142,8 @@ const SinceTime = styled.p``;
 
 let StyledCard = styled(Card)`
   text-align: left;
-  border: ${(props) => props.borderColor} !important;
-  background-color: ${(props) => props.bgColor};
+  border: ${(props) => props.bordercolor} !important;
+  background-color: ${(props) => props.bgcolor};
   border-radius: 25px;
   padding: 30px 20px 30px 20px;
   margin-left: 5px !important;
@@ -251,7 +251,7 @@ const ClubPageLayout = (props) => {
             } else {
               return (
                 <div>
-                  <TopDiv bgColor={data[4]}>
+                  <TopDiv bgcolor={data[4]}>
                     <ProfileImage src={image} />
                     <TopDivGroup textColor={idealTextColor(data[4])}>
                       <StyledTitle>
@@ -323,7 +323,7 @@ const ClubPageLayout = (props) => {
                     <StyledHr className="hr" color={data[4]}></StyledHr>
                     <StyledH2>Recruiting</StyledH2>
                     <StyledCardDeck>
-                      <StyledCard bgColor={data[4]} borderColor={"none"}>
+                      <StyledCard bgcolor={data[4]} bordercolor={"none"}>
                         <StyledCardLogo>🗓</StyledCardLogo>
                         <StyledCardName
                           textColor={
@@ -340,12 +340,12 @@ const ClubPageLayout = (props) => {
                           {info[0].recruit_season}
                         </StyledCardDesc>
                       </StyledCard>
-                      <StyledCard borderColor={`2px ${data[4]} solid`}>
+                      <StyledCard bordercolor={`2px ${data[4]} solid`}>
                         <StyledCardLogo>🙌</StyledCardLogo>
                         <StyledCardName>모집인원</StyledCardName>
                         <StyledCardDesc>{info[0].recruit_num}</StyledCardDesc>
                       </StyledCard>
-                      <StyledCard borderColor={"none"} bgColor={data[4]}>
+                      <StyledCard bordercolor={"none"} bgcolor={data[4]}>
                         <StyledCardLogo>🔍</StyledCardLogo>
                         <StyledCardName
                           textColor={
@@ -362,7 +362,7 @@ const ClubPageLayout = (props) => {
                           {info[0].recruit_process}
                         </StyledCardDesc>
                       </StyledCard>
-                      <StyledCard borderColor={`2px ${data[4]} solid`}>
+                      <StyledCard bordercolor={`2px ${data[4]} solid`}>
                         <StyledCardLogo>⏰</StyledCardLogo>
                         <StyledCardName>의무 활동기간</StyledCardName>
                         <StyledCardDesc>

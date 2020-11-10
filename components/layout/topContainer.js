@@ -1,9 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-import seoulClubs from "../../data/seoul.json";
-import suwonClubs from "../../data/suwon.json";
-
 import EventContainer from "../eventContainer";
 
 import Button from "react-bootstrap/Button";
@@ -57,13 +54,10 @@ let StyledP = styled.p`
   }
 `;
 
-function TopContainer() {
+function TopContainer(props) {
   const [open, setOpen] = useState(false);
 
-  let clubNum = 120;
-  let univLocation;
   let color;
-  let useData;
 
   const router = useRouter();
 
@@ -71,14 +65,10 @@ function TopContainer() {
 
   switch (router.pathname) {
     case "/central-clubs/seoul":
-      univLocation = "명륜";
       color = "green";
-      useData = seoulClubs;
       break;
     case "/central-clubs/suwon":
-      univLocation = "율전";
       color = "#4d5dff";
-      useData = suwonClubs;
       break;
     default:
       univLocation = "undefined";
@@ -91,7 +81,10 @@ function TopContainer() {
           <TitleContainer>
             <Title>
               <UnivName color={color}>
-                <Typed strings={[`성대 ${univLocation}`]} typeSpeed={60} showCursor={false} />
+                <Typed
+                  strings={[`성대 ${props.univLocation}`]}
+                  typeSpeed={60}
+                />
               </UnivName>
               <br />
               모든 동아리를
@@ -102,7 +95,7 @@ function TopContainer() {
             <StyledP>
               현재{" "}
               <ClubNum color={color}>
-                <CountUp end={useData.length} />
+                <CountUp end={props.data.length} />
               </ClubNum>
               개의 동아리들이 등록되어 있습니다.
             </StyledP>
@@ -121,7 +114,7 @@ function TopContainer() {
           <TitleContainer>
             <Title>
               <UnivName color={color}>
-                <Typed strings={[`성대 ${univLocation}`]} typeSpeed={60} />
+                <Typed strings={[`성대 ${props.univLocation}`]} typeSpeed={60} />
               </UnivName>
               <br />
               모든 동아리를
@@ -132,7 +125,7 @@ function TopContainer() {
             <StyledP>
               현재{" "}
               <ClubNum color={color}>
-                <CountUp end={useData.length} />
+                <CountUp end={props.data.length} />
               </ClubNum>
               개의 동아리들이 등록되어 있습니다.
             </StyledP>

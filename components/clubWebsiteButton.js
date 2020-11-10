@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import styled from "styled-components";
 
 let StyledButton = styled(Button)`
-  background-color: ${(props) => props.bgColor};
+  background-color: ${(props) => props.bgcolor};
   color: ${(props) => props.color};
   border: none;
   padding: 10px 15px 10px 15px;
@@ -14,7 +14,7 @@ function ClubWebsiteButton(props) {
     return (
       <StyledButton
         color={props.textColor}
-        bgColor={props.color}
+        bgcolor={props.color}
         target="_blank"
         rel="noopener noreferrer"
         href={props.link}

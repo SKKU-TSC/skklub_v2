@@ -11,7 +11,6 @@ import { Dropdown } from "semantic-ui-react";
 import CardDeck from "react-bootstrap/CardDeck";
 import Button from "react-bootstrap/Button";
 
-import Loading from "../loading";
 
 const CardNoSSR = dynamic(() => import("../card"), { ssr: false });
 const AlertNoSSR = dynamic(() => import("../alert"), { ssr: false });
@@ -90,25 +89,14 @@ let LoadingDiv = styled.div`
   margin-top: 20px;
 `;
 
-function CardGallery() {
+function CardGallery(props) {
   const router = useRouter();
-  let univLocation;
-  let useData;
   let typeData;
-  let univColor;
-  let category;
-
   let LikedClubsArray = [];
 
-  function shuffle(array) {
-    array.sort(() => Math.random() - 0.5);
-  }
 
   switch (router.pathname) {
     case "/central-clubs/seoul":
-      category = "중앙동아리";
-      univLocation = "명륜";
-      univColor = "green";
       typeData = [
         "전체",
         "평면예술",
@@ -123,9 +111,6 @@ function CardGallery() {
       ];
       break;
     case "/central-clubs/suwon":
-      category = "중앙동아리";
-      univLocation = "율전";
-      univColor = "#4d5dff";
       typeData = [
         "전체",
         "연행예술",
@@ -140,244 +125,211 @@ function CardGallery() {
       ];
       break;
     default:
-      univLocation = "undefined";
+      console.log("error")
   }
 
-  let [type, setType] = useLocalStorage(univLocation, "전체");
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [info, setInfo] = useState([]);
+  let [type, setType] = useLocalStorage(props.univLocation, "전체");
 
-  useEffect(() => {
-    async function getData() {
-      await fetch(`https://admin.skklub.com/api/${category}/${univLocation}`)
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            setInfo(result);
-            setIsLoaded(true);
-          },
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        );
-    }
-    getData();
-  }, []);
-
-  useData = info;
-  shuffle(useData);
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
+  if (type === "전체") {
     return (
-      <LoadingDiv>
-        <Loading />
-      </LoadingDiv>
-    );
-  } else {
-    if (type === "전체") {
-      return (
-        <div>
-          <StyledFilterButtonContainer>
+      <div>
+        <StyledFilterButtonContainer>
+          {typeData.map((name, i) => {
+            return (
+              <StyledButton
+                key={i}
+                type="submit"
+                univcolor={props.theme}
+                onClick={() => setType(name)}
+              >
+                {name}
+              </StyledButton>
+            );
+          })}
+        </StyledFilterButtonContainer>
+
+        <StyledDropdown text={type} selection>
+          <Dropdown.Menu>
             {typeData.map((name, i) => {
               return (
-                <StyledButton
+                <Dropdown.Item
                   key={i}
                   type="submit"
-                  univcolor={univColor}
+                  univcolor={props.theme}
                   onClick={() => setType(name)}
-                >
-                  {name}
-                </StyledButton>
+                  text={name}
+                ></Dropdown.Item>
               );
             })}
-          </StyledFilterButtonContainer>
+          </Dropdown.Menu>
+        </StyledDropdown>
 
-          <StyledDropdown text={type} selection>
-            <Dropdown.Menu>
-              {typeData.map((name, i) => {
-                return (
-                  <Dropdown.Item
-                    key={i}
-                    type="submit"
-                    univcolor={univColor}
-                    onClick={() => setType(name)}
-                    text={name}
-                  ></Dropdown.Item>
-                );
-              })}
-            </Dropdown.Menu>
-          </StyledDropdown>
+        <LikeMenuButton
+          variant="secondary"
+          onClick={() => setType("찜한 동아리")}
+        >
+          찜한 동아리
+        </LikeMenuButton>
 
-          <LikeMenuButton
-            variant="secondary"
-            onClick={() => setType("찜한 동아리")}
-          >
-            찜한 동아리
-          </LikeMenuButton>
+        <StyledCardDeck>
+          {props.data.map((club, i) => {
+            return (
+              <CardNoSSR
+                key={i}
+                id={club.cid}
+                name={club.cname}
+                category1={club.category1}
+                category3={club.category3}
+                campus={club.campus}
+              ></CardNoSSR>
+            );
+          })}
+        </StyledCardDeck>
+      </div>
+    );
+  } else if (type === "찜한 동아리") {
+    let likedClubs = () => {
+      for (let key in localStorage) {
+        if (JSON.parse(localStorage.getItem(`${key}`)) === "❤️") {
+          LikedClubsArray.push(key);
+        }
+      }
+    };
+    likedClubs();
+    return (
+      <div>
+        <StyledFilterButtonContainer>
+          {typeData.map((name, i) => {
+            return (
+              <StyledButton
+                key={i}
+                type="submit"
+                univcolor={props.theme}
+                onClick={() => {
+                  setType(name);
+                }}
+              >
+                {name}
+              </StyledButton>
+            );
+          })}
+        </StyledFilterButtonContainer>
+        <StyledDropdown text={type} selection>
+          <Dropdown.Menu>
+            {typeData.map((name, i) => {
+              return (
+                <Dropdown.Item
+                  key={i}
+                  type="submit"
+                  univcolor={props.theme}
+                  onClick={() => setType(name)}
+                  text={name}
+                ></Dropdown.Item>
+              );
+            })}
+          </Dropdown.Menu>
+        </StyledDropdown>
 
-          <StyledCardDeck>
-            {useData.map((club, i) => {
+        <LikeMenuButton
+          variant="secondary"
+          onClick={() => setType("찜한 동아리")}
+        >
+          찜한 동아리
+        </LikeMenuButton>
+        <AlertNoSSR type={type}></AlertNoSSR>
+        <StyledCardDeck>
+          {props.data
+            .filter((club) => club.category2 == type)
+            .map((club) => {
               return (
                 <CardNoSSR
                   key={i}
-                  id={useData[i].cid}
                   name={club.cname}
-                  category1={club.category1}
                   category3={club.category3}
+                  category1={club.category1}
                   campus={club.campus}
                 ></CardNoSSR>
               );
             })}
-          </StyledCardDeck>
-        </div>
-      );
-    } else if (type === "찜한 동아리") {
-      let likedClubs = () => {
-        for (let key in localStorage) {
-          if (JSON.parse(localStorage.getItem(`${key}`)) === "❤️") {
-            LikedClubsArray.push(key);
-          }
-        }
-      };
-      likedClubs();
-      return (
-        <div>
-          <StyledFilterButtonContainer>
-            {typeData.map((name, i) => {
-              return (
-                <StyledButton
-                  key={i}
-                  type="submit"
-                  univcolor={univColor}
-                  onClick={() => {
-                    setType(name);
-                  }}
-                >
-                  {name}
-                </StyledButton>
-              );
-            })}
-          </StyledFilterButtonContainer>
-          <StyledDropdown text={type} selection>
-            <Dropdown.Menu>
-              {typeData.map((name, i) => {
-                return (
-                  <Dropdown.Item
-                    key={i}
-                    type="submit"
-                    univcolor={univColor}
-                    onClick={() => setType(name)}
-                    text={name}
-                  ></Dropdown.Item>
-                );
-              })}
-            </Dropdown.Menu>
-          </StyledDropdown>
-
-          <LikeMenuButton
-            variant="secondary"
-            onClick={() => setType("찜한 동아리")}
-          >
-            찜한 동아리
-          </LikeMenuButton>
-          <AlertNoSSR type={type}></AlertNoSSR>
-          <StyledCardDeck>
-            {useData
-              .filter((club) => club.중분류1 == type)
-              .map((club) => {
+          {LikedClubsArray.map((clubId, i) => {
+            for (let i = 0; i < props.data.length; i++) {
+              if (props.data[i].cid == clubId) {
                 return (
                   <CardNoSSR
                     key={i}
+                    id={props.data[i].cid}
+                    name={props.data[i].cname}
+                    category3={props.data[i].category3}
+                    category1={props.data[i].category1}
+                    campus={props.data[i].campus}
+                  ></CardNoSSR>
+                );
+              }
+            }
+          })}
+        </StyledCardDeck>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <StyledFilterButtonContainer>
+          {typeData.map((name, i) => {
+            return (
+              <StyledButton
+                key={i}
+                type="submit"
+                univcolor={props.theme}
+                onClick={() => setType(name)}
+              >
+                {name}
+              </StyledButton>
+            );
+          })}
+        </StyledFilterButtonContainer>
+        <StyledDropdown text={type} selection>
+          <Dropdown.Menu>
+            {typeData.map((name, i) => {
+              return (
+                <Dropdown.Item
+                  key={i}
+                  type="submit"
+                  univcolor={props.theme}
+                  onClick={() => setType(name)}
+                  text={name}
+                ></Dropdown.Item>
+              );
+            })}
+          </Dropdown.Menu>
+        </StyledDropdown>
+
+        <LikeMenuButton
+          variant="secondary"
+          onClick={() => setType("찜한 동아리")}
+        >
+          찜한 동아리
+        </LikeMenuButton>
+        <AlertNoSSR type={type}></AlertNoSSR>
+        <StyledCardDeck>
+          {props.data
+            .filter((club, i) => props.data[i].category2 == type)
+            .map((club, j) => {
+              return (
+                <div>
+                  <CardNoSSR
+                    key={j}
+                    id={club.cid}
                     name={club.cname}
                     category3={club.category3}
                     category1={club.category1}
                     campus={club.campus}
                   ></CardNoSSR>
-                );
-              })}
-            {LikedClubsArray.map((clubId, i) => {
-              for (let i = 0; i < useData.length; i++) {
-                if (useData[i].cid == clubId) {
-                  return (
-                    <CardNoSSR
-                      key={i}
-                      id={useData[i].cid}
-                      name={useData[i].cname}
-                      category3={useData[i].category3}
-                      category1={useData[i].category1}
-                      campus={useData[i].campus}
-                    ></CardNoSSR>
-                  );
-                }
-              }
-            })}
-          </StyledCardDeck>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <StyledFilterButtonContainer>
-            {typeData.map((name, i) => {
-              return (
-                <StyledButton
-                  key={i}
-                  type="submit"
-                  univcolor={univColor}
-                  onClick={() => setType(name)}
-                >
-                  {name}
-                </StyledButton>
+                </div>
               );
             })}
-          </StyledFilterButtonContainer>
-          <StyledDropdown text={type} selection>
-            <Dropdown.Menu>
-              {typeData.map((name, i) => {
-                return (
-                  <Dropdown.Item
-                    type="submit"
-                    univcolor={univColor}
-                    onClick={() => setType(name)}
-                    text={name}
-                  ></Dropdown.Item>
-                );
-              })}
-            </Dropdown.Menu>
-          </StyledDropdown>
-
-          <LikeMenuButton
-            variant="secondary"
-            onClick={() => setType("찜한 동아리")}
-          >
-            찜한 동아리
-          </LikeMenuButton>
-          <AlertNoSSR type={type}></AlertNoSSR>
-          <StyledCardDeck>
-            {useData
-              .filter((club, i) => useData[i].category2 == type)
-              .map((club, i) => {
-                return (
-                  <div>
-                    <CardNoSSR
-                      key={i}
-                      id={useData[i].cid}
-                      name={useData[i].cname}
-                      category3={useData[i].category3}
-                      category1={useData[i].category1}
-                      campus={useData[i].campus}
-                    ></CardNoSSR>
-                  </div>
-                );
-              })}
-          </StyledCardDeck>
-        </div>
-      );
-    }
+        </StyledCardDeck>
+      </div>
+    );
   }
 }
 

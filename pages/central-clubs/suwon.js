@@ -1,9 +1,11 @@
 import Head from "next/head";
+import { useState, useEffect } from "react";
 
 import styled from "styled-components";
 
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
+import Loading from "../../components/loading";
 import TopContainer from "../../components/layout/topContainer";
 import CardGallery from "../../components/layout/cardGallery";
 
@@ -13,20 +15,65 @@ const Main = styled.main`
   background-color: #fff;
 `;
 
-export default function Suwon() {
-  return (
-    <div>
-      <Head>
-        <title>중앙동아리 - 율전</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+export default function Seoul() {
+  let color="#4d5dff";
+  let location="율전"
 
-      <Main>
-        <Navbar></Navbar>
-        <TopContainer></TopContainer>
-        <CardGallery></CardGallery>
-      </Main>
-      <Footer></Footer>
-    </div>
-  );
+
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [info, setInfo] = useState([]);
+
+  function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
+
+  useEffect(() => {
+    async function getData() {
+      await fetch(`https://admin.skklub.com/api/중앙동아리/율전`)
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            shuffle(result);
+            setInfo(result);
+            setIsLoaded(true);
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        );
+    }
+    getData();
+  }, []);
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <Loading />;
+  } else {
+    return (
+      <div>
+        <Head>
+          <title>중앙동아리 - 율전</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+
+        <Main>
+          <Navbar></Navbar>
+          <TopContainer
+            data={info}
+            theme={color}
+            univLocation={location}
+          ></TopContainer>
+          <CardGallery
+            data={info}
+            theme={color}
+            univLocation={location}
+          ></CardGallery>
+        </Main>
+        <Footer></Footer>
+      </div>
+    );
+  }
 }
