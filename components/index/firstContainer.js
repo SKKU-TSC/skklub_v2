@@ -30,25 +30,23 @@ const WhiteHeader = styled.h1`
   line-height: 60px;
 
   @media (max-width: 768px) {
-    font-size: 2em;
-    line-height: 20px;
+    font-size: 4em;
+    line-height: 40px;
   }
 `;
 
-const Video = styled.video`
-    position: absolute;
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
+const CoverImg = styled.img`
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 `;
 
 function FirstContainer() {
   return (
     <div>
       <DivContainer>
-        <Video autoPlay loop muted>
-          <source src="/video.mp4" type="video/mp4" />
-        </Video>
+        <CoverImg src="/dyexample.jpeg"></CoverImg>
         <TextWrap>
           <WhiteHeader>Of the clubs</WhiteHeader>
           <WhiteHeader>By the clubs</WhiteHeader>

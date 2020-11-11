@@ -26,6 +26,7 @@ const FirstColumn = styled(Col)`
   padding-right: 170px;
   @media (max-width: 985px) {
     text-align: left;
+    padding-right: 0px;
   }
 `;
 
