@@ -84,7 +84,7 @@ function ClubCard(props) {
       <StyledCard>
         <Link
           category1={props.category1}
-          href={`/central-clubs/${(props.campus === "명륜") ? "seoul" : "suwon"}/${props.id}`}
+          href={`/central-clubs/${props.campusData}/${props.id}`}
         >
           <StyledDiv>
             <StyledImg

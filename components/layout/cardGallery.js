@@ -93,10 +93,11 @@ function CardGallery(props) {
   const router = useRouter();
   let typeData;
   let LikedClubsArray = [];
-
+  let campusData;
 
   switch (router.pathname) {
     case "/central-clubs/seoul":
+      campusData = "seoul"
       typeData = [
         "전체",
         "평면예술",
@@ -111,6 +112,7 @@ function CardGallery(props) {
       ];
       break;
     case "/central-clubs/suwon":
+      campusData = "suwon"
       typeData = [
         "전체",
         "연행예술",
@@ -181,6 +183,7 @@ function CardGallery(props) {
                 category1={club.category1}
                 category3={club.category3}
                 campus={club.campus}
+                campusData={campusData}
               ></CardNoSSR>
             );
           })}
@@ -248,6 +251,7 @@ function CardGallery(props) {
                   category3={club.category3}
                   category1={club.category1}
                   campus={club.campus}
+                  campusData={campusData}
                 ></CardNoSSR>
               );
             })}
@@ -262,6 +266,7 @@ function CardGallery(props) {
                     category3={props.data[i].category3}
                     category1={props.data[i].category1}
                     campus={props.data[i].campus}
+                    campusData={campusData}
                   ></CardNoSSR>
                 );
               }
@@ -323,6 +328,7 @@ function CardGallery(props) {
                     category3={club.category3}
                     category1={club.category1}
                     campus={club.campus}
+                    campusData={campusData}
                   ></CardNoSSR>
                 </div>
               );
