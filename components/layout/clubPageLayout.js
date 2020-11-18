@@ -222,19 +222,20 @@ const ClubPageLayout = (props) => {
             getUrl(`https://admin.skklub.com/img/logo/${resJson[0].logo_path}`).then( (result) => {
               setImage(result);
             })
-            
+
             setInfo(resJson);
             setIsLoaded(true);
           },
-          // when data loading fail
+          // when data loading failed
           (error) => {
             setIsLoaded(true);
             setError(error);
           })
     }
+    
+    // execute
     getData();
   })
-  // }, []);
 
   if (error) {
     return <div>Error: {error.message}</div>;
