@@ -119,6 +119,7 @@ let TopDivGroup = styled.div`
 `;
 
 const StyledTitle = styled.h1`
+color: ${(props) => props.textColor};
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 0.1em;
@@ -132,6 +133,7 @@ const StyledSlogan = styled.p`
 `;
 
 const SinceH3 = styled.h3`
+color: ${(props) => props.textColor};
   font-size: 1.6rem;
   font-weight: 400;
   margin-top: 0;
@@ -253,8 +255,10 @@ const ClubPageLayout = (props) => {
                 <div>
                   <TopDiv bgcolor={data[4]}>
                     <ProfileImage src={image} />
-                    <TopDivGroup textColor={idealTextColor(data[4])}>
-                      <StyledTitle>
+                    <TopDivGroup textColor={loading === false && idealTextColor(data[4])}>
+                      <StyledTitle
+                        textColor={loading === false && idealTextColor(data[4])}
+                      >
                         {info[0].cname}
                         <LikeButton
                           onClick={() => {
@@ -277,7 +281,8 @@ const ClubPageLayout = (props) => {
                       <StyledSlogan>
                         <em>&quot;{info[0].intro_sentence}&quot;</em>
                       </StyledSlogan>
-                      <SinceH3>
+                      <SinceH3
+                      textColor={loading === false && idealTextColor(data[4])}>
                         {info[0].estab_year == "" ? "" : "Since"}
                       </SinceH3>
                       <SinceTime>{info[0].estab_year}</SinceTime>

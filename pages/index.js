@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
+import NoticeCarousel from "../components/noticeCarousel";
 
 const FullPage = styled.div`
   width: 100%;
@@ -103,6 +104,7 @@ export default function Index() {
               </Button>
             </div>
           </FrontContainer>
+          <NoticeCarousel />
         </IndexContainer>
         <Footer></Footer>
       </FullPage>

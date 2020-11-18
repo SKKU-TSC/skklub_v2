@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { LoadingOutlined } from '@ant-design/icons';
 
 const rotate360 = keyframes`
   from {
@@ -39,7 +40,7 @@ export default function Loading(){
   return(
     <div>
       <LoadingDiv>
-        <Spinner />
+        <LoadingOutlined style={{fontSize:"40px"}} />
       </LoadingDiv>
     </div>
   )
