@@ -79,16 +79,6 @@ let LikeMenuButton = styled(Button)`
   }
 `;
 
-let LoadingDiv = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-  justify-content: center;
-  padding: 0 10%;
-  margin-top: 20px;
-`;
-
 function CardGallery(props) {
   const router = useRouter();
   let typeData;
