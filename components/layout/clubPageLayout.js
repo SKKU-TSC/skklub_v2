@@ -196,36 +196,45 @@ const ClubPageLayout = (props) => {
     urlPath.includes("seoul") ? "명륜" : "율전"
   );
 
-  let check = (url) => {
-    let img = new Image();
-    img.src = url;
-    if (img.height !== 0) {
-      return url;
-    } else {
-      return "/alt.jpg";
-    }
+  function getUrl (url){
+    return new Promise((resolve) => {
+      let img = new Image();
+      let result = "/alt.jpg";
+      img.src = url;
+      img.onload = function(){
+        if (img.height !== 0) {
+          result = url;
+        }
+        resolve(result)
+        }
+      })
   };
 
   useEffect(() => {
     async function getData() {
-      await fetch(
-        `https://admin.skklub.com/api/중앙동아리/${univLocation}/${pid}`
-      )
-        .then((res) => res.json())
-        .then(setImage(check(`https://admin.skklub.com/img/logo/${pid}.jpg`)))
+      await fetch(`https://admin.skklub.com/api/중앙동아리/${univLocation}/${pid}`)
+
+        .then((res) => {return res.json()})
+
         .then(
-          (result) => {
-            setInfo(result);
+          // when data loading done
+          (resJson) => {
+            getUrl(`https://admin.skklub.com/img/logo/${resJson[0].logo_path}`).then( (result) => {
+              setImage(result);
+            })
+            
+            setInfo(resJson);
             setIsLoaded(true);
           },
+          // when data loading fail
           (error) => {
             setIsLoaded(true);
             setError(error);
-          }
-        );
+          })
     }
     getData();
-  }, []);
+  })
+  // }, []);
 
   if (error) {
     return <div>Error: {error.message}</div>;
