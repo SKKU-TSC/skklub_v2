@@ -1,7 +1,7 @@
 import Head from "next/head";
 import styled from "styled-components";
 
-import Navbar from '../components/navbar'
+import Navbar from '../components/global/navbar'
 import FirstContainer from '../components/index/firstContainer'
 import SecondContainer from "../components/index/secondContainer"
 import ThirdContainer from "../components/index/thirdContainer"
