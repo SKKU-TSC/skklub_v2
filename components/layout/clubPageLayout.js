@@ -12,10 +12,10 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 
-import StyledHr from "../styledHr";
-import Footer from "../footer";
-import ClubWebsiteButton from "../clubWebsiteButton";
-import Loading from "../loading";
+import StyledHr from "../global/styledHr";
+import Footer from "../global/footer";
+import ClubWebsiteButton from "../global/clubWebsiteButton";
+import Loading from "../global/loading";
 
 import { Palette } from "color-thief-react";
 import idealTextColor from "../../hooks/textColor";
@@ -119,7 +119,7 @@ let TopDivGroup = styled.div`
 `;
 
 const StyledTitle = styled.h1`
-color: ${(props) => props.textColor};
+  color: ${(props) => props.textColor};
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 0.1em;
@@ -133,7 +133,7 @@ const StyledSlogan = styled.p`
 `;
 
 const SinceH3 = styled.h3`
-color: ${(props) => props.textColor};
+  color: ${(props) => props.textColor};
   font-size: 1.6rem;
   font-weight: 400;
   margin-top: 0;
@@ -196,34 +196,40 @@ const ClubPageLayout = (props) => {
     urlPath.includes("seoul") ? "명륜" : "율전"
   );
 
-  function getUrl (url){
+  function getUrl(url) {
     return new Promise((resolve) => {
       let img = new Image();
       let result = "/alt.jpg";
       img.src = url;
-      img.onload = function(){
+      img.onload = function () {
+        console.log(img.height);
         if (img.height !== 0) {
           result = url;
         }
-        resolve(result)
-        }
-      })
-  };
+        resolve(result);
+      };
+    });
+  }
+
+  async function check(url) {
+    const result = await getUrl(url);
+    console.log(result);
+    return result;
+  }
 
   useEffect(() => {
     async function getData() {
-      await fetch(`https://admin.skklub.com/api/중앙동아리/${univLocation}/${pid}`)
-
-        .then((res) => {return res.json()})
+      await fetch(
+        `https://admin.skklub.com/api/중앙동아리/${univLocation}/${pid}`
+      )
+        .then((res) => res.json())
 
         .then(
-          // when data loading done
-          (resJson) => {
-            getUrl(`https://admin.skklub.com/img/logo/${resJson[0].logo_path}`).then( (result) => {
-              setImage(result);
-            })
-
-            setInfo(resJson);
+          (result) => {
+            setInfo(result);
+            setImage(
+              check(`https://admin.skklub.com/img/logo/${result[0].logo_path}`)
+            );
             setIsLoaded(true);
           },
           // when data loading failed
@@ -265,7 +271,9 @@ const ClubPageLayout = (props) => {
                 <div>
                   <TopDiv bgcolor={data[4]}>
                     <ProfileImage src={image} />
-                    <TopDivGroup textColor={loading === false && idealTextColor(data[4])}>
+                    <TopDivGroup
+                      textColor={loading === false && idealTextColor(data[4])}
+                    >
                       <StyledTitle
                         textColor={loading === false && idealTextColor(data[4])}
                       >
@@ -292,7 +300,8 @@ const ClubPageLayout = (props) => {
                         <em>&quot;{info[0].intro_sentence}&quot;</em>
                       </StyledSlogan>
                       <SinceH3
-                      textColor={loading === false && idealTextColor(data[4])}>
+                        textColor={loading === false && idealTextColor(data[4])}
+                      >
                         {info[0].estab_year == "" ? "" : "Since"}
                       </SinceH3>
                       <SinceTime>{info[0].estab_year}</SinceTime>

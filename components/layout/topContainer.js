@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-import EventContainer from "../eventContainer";
+import EventContainer from "../global/eventContainer";
 
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";

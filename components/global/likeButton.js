@@ -1,4 +1,4 @@
-import { useLocalStorage } from "../hooks/useLocalStorage";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 import styled from "styled-components";
 

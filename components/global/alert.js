@@ -1,6 +1,6 @@
 import Alert from "react-bootstrap/Alert";
 
-import Desc from "../data/type.json";
+import Desc from "../../data/type.json";
 
 import styled from "styled-components";
 

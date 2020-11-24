@@ -1,6 +1,6 @@
 function idealTextColor(bgColor) {
 
-
+  console.log(bgColor)
   var nThreshold = 105;
   var components = getRGBComponents(bgColor);
   var bgDelta =

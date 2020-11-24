@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 
 import styled from "styled-components";
 
-import Navbar from "../../components/navbar";
-import Footer from "../../components/footer";
-import Loading from "../../components/loading";
+import Navbar from "../../components/global/navbar";
+import Footer from "../../components/global/footer";
+import Loading from "../../components/global/loading";
 import TopContainer from "../../components/layout/topContainer";
 import CardGallery from "../../components/layout/cardGallery";
 

@@ -12,8 +12,8 @@ import CardDeck from "react-bootstrap/CardDeck";
 import Button from "react-bootstrap/Button";
 
 
-const CardNoSSR = dynamic(() => import("../card"), { ssr: false });
-const AlertNoSSR = dynamic(() => import("../alert"), { ssr: false });
+const CardNoSSR = dynamic(() => import("../global/card"), { ssr: false });
+const AlertNoSSR = dynamic(() => import("../global/alert"), { ssr: false });
 
 const StyledCardDeck = styled(CardDeck)`
   list-style: none;

@@ -4,9 +4,9 @@ import styled from "styled-components";
 
 import Button from "react-bootstrap/Button";
 
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
-import NoticeCarousel from "../components/noticeCarousel";
+import Navbar from "../components/global/navbar";
+import Footer from "../components/global/footer";
+import NoticeCarousel from "../components/global/noticecarousel";
 
 const FullPage = styled.div`
   width: 100%;
@@ -75,6 +75,17 @@ export default function Index() {
               SKKLUB은 우리 학교의 모든 동아리/학회/단체를 한눈에 볼 수 있는
               플랫폼입니다.
             </StyledTitle2>
+            <div>
+              <Button
+                className="mt-2"
+                size="lg"
+                variant="outline-danger"
+                target="blank"
+                href="https://www.notion.so/daniel2231/32c22fccdb6f440ba414638956455cc8"
+              >
+                동아리 등록하기
+              </Button>
+            </div>
             <ButtonDiv>
               <Button
                 size="lg"
@@ -103,6 +114,7 @@ export default function Index() {
                 동아리연합회란?
               </Button>
             </div>
+      
           </FrontContainer>
           <NoticeCarousel />
         </IndexContainer>
