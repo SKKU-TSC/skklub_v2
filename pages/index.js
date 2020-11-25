@@ -81,8 +81,7 @@ export default function Index() {
                 size="lg"
                 variant="outline-danger"
                 target="blank"
-                href="https://www.notion.so/daniel2231/32c22fccdb6f440ba414638956455cc8"
-                disabled
+                href="http://admin.skklub.com/register/regular/"
               >
                 동아리 등록하기
               </Button>

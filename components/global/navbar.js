@@ -120,12 +120,14 @@ function GlobalNavbar(props) {
             >
               {univLocation} 캠퍼스 🎓
             </StyledLink>
-            <Nav.Link href="#deets" disabled>동아리 등록하기</Nav.Link>
+            <Nav.Link
+              target="blank"
+              href="http://admin.skklub.com/register/regular/"
+            >
+              동아리 등록하기
+            </Nav.Link>
           </Nav>
         </StyledCollapse>
-        
-
-        
       </StyledNavbar>
     </div>
   );
