@@ -82,6 +82,7 @@ export default function Index() {
                 variant="outline-danger"
                 target="blank"
                 href="https://www.notion.so/daniel2231/32c22fccdb6f440ba414638956455cc8"
+                disabled
               >
                 동아리 등록하기
               </Button>

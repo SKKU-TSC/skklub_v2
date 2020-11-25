@@ -120,7 +120,7 @@ function GlobalNavbar(props) {
             >
               {univLocation} 캠퍼스 🎓
             </StyledLink>
-            <Nav.Link href="#deets">동아리 등록하기</Nav.Link>
+            <Nav.Link href="#deets" disabled>동아리 등록하기</Nav.Link>
           </Nav>
         </StyledCollapse>
         
