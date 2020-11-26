@@ -190,7 +190,7 @@ const ClubPageLayout = (props) => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [info, setInfo] = useState([]);
-  const [image, setImage] = useState("false");
+  const [image, setImage] = useState("");
   const [checkLike, setCheckLike] = useLocalStorage(`${pid}`, "🤍");
   const [univLocation, setUnivLocation] = useState(
     urlPath.includes("seoul") ? "명륜" : "율전"
@@ -211,37 +211,34 @@ const ClubPageLayout = (props) => {
     });
   }
 
-  async function check(url) {
-    const result = await getUrl(url);
-    console.log(result);
-    return result;
-  }
-
   useEffect(() => {
     async function getData() {
       await fetch(
         `https://admin.skklub.com/api/중앙동아리/${univLocation}/${pid}`
       )
         .then((res) => res.json())
-
         .then(
-          (result) => {
-            setInfo(result);
-            setImage(
-              check(`https://admin.skklub.com/img/logo/${result[0].logo_path}`)
-            );
-            setIsLoaded(true);
+          (resJson) => {
+            getUrl(
+              `https://admin.skklub.com/img/logo/${resJson[0].logo_path}`
+            ).then((result) => {
+              setImage(result);
+            });
+
+            setInfo(resJson);
+            setIsLoaded(true)
           },
           // when data loading failed
           (error) => {
             setIsLoaded(true);
             setError(error);
-          })
+          }
+        );
     }
-    
+
     // execute
     getData();
-  })
+  });
 
   if (error) {
     return <div>Error: {error.message}</div>;
