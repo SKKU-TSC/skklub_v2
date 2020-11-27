@@ -22,7 +22,6 @@ import idealTextColor from "../../hooks/textColor";
 
 const StyledCardDeck = styled(CardDeck)`
   margin-top: 20px;
-
   @media (max-width: 425px) {
     display: grid;
     grid-gap: 10px;
@@ -41,7 +40,6 @@ const ProfileImage = styled.img`
   border-radius: 20px;
   float: left;
   margin-right: 20px;
-
   @media (max-width: 425px) {
     float: none;
     margin-right: 0;
@@ -201,44 +199,39 @@ const ClubPageLayout = (props) => {
       let img = new Image();
       let result = "/alt.jpg";
       img.src = url;
-      img.onload = function () {
-        console.log(img.height);
-        if (img.height !== 0) {
-          result = url;
-        }
-        resolve(result);
-      };
+      
+      if (img.height !== 0) {
+        result = url;
+      }
+      resolve(result);
     });
   }
 
-  useEffect(() => {
-    async function getData() {
-      await fetch(
-        `https://admin.skklub.com/api/중앙동아리/${univLocation}/${pid}`
-      )
-        .then((res) => res.json())
-        .then(
-          (resJson) => {
-            getUrl(
-              `https://admin.skklub.com/img/logo/${resJson[0].logo_path}`
-            ).then((result) => {
-              setImage(result);
-            });
+  async function getData() {
+    try {
+      // Get Data
+      var response = await fetch(`https://admin.skklub.com/api/중앙동아리/${univLocation}/${pid}`)
 
-            setInfo(resJson);
-            setIsLoaded(true)
-          },
-          // when data loading failed
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        );
+      // Data converting to JSON
+      var resJSON = await response.json();
+
+      // Parse Path
+      var imgUri = await getUrl(`https://admin.skklub.com/img/logo/${resJSON[0].logo_path}`)
+          setInfo(resJSON);
+          setImage(imgUri);
+          setIsLoaded(true);
+
+    } catch (e) {
+      console.log(e);
+      setIsLoaded(true);
+      setError(error);
     }
+  }
 
-    // execute
+
+  useEffect(() => {
     getData();
-  });
+  }, []);
 
   if (error) {
     return <div>Error: {error.message}</div>;
