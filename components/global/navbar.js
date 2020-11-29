@@ -13,6 +13,7 @@ let hrefLink;
 let linkDisplay;
 let navBrand;
 let navBrandFont;
+let clubType;
 
 const StyledNavbar = styled(Navbar)`
   background-color: #f8f7f8;
@@ -51,6 +52,7 @@ function GlobalNavbar(props) {
       navBrand = "SKKLUB";
       navBrandFont = "2rem";
       hrefLink = "/";
+      clubType = "central-clubs";
       break;
     case "/central-clubs/suwon":
       univLocation = "명륜";
@@ -59,6 +61,43 @@ function GlobalNavbar(props) {
       navBrand = "SKKLUB";
       navBrandFont = "2rem";
       hrefLink = "/";
+      clubType = "central-clubs";
+      break;
+    case "/independent-clubs/seoul":
+      univLocation = "율전";
+      nextPath = "suwon";
+      univColor = "#4d5dff";
+      navBrand = "SKKLUB";
+      navBrandFont = "2rem";
+      hrefLink = "/";
+      clubType = "independent-clubs";
+      break;
+    case "/independent-clubs/suwon":
+      univLocation = "명륜";
+      nextPath = "seoul";
+      univColor = "green";
+      navBrand = "SKKLUB";
+      navBrandFont = "2rem";
+      hrefLink = "/";
+      clubType = "independent-clubs";
+      break;
+    case "/groups/seoul":
+      univLocation = "율전";
+      nextPath = "suwon";
+      univColor = "#4d5dff";
+      navBrand = "SKKLUB";
+      navBrandFont = "2rem";
+      hrefLink = "/";
+      clubType = "groups";
+      break;
+    case "/groups/suwon":
+      univLocation = "명륜";
+      nextPath = "seoul";
+      univColor = "green";
+      navBrand = "SKKLUB";
+      navBrandFont = "2rem";
+      hrefLink = "/";
+      clubType = "groups";
       break;
     case "/":
       linkDisplay = "none";
@@ -116,7 +155,7 @@ function GlobalNavbar(props) {
             <StyledLink
               linkdisplay={linkDisplay}
               univcolor={univColor}
-              href={"/central-clubs/" + nextPath}
+              href={`/${clubType}/${nextPath}`}
             >
               {univLocation} 캠퍼스 🎓
             </StyledLink>

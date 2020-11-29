@@ -193,13 +193,25 @@ const ClubPageLayout = (props) => {
   const [univLocation, setUnivLocation] = useState(
     urlPath.includes("seoul") ? "seoul" : "suwon"
   );
+  const [clubType, setClubType] = useState(checkPath());
+
+  function checkPath() {
+    if (urlPath.includes("central-clubs")) {
+      return "central-clubs";
+    } else if (urlPath.includes("independent-clubs")) {
+      return "independent-clubs";
+    } else {
+      return "groups";
+      return "groups";
+    }
+  }
 
   function getUrl(url) {
     return new Promise((resolve) => {
       let img = new Image();
       let result = "/alt.jpg";
       img.src = url;
-      
+
       if (img.height !== 0) {
         result = url;
       }
@@ -210,24 +222,26 @@ const ClubPageLayout = (props) => {
   async function getData() {
     try {
       // Get Data
-      var response = await fetch(`https://admin.skklub.com/api/central-clubs/${univLocation}/${pid}`)
+      var response = await fetch(
+        `https://admin.skklub.com/api/${clubType}/${univLocation}/${pid}`
+      );
 
       // Data converting to JSON
       var resJSON = await response.json();
 
       // Parse Path
-      var imgUri = await getUrl(`https://admin.skklub.com/img/logo/${resJSON[0].logo_path}`)
-          setInfo(resJSON);
-          setImage(imgUri);
-          setIsLoaded(true);
-
+      var imgUri = await getUrl(
+        `https://admin.skklub.com/img/logo/${resJSON[0].logo_path}`
+      );
+      setInfo(resJSON);
+      setImage(imgUri);
+      setIsLoaded(true);
     } catch (e) {
       console.log(e);
       setIsLoaded(true);
       setError(error);
     }
   }
-
 
   useEffect(() => {
     getData();

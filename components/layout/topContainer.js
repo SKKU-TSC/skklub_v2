@@ -63,11 +63,11 @@ function TopContainer(props) {
 
   let event = false;
 
-  switch (router.pathname) {
-    case "/central-clubs/seoul":
+  switch (router.pathname.includes("seoul")) {
+    case true:
       color = "green";
       break;
-    case "/central-clubs/suwon":
+    case false:
       color = "#4d5dff";
       break;
     default:

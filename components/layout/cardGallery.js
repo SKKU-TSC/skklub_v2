@@ -11,7 +11,6 @@ import { Dropdown } from "semantic-ui-react";
 import CardDeck from "react-bootstrap/CardDeck";
 import Button from "react-bootstrap/Button";
 
-
 const CardNoSSR = dynamic(() => import("../global/card"), { ssr: false });
 const AlertNoSSR = dynamic(() => import("../global/alert"), { ssr: false });
 
@@ -85,39 +84,76 @@ function CardGallery(props) {
   let LikedClubsArray = [];
   let campusData;
 
-  switch (router.pathname) {
-    case "/central-clubs/seoul":
-      campusData = "seoul"
-      typeData = [
-        "전체",
-        "평면예술",
-        "연행예술",
-        "봉사",
-        "취미교양",
-        "스포츠",
-        "종교분과",
-        "학술분과",
-        "인문사회",
-        "찜한 동아리",
-      ];
-      break;
-    case "/central-clubs/suwon":
-      campusData = "suwon"
-      typeData = [
-        "전체",
-        "연행예술",
-        "평면예술",
-        "과학기술",
-        "취미교양",
-        "사회",
-        "종교",
-        "학술",
-        "건강체육",
-        "찜한 동아리",
-      ];
-      break;
-    default:
-      console.log("error")
+  if (router.pathname.includes("groups")) {
+    switch (router.pathname.includes("seoul")) {
+      case true:
+        campusData = "seoul";
+        typeData = [
+          "전체",
+          "경영대학",
+          "경제대학",
+          "문과대학",
+          "사범대학",
+          "사회과학대학",
+          "예술대학",
+          "유학대학",
+          "기타",
+          "찜한 동아리",
+        ];
+        break;
+      case false:
+        campusData = "suwon";
+        typeData = [
+          "전체",
+          "공과대학",
+          "생명공학대학",
+          "소프트웨어대학",
+          "스포츠과학대학",
+          "약학대학",
+          "자연과학대학",
+          "정보통신대학",
+          "기타",
+          "찜한 동아리",
+        ];
+        break;
+      default:
+        console.log("error");
+    }
+  } else {
+    switch (router.pathname.includes("seoul")) {
+      case true:
+        campusData = "seoul";
+        typeData = [
+          "전체",
+          "평면예술",
+          "연행예술",
+          "봉사",
+          "취미교양",
+          "스포츠",
+          "종교분과",
+          "학술분과",
+          "인문사회",
+          "찜한 동아리",
+        ];
+        break;
+      case false:
+        campusData = "suwon";
+        typeData = [
+          "전체",
+          "연행예술",
+          "평면예술",
+          "과학기술",
+          "취미교양",
+          "사회",
+          "종교",
+          "학술",
+          "건강체육",
+          "찜한 동아리",
+        ];
+        break;
+      default:
+        console.log("error");
+    }
   }
 
   let [type, setType] = useLocalStorage(props.univLocation, "전체");
@@ -172,6 +208,7 @@ function CardGallery(props) {
                 name={club.cname}
                 category3={club.category3}
                 category2={club.category2}
+                category1={club.category1}
                 campus={club.campus}
                 campusData={campusData}
                 logoPath={club.logo_path}
@@ -241,6 +278,7 @@ function CardGallery(props) {
                   id={props.data[i].cid}
                   name={club.cname}
                   category2={club.category2}
+                  category1={club.category1}
                   category3={club.category3}
                   campus={club.campus}
                   campusData={campusData}
@@ -320,6 +358,7 @@ function CardGallery(props) {
                     id={club.cid}
                     name={club.cname}
                     category2={club.category2}
+                    category1={club.category1}
                     category3={club.category3}
                     campus={club.campus}
                     campusData={campusData}

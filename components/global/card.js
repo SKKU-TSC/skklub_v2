@@ -8,6 +8,7 @@ import styled from "styled-components";
 
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import Badge from "react-bootstrap/Badge";
 
 let StyledCard = styled(Card)`
   border-radius: 15px;
@@ -20,6 +21,7 @@ let StyledImg = styled(Card.Img)`
 `;
 
 let StyledTitle = styled(Card.Title)`
+  display: inline;
   font-size: 20px;
   font-weight: bold;
   @media (max-width: 426px) {
@@ -36,6 +38,25 @@ let StyledText = styled(Card.Text)`
   @media (max-width: 426px) {
     font-size: 15px;
   }
+`;
+
+let StyledBadge = styled(Badge)`
+  display: ${(props) => props.display};
+  bottom: 0;
+  font-size: 15px;
+  color: white;
+  background-color: ${(props) => props.color};
+  border-radius: 0px 0px 0px 0px;
+  position: absolute;
+  @media (max-width: 426px) {
+    top: 53%;
+    font-size: 10px;
+  }
+`;
+
+const ImageContainer = styled.div`
+  display: inline-block;
+  position: relative;
 `;
 
 const StyledDiv = styled.div`
@@ -77,23 +98,49 @@ let LikeButton = styled(Button)`
 `;
 
 function ClubCard(props) {
+  let router = useRouter();
+  let urlPath = router.pathname;
   const [like, setLike] = useLocalStorage(`${props.name}`, "🤍");
+  const [clubType, setClubType] = useState(checkPath());
+
+  function checkPath() {
+    if (urlPath.includes("central-clubs")) {
+      return "central-clubs";
+    } else if (urlPath.includes("independent-clubs")) {
+      return "independent-clubs";
+    } else {
+      return "groups";
+      return "groups";
+    }
+  }
 
   return (
     <div>
       <StyledCard>
         <Link
           category1={props.category1}
-          href={`/central-clubs/${props.campusData}/${props.id}`}
+          href={`/${clubType}/${props.campusData}/${props.id}`}
         >
           <StyledDiv>
-            <StyledImg
-              variant="top"
-              src={`https://admin.skklub.com/img/logo/${props.logoPath}`}
-              onError={(e) => {
-                e.target.src = "../alt.jpg";
-              }}
-            />
+            <ImageContainer>
+              <StyledBadge
+                display={
+                  props.category1 === "준중앙동아리" ? "absolute" : "none"
+                }
+                color={props.campus === "명륜" ? "green" : "#4d5dff"}
+                variant="warning"
+              >
+                {props.category1}
+              </StyledBadge>
+              <StyledImg
+                variant="top"
+                src={`https://admin.skklub.com/img/logo/${props.logoPath}`}
+                onError={(e) => {
+                  e.target.src = "../alt.jpg";
+                }}
+              />
+            </ImageContainer>
+
             <Card.Body>
               <StyledTitle>{props.name}</StyledTitle>
 
@@ -109,6 +156,5 @@ function ClubCard(props) {
     </div>
   );
 }
-
 
 export default ClubCard;
