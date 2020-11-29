@@ -87,7 +87,7 @@ function TopContainer(props) {
                 />
               </UnivName>
               <br />
-              모든 동아리를
+              모든 {props.clubType}를
               <br />한 눈에!
             </Title>
           </TitleContainer>
@@ -97,7 +97,7 @@ function TopContainer(props) {
               <ClubNum color={color}>
                 <CountUp end={props.data.length} />
               </ClubNum>
-              개의 동아리들이 등록되어 있습니다.
+              개의 {props.clubType}들이 등록되어 있습니다.
             </StyledP>
             <StyledP>
               각 동아리의 상세 페이지에 하트를 눌러<br></br>동아리를 찜해보세요!
@@ -117,7 +117,7 @@ function TopContainer(props) {
                 <Typed strings={[`성대 ${props.univLocation}`]} typeSpeed={60} />
               </UnivName>
               <br />
-              모든 동아리를
+              모든 {props.clubType}를
               <br />한 눈에!
             </Title>
           </TitleContainer>
@@ -127,7 +127,7 @@ function TopContainer(props) {
               <ClubNum color={color}>
                 <CountUp end={props.data.length} />
               </ClubNum>
-              개의 동아리들이 등록되어 있습니다.
+              개의 {props.clubType}들이 등록되어 있습니다.
             </StyledP>
             <StyledP>
               각 동아리의 상세 페이지에 하트를 눌러<br></br>동아리를 찜해보세요!

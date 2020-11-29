@@ -18,6 +18,7 @@ const Main = styled.main`
 export default function Seoul() {
   let color = "green";
   let location = "명륜";
+  let type = "준중앙/독립동아리";
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -64,6 +65,7 @@ export default function Seoul() {
             data={info}
             theme={color}
             univLocation={location}
+            clubType={type}
           ></TopContainer>
           <CardGallery
             data={info}
