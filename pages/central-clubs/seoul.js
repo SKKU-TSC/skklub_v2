@@ -29,7 +29,7 @@ export default function Seoul() {
 
   useEffect(() => {
     async function getData() {
-      await fetch(`https://admin.skklub.com/api/중앙동아리/명륜`)
+      await fetch(`https://admin.skklub.com/api/central-clubs/seoul`)
         .then((res) => res.json())
         .then(
           (result) => {

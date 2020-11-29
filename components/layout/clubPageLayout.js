@@ -191,7 +191,7 @@ const ClubPageLayout = (props) => {
   const [image, setImage] = useState("");
   const [checkLike, setCheckLike] = useLocalStorage(`${pid}`, "🤍");
   const [univLocation, setUnivLocation] = useState(
-    urlPath.includes("seoul") ? "명륜" : "율전"
+    urlPath.includes("seoul") ? "seoul" : "suwon"
   );
 
   function getUrl(url) {
@@ -210,7 +210,7 @@ const ClubPageLayout = (props) => {
   async function getData() {
     try {
       // Get Data
-      var response = await fetch(`https://admin.skklub.com/api/중앙동아리/${univLocation}/${pid}`)
+      var response = await fetch(`https://admin.skklub.com/api/central-clubs/${univLocation}/${pid}`)
 
       // Data converting to JSON
       var resJSON = await response.json();
