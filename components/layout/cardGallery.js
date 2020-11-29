@@ -170,10 +170,11 @@ function CardGallery(props) {
                 key={i}
                 id={club.cid}
                 name={club.cname}
-                category1={club.category1}
                 category3={club.category3}
+                category2={club.category2}
                 campus={club.campus}
                 campusData={campusData}
+                logoPath={club.logo_path}
               ></CardNoSSR>
             );
           })}
@@ -237,11 +238,13 @@ function CardGallery(props) {
               return (
                 <CardNoSSR
                   key={i}
+                  id={props.data[i].cid}
                   name={club.cname}
+                  category2={club.category2}
                   category3={club.category3}
-                  category1={club.category1}
                   campus={club.campus}
                   campusData={campusData}
+                  logoPath={club.logo_path}
                 ></CardNoSSR>
               );
             })}
@@ -253,10 +256,11 @@ function CardGallery(props) {
                     key={i}
                     id={props.data[i].cid}
                     name={props.data[i].cname}
+                    category2={props.data[i].category2}
                     category3={props.data[i].category3}
-                    category1={props.data[i].category1}
                     campus={props.data[i].campus}
                     campusData={campusData}
+                    logoPath={club.logo_path}
                   ></CardNoSSR>
                 );
               }
@@ -315,10 +319,11 @@ function CardGallery(props) {
                     key={j}
                     id={club.cid}
                     name={club.cname}
+                    category2={club.category2}
                     category3={club.category3}
-                    category1={club.category1}
                     campus={club.campus}
                     campusData={campusData}
+                    logoPath={club.logo_path}
                   ></CardNoSSR>
                 </div>
               );

@@ -89,7 +89,7 @@ function ClubCard(props) {
           <StyledDiv>
             <StyledImg
               variant="top"
-              src={`https://admin.skklub.com/img/logo/${props.id}.jpg`}
+              src={`https://admin.skklub.com/img/logo/${props.logoPath}`}
               onError={(e) => {
                 e.target.src = "../alt.jpg";
               }}
@@ -98,9 +98,9 @@ function ClubCard(props) {
               <StyledTitle>{props.name}</StyledTitle>
 
               <StyledText>
-                {props.category3}
+                {props.category2}
                 <br></br>
-                {props.campus}
+                {props.category3}
               </StyledText>
             </Card.Body>
           </StyledDiv>
