@@ -49,7 +49,6 @@ let StyledBadge = styled(Badge)`
   border-radius: 0px 0px 0px 0px;
   position: absolute;
   @media (max-width: 426px) {
-    top: 53%;
     font-size: 10px;
   }
 `;
