@@ -21,9 +21,11 @@ let StyledImg = styled(Card.Img)`
 `;
 
 let StyledTitle = styled(Card.Title)`
-  display: inline;
   font-size: 20px;
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   @media (max-width: 426px) {
     font-size: 18px;
   }
