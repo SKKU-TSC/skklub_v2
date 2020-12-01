@@ -146,9 +146,9 @@ function ClubCard(props) {
               <StyledTitle>{props.name}</StyledTitle>
 
               <StyledText>
-                {props.category2}
+                {(props.category2 === " ")?<br></br>:props.category2}
                 <br></br>
-                {props.category3}
+                {(props.category3 === " ")?<br></br>:props.category3}
               </StyledText>
             </Card.Body>
           </StyledDiv>
