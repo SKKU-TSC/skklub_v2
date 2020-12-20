@@ -3,7 +3,7 @@
 2020년 출시된 성균관대학교 공식 중앙동아리 플랫폼 SKKLUB의 레포시터리입니다.
 [SKKLUB 링크](https://www.skklub.com/)
 
-![Image of SKKLUB](../skklub_v2/public/skklub_screenshot.png)
+![Image of SKKLUB](https://github.com/SKKU-TSC/skklub_v2/blob/master/public/skklub_screenshot.png)
 
 ## Todo
 
