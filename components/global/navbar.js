@@ -132,6 +132,9 @@ function GlobalNavbar(props) {
                 동아리연합회란?
               </Nav.Link>
             </Nav.Item>
+            <Nav.Link href="/central-clubs/seoul">
+
+            </Nav.Link>
             <NavDropdown title="중앙동아리" id="basic-nav-dropdown">
               <NavDropdown.Item href="/central-clubs/seoul">
                 명륜 캠퍼스
@@ -141,15 +144,15 @@ function GlobalNavbar(props) {
               </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="기타동아리" id="basic-nav-dropdown" disabled>
-              <NavDropdown.Item>준둥앙동아리</NavDropdown.Item>
+              <NavDropdown.Item href="/independent-clubs/seoul">준중앙동아리</NavDropdown.Item>
               <NavDropdown.Item>독립동아리</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="소모임" id="basic-nav-dropdown" disabled>
-              <NavDropdown.Item>소모임</NavDropdown.Item>
+              <NavDropdown.Item href="/groups/seoul">소모임</NavDropdown.Item>
               <NavDropdown.Item>준소모임</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="기타단체" id="basic-nav-dropdown" disabled>
-              <NavDropdown.Item>학생단체</NavDropdown.Item>
+              <NavDropdown.Item href="/groups/seoul">학생단체</NavDropdown.Item>
               <NavDropdown.Item>학회</NavDropdown.Item>
             </NavDropdown>
             <StyledLink

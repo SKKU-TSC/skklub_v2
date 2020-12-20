@@ -18,6 +18,15 @@ let StyledCard = styled(Card)`
 
 let StyledImg = styled(Card.Img)`
   border-radius: 15px 15px 0 0;
+  position: absolute; 
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 `;
 
 let StyledTitle = styled(Card.Title)`
@@ -58,6 +67,13 @@ let StyledBadge = styled(Badge)`
 const ImageContainer = styled.div`
   display: inline-block;
   position: relative;
+  width: 100%;
+
+  &:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+  }
 `;
 
 const StyledDiv = styled.div`
@@ -146,9 +162,9 @@ function ClubCard(props) {
               <StyledTitle>{props.name}</StyledTitle>
 
               <StyledText>
-                {(props.category2 === " ")?<br></br>:props.category2}
+                {props.category2 === " " ? <br></br> : props.category2}
                 <br></br>
-                {(props.category3 === " ")?<br></br>:props.category3}
+                {props.category3 === " " ? <br></br> : props.category3}
               </StyledText>
             </Card.Body>
           </StyledDiv>
