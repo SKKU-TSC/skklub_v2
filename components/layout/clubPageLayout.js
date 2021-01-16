@@ -336,7 +336,7 @@ const ClubPageLayout = (props) => {
                       {info[0].president_name}
                       </Descriptions.Item>
                       <Descriptions.Item label="대표자 연락처">
-                      placeholder
+                      
                       </Descriptions.Item>
                     </Descriptions>
                     
