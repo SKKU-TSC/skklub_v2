@@ -36,7 +36,7 @@ function EventContainer(props) {
   let eventHref;
 
   switch (router.pathname) {
-    case "/seoul":
+    case "/central-clubs/seoul":
       univLocation = "명륜";
       color = "success";
       eventText = "🎊동아리 지원하고, 경품 받아가세요!! 🎉";
@@ -44,7 +44,7 @@ function EventContainer(props) {
       eventHref =
         "https://docs.google.com/forms/d/e/1FAIpQLScg7Oejn1CxVJDz_xxotqcvxKSXsroVQGVbhJ0MbEDQ1B4aBw/viewform?usp=send_form";
       break;
-    case "/suwon":
+    case "/central-clubs/suwon":
       univLocation = "율전";
       color = "primary";
       eventText = "🎊동아리 지원하고, 경품 받아가세요!! 🎉";

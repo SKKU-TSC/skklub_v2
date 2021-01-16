@@ -10,6 +10,7 @@ import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import { Dropdown } from "semantic-ui-react";
 import CardDeck from "react-bootstrap/CardDeck";
 import Button from "react-bootstrap/Button";
+import IECheck from "../../hooks/isIE"
 
 const CardNoSSR = dynamic(() => import("../global/card"), { ssr: false });
 const AlertNoSSR = dynamic(() => import("../global/alert"), { ssr: false });
@@ -161,6 +162,7 @@ function CardGallery(props) {
   if (type === "전체") {
     return (
       <div>
+        <IECheck></IECheck>
         <StyledFilterButtonContainer>
           {typeData.map((name, i) => {
             return (
@@ -229,6 +231,7 @@ function CardGallery(props) {
     likedClubs();
     return (
       <div>
+        <IECheck></IECheck>
         <StyledFilterButtonContainer>
           {typeData.map((name, i) => {
             return (
@@ -310,6 +313,7 @@ function CardGallery(props) {
   } else {
     return (
       <div>
+        <IECheck></IECheck>
         <StyledFilterButtonContainer>
           {typeData.map((name, i) => {
             return (

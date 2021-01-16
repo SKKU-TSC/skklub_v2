@@ -6,7 +6,8 @@ import Button from "react-bootstrap/Button";
 
 import Navbar from "../components/global/navbar";
 import Footer from "../components/global/footer";
-import NoticeCarousel from "../components/global/noticecarousel";
+import NoticeCarousel from "../components/noticecarousel";
+import IECheck from "../hooks/isIE"
 
 const FullPage = styled.div`
   width: 100%;
@@ -44,7 +45,7 @@ const StyledTitle2 = styled.p`
 
 const FrontContainer = styled.div`
   padding-top: 35%;
-  padding-bottom: 40%;
+  padding-bottom: 10%;
   text-align: center;
 `;
 
@@ -59,12 +60,12 @@ export default function Index() {
       <Head>
         <title>SKKLUB</title>
         <link rel="icon" href="/favicon.ico" />
-        <meta name="description" content="성균관대학교 중앙동아리 플랫폼" />
       </Head>
       <FullPage>
         <IndexContainer>
           <Navbar></Navbar>
           <FrontContainer>
+            <IECheck></IECheck>
             <StyledImg src="../indexpic.jpg"></StyledImg>
             <StyledTitle>
               성균관대학교
@@ -116,7 +117,6 @@ export default function Index() {
             </div>
       
           </FrontContainer>
-          <NoticeCarousel />
         </IndexContainer>
         <Footer></Footer>
       </FullPage>

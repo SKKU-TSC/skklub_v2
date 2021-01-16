@@ -4,11 +4,13 @@ import { GA_TRACKING_ID } from "../lib/gtag";
 
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
+
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
     return { ...initialProps };
   }
+  
 
   render() {
     return (
@@ -49,6 +51,8 @@ class MyDocument extends Document {
             href="/favicon-16x16.png"
           />
           <link rel="manifest" href="/site.webmanifest" />
+          <meta name="keywords" content="skklub, Skklub, 스클럽" />
+          <meta name="description" content="성균관대학교 중앙동아리 플랫폼" />
         </Head>
         <body>
           <Main />

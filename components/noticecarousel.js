@@ -1,31 +1,31 @@
-import { Carousel, Divider } from "antd";
+import { List, Typography, Divider } from "antd";
 
-const contentStyle = {
-  height: "160px",
-  color: "#fff",
-  lineHeight: "160px",
-  textAlign: "center",
-  background: "#364d79",
-};
+const data = [
+  "공지 1",
+  "공지 2",
+  "공지 3",
+  "공지 4",
+  "공지 5",
+  "공지 6",
+];
 
-export default function NoticeCarousel() {
+function noticecarousel() {
   return (
-    <div style={{display: "none"}}> 
-      <Divider orientation="left">공지</Divider>
-      <Carousel autoplay>
-        <div>
-          <h3 style={contentStyle}>1</h3>
-        </div>
-        <div>
-          <h3 style={contentStyle}>2</h3>
-        </div>
-        <div>
-          <h3 style={contentStyle}>3</h3>
-        </div>
-        <div>
-          <h3 style={contentStyle}>4</h3>
-        </div>
-      </Carousel>
-    </div>
+    <>
+      <Divider orientation="left">공지사항 </Divider>
+      <List
+        
+        
+        bordered
+        dataSource={data}
+        renderItem={(item) => (
+          <List.Item>
+            <Typography.Text mark>[공지]</Typography.Text> {item}
+          </List.Item>
+        )}
+      />
+    </>
   );
 }
+
+export default noticecarousel;

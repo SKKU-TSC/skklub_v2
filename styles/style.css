@@ -1,8 +1,8 @@
-@import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;700&display=swap');
 @import '~antd/dist/antd.css';
 
 * {
-  font-family: "NanumSquare", sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   word-break: keep-all;
   white-space: pre-line;
 }

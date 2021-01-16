@@ -11,11 +11,13 @@ import CardDeck from "react-bootstrap/CardDeck";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
+import { Descriptions, Badge } from "antd";
 
 import StyledHr from "../global/styledHr";
 import Footer from "../global/footer";
 import ClubWebsiteButton from "../global/clubWebsiteButton";
 import Loading from "../global/loading";
+import IECheck from "../../hooks/isIE";
 
 import { Palette } from "color-thief-react";
 import idealTextColor from "../../hooks/textColor";
@@ -273,6 +275,7 @@ const ClubPageLayout = (props) => {
             } else {
               return (
                 <div>
+                  <IECheck></IECheck>
                   <TopDiv bgcolor={data[4]}>
                     <ProfileImage src={image} />
                     <TopDivGroup
@@ -299,7 +302,6 @@ const ClubPageLayout = (props) => {
                           {checkLike}
                         </LikeButton>
                       </StyledTitle>
-
                       <StyledSlogan>
                         <em>&quot;{info[0].intro_sentence}&quot;</em>
                       </StyledSlogan>
@@ -314,22 +316,30 @@ const ClubPageLayout = (props) => {
                   <StyledDiv>
                     <StyledHr className="hr" color={data[4]}></StyledHr>
                     <StyledH2>Info</StyledH2>
-                    <Table bordered size="md">
-                      <tbody>
-                        <tr>
-                          <td style={{ fontWeight: "bolder" }}>캠퍼스</td>
-                          <td>{info[0].campus}</td>
-                          <td style={{ fontWeight: "bolder" }}>중분류</td>
-                          <td>{info[0].category1}</td>
-                        </tr>
-                        <tr>
-                          <td style={{ fontWeight: "bolder" }}>위치</td>
-                          <td>{info[0].activity_location}</td>
-                          <td style={{ fontWeight: "bolder" }}>활동인원</td>
-                          <td>{info[0].activity_num}</td>
-                        </tr>
-                      </tbody>
-                    </Table>
+                    <Descriptions bordered>
+                      <Descriptions.Item label="중분류" span={2}>
+                        {info[0].category1}
+                      </Descriptions.Item>
+                      <Descriptions.Item label="캠퍼스">
+                        {info[0].campus}
+                      </Descriptions.Item>
+                      <Descriptions.Item label="위치" span={2}>
+                        {info[0].activity_location}
+                      </Descriptions.Item>
+                      <Descriptions.Item label="활동 인원">
+                        {info[0].activity_num}
+                      </Descriptions.Item>
+                      <Descriptions.Item label="모임 시간" span={3}>
+                        {info[0].meeting_time}
+                      </Descriptions.Item>
+                      <Descriptions.Item label="대표자 이름" span={2}>
+                      {info[0].president_name}
+                      </Descriptions.Item>
+                      <Descriptions.Item label="대표자 연락처">
+                      placeholder
+                      </Descriptions.Item>
+                    </Descriptions>
+                    
                     <StyledHr className="hr" color={data[4]}></StyledHr>
                     <StyledH2>About</StyledH2>
                     <StyledP
@@ -341,6 +351,12 @@ const ClubPageLayout = (props) => {
                       link={info[0].website_link}
                       name={info[0].cname}
                     ></ClubWebsiteButton>
+                    <ClubWebsiteButton
+                      textColor={loading === false && idealTextColor(data[4])}
+                      color={data[4]}
+                      link={info[0].website_link2}
+                      name={info[0].cname}
+                    ></ClubWebsiteButton>
                     <StyledHr className="hr" color={data[4]}></StyledHr>
                     <StyledH2>Activity</StyledH2>
                     <StyledP
@@ -348,6 +364,7 @@ const ClubPageLayout = (props) => {
                         __html: info[0].activity_info,
                       }}
                     ></StyledP>
+
                     <StyledHr className="hr" color={data[4]}></StyledHr>
                     <StyledH2>Recruiting</StyledH2>
                     <StyledCardDeck>
