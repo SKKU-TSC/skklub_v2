@@ -50,6 +50,7 @@ const StyledButton = styled.div`
   padding: 0.5rem 3rem;
   margin-right: 20px;
   margin-top: 10px;
+  -webkit-appearance: none;
 
   &:hover {
     background-color: ${(props) => props.univcolor};

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import QueueAnim from "rc-queue-anim";
 
 const DivContainer = styled.div`
   width: 100%;
@@ -48,9 +49,11 @@ function FirstContainer() {
       <DivContainer>
         <CoverImg src="/dyexample.jpeg"></CoverImg>
         <TextWrap>
-          <WhiteHeader>Of the clubs</WhiteHeader>
-          <WhiteHeader>By the clubs</WhiteHeader>
-          <WhiteHeader>For the clubs</WhiteHeader>
+          <QueueAnim delay={300} className="queue-simple">
+            <WhiteHeader key="a">성균관대학교</WhiteHeader>
+            <WhiteHeader key="b">동아리연합회</WhiteHeader>
+            <WhiteHeader key="c">"동행"</WhiteHeader>
+          </QueueAnim>
         </TextWrap>
       </DivContainer>
     </div>
