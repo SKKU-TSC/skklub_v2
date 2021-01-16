@@ -52,7 +52,7 @@ class MyDocument extends Document {
           />
           <link rel="manifest" href="/site.webmanifest" />
           <meta name="keywords" content="skklub, Skklub, 스클럽" />
-          <meta name="description" content="성균관대학교 중앙동아리 플랫폼" />
+          <meta name="description" content="성균관대학교 중앙동아리들을 한번에 볼 수 있는 플랫폼, 스클럽" />
         </Head>
         <body>
           <Main />

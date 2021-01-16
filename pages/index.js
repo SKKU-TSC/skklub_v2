@@ -58,7 +58,7 @@ export default function Index() {
   return (
     <div>
       <Head>
-        <title>SKKLUB</title>
+        <title>SKKLUB | 스클럽</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <FullPage>
