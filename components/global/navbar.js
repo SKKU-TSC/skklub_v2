@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -32,6 +33,7 @@ const StyledLink = styled(Nav.Link)`
 const StyledNavBrand = styled(Navbar.Brand)`
   font-size: ${(props) => props.navbrandfont} !important;
   font-weight: lighter;
+  cursor: pointer;
 `;
 
 const StyledToggle = styled(Navbar.Toggle)``;
@@ -118,9 +120,11 @@ function GlobalNavbar(props) {
   return (
     <div>
       <StyledNavbar fixed="top" bg="light" expand="lg">
-        <StyledNavBrand navbrandfont={navBrandFont} href={hrefLink}>
-          {navBrand}
-        </StyledNavBrand>
+        <Link href={hrefLink} scroll={false}>
+          <StyledNavBrand navbrandfont={navBrandFont}>
+            {navBrand}
+          </StyledNavBrand>
+        </Link>
         <StyledToggle aria-controls="basic-navbar-nav"></StyledToggle>
         <StyledCollapse id="basic-navbar-nav">
           <Nav className="mr-auto">
@@ -132,9 +136,7 @@ function GlobalNavbar(props) {
                 동아리연합회란?
               </Nav.Link>
             </Nav.Item>
-            <Nav.Link href="/central-clubs/seoul">
-
-            </Nav.Link>
+            <Nav.Link href="/central-clubs/seoul"></Nav.Link>
             <NavDropdown title="중앙동아리" id="basic-nav-dropdown">
               <NavDropdown.Item href="/central-clubs/seoul">
                 명륜 캠퍼스
@@ -144,7 +146,9 @@ function GlobalNavbar(props) {
               </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="기타동아리" id="basic-nav-dropdown" disabled>
-              <NavDropdown.Item href="/independent-clubs/seoul">준중앙동아리</NavDropdown.Item>
+              <NavDropdown.Item href="/independent-clubs/seoul">
+                준중앙동아리
+              </NavDropdown.Item>
               <NavDropdown.Item>독립동아리</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="소모임" id="basic-nav-dropdown" disabled>

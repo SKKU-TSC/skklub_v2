@@ -28,7 +28,7 @@ const TextWrap = styled.div`
 const WhiteHeader = styled.h1`
   color: white;
   font-size: 5em;
-  line-height: 60px;
+  line-height: 80px;
 
   @media (max-width: 768px) {
     font-size: 4em;
