@@ -10,7 +10,6 @@ import styled from "styled-components";
 import CardDeck from "react-bootstrap/CardDeck";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import Table from "react-bootstrap/Table";
 import { Descriptions, Badge } from "antd";
 
 import StyledHr from "../global/styledHr";
@@ -18,6 +17,7 @@ import Footer from "../global/footer";
 import ClubWebsiteButton from "../global/clubWebsiteButton";
 import Loading from "../global/loading";
 import IECheck from "../../hooks/isIE";
+import BackTopBtn from '../global/backTop'
 
 import { Palette } from "color-thief-react";
 import idealTextColor from "../../hooks/textColor";
@@ -51,8 +51,8 @@ const ProfileImage = styled.img`
 const StyledDiv = styled.div`
   padding-top: 100px;
   padding-bottom: 5%;
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 30%;
+  margin-right: 30%;
   text-align: left;
   word-wrap: break-word;
   @media (max-width: 426px) {
@@ -224,22 +224,21 @@ const ClubPageLayout = (props) => {
   async function getData() {
     try {
       // Get Data
-      var response = await fetch(
+      let response = await fetch(
         `https://admin.skklub.com/api/${clubType}/${univLocation}/${pid}`
       );
 
       // Data converting to JSON
-      var resJSON = await response.json();
+      let resJSON = await response.json();
 
       // Parse Path
-      var imgUri = await getUrl(
+      let imgUri = await getUrl(
         `https://admin.skklub.com/img/logo/${resJSON[0].logo_path}`
       );
       setInfo(resJSON);
       setImage(imgUri);
       setIsLoaded(true);
     } catch (e) {
-      console.log(e);
       setIsLoaded(true);
       setError(error);
     }
@@ -276,13 +275,13 @@ const ClubPageLayout = (props) => {
               return (
                 <div>
                   <IECheck></IECheck>
-                  <TopDiv bgcolor={data[4]}>
+                  <TopDiv bgcolor={data[1]}>
                     <ProfileImage src={image} />
                     <TopDivGroup
-                      textColor={loading === false && idealTextColor(data[4])}
+                      textColor={loading === false && idealTextColor(data[1])}
                     >
                       <StyledTitle
-                        textColor={loading === false && idealTextColor(data[4])}
+                        textColor={loading === false && idealTextColor(data[1])}
                       >
                         {info[0].cname}
                         <LikeButton
@@ -306,7 +305,7 @@ const ClubPageLayout = (props) => {
                         <em>&quot;{info[0].intro_sentence}&quot;</em>
                       </StyledSlogan>
                       <SinceH3
-                        textColor={loading === false && idealTextColor(data[4])}
+                        textColor={loading === false && idealTextColor(data[1])}
                       >
                         {info[0].estab_year == "" ? "" : "Since"}
                       </SinceH3>
@@ -314,7 +313,7 @@ const ClubPageLayout = (props) => {
                     </TopDivGroup>
                   </TopDiv>
                   <StyledDiv>
-                    <StyledHr className="hr" color={data[4]}></StyledHr>
+                    <StyledHr className="hr" color={data[1]}></StyledHr>
                     <StyledH2>Info</StyledH2>
                     <Descriptions bordered>
                       <Descriptions.Item label="중분류" span={2}>
@@ -340,24 +339,24 @@ const ClubPageLayout = (props) => {
                       </Descriptions.Item>
                     </Descriptions>
                     
-                    <StyledHr className="hr" color={data[4]}></StyledHr>
+                    <StyledHr className="hr" color={data[1]}></StyledHr>
                     <StyledH2>About</StyledH2>
                     <StyledP
                       dangerouslySetInnerHTML={{ __html: info[0].intro_text }}
                     ></StyledP>
                     <ClubWebsiteButton
-                      textColor={loading === false && idealTextColor(data[4])}
-                      color={data[4]}
+                      textColor={loading === false && idealTextColor(data[1])}
+                      color={data[1]}
                       link={info[0].website_link}
                       name={info[0].cname}
                     ></ClubWebsiteButton>
                     <ClubWebsiteButton
-                      textColor={loading === false && idealTextColor(data[4])}
-                      color={data[4]}
+                      textColor={loading === false && idealTextColor(data[1])}
+                      color={data[1]}
                       link={info[0].website_link2}
                       name={info[0].cname}
                     ></ClubWebsiteButton>
-                    <StyledHr className="hr" color={data[4]}></StyledHr>
+                    <StyledHr className="hr" color={data[1]}></StyledHr>
                     <StyledH2>Activity</StyledH2>
                     <StyledP
                       dangerouslySetInnerHTML={{
@@ -365,49 +364,49 @@ const ClubPageLayout = (props) => {
                       }}
                     ></StyledP>
 
-                    <StyledHr className="hr" color={data[4]}></StyledHr>
+                    <StyledHr className="hr" color={data[1]}></StyledHr>
                     <StyledH2>Recruiting</StyledH2>
                     <StyledCardDeck>
-                      <StyledCard bgcolor={data[4]} bordercolor={"none"}>
+                      <StyledCard bgcolor={data[1]} bordercolor={"none"}>
                         <StyledCardLogo>🗓</StyledCardLogo>
                         <StyledCardName
                           textColor={
-                            loading === false && idealTextColor(data[4])
+                            loading === false && idealTextColor(data[1])
                           }
                         >
                           모집시기
                         </StyledCardName>
                         <StyledCardDesc
                           textColor={
-                            loading === false && idealTextColor(data[4])
+                            loading === false && idealTextColor(data[1])
                           }
                         >
                           {info[0].recruit_season}
                         </StyledCardDesc>
                       </StyledCard>
-                      <StyledCard bordercolor={`2px ${data[4]} solid`}>
+                      <StyledCard bordercolor={`2px ${data[1]} solid`}>
                         <StyledCardLogo>🙌</StyledCardLogo>
                         <StyledCardName>모집인원</StyledCardName>
                         <StyledCardDesc>{info[0].recruit_num}</StyledCardDesc>
                       </StyledCard>
-                      <StyledCard bordercolor={"none"} bgcolor={data[4]}>
+                      <StyledCard bordercolor={"none"} bgcolor={data[1]}>
                         <StyledCardLogo>🔍</StyledCardLogo>
                         <StyledCardName
                           textColor={
-                            loading === false && idealTextColor(data[4])
+                            loading === false && idealTextColor(data[1])
                           }
                         >
                           모집방식
                         </StyledCardName>
                         <StyledCardDesc
                           textColor={
-                            loading === false && idealTextColor(data[4])
+                            loading === false && idealTextColor(data[1])
                           }
                         >
                           {info[0].recruit_process}
                         </StyledCardDesc>
                       </StyledCard>
-                      <StyledCard bordercolor={`2px ${data[4]} solid`}>
+                      <StyledCard bordercolor={`2px ${data[1]} solid`}>
                         <StyledCardLogo>⏰</StyledCardLogo>
                         <StyledCardName>의무 활동기간</StyledCardName>
                         <StyledCardDesc>
@@ -415,6 +414,7 @@ const ClubPageLayout = (props) => {
                         </StyledCardDesc>
                       </StyledCard>
                     </StyledCardDeck>
+                    <BackTopBtn></BackTopBtn>
                   </StyledDiv>
                 </div>
               );

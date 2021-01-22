@@ -25,7 +25,10 @@ export default function Seoul() {
   const [info, setInfo] = useState([]);
 
   function shuffle(array) {
-    array.sort(() => Math.random() - 0.5);
+    let date = new Date().toLocaleString();
+    if (localStorage.date !== date) {
+      array.sort(() => Math.random() - 0.5);
+    }
   }
 
   useEffect(() => {
