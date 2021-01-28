@@ -25,9 +25,12 @@ export default function Seoul() {
   const [info, setInfo] = useState([]);
 
   function shuffle(array) {
-    let date = new Date().toLocaleString();
+    let currentDate = new Date().toLocaleString();
+    let date = window.localStorage.getItem("date");
+    console.log(date)
     if (localStorage.date !== date) {
       array.sort(() => Math.random() - 0.5);
+      localStorage.setItem('date', date)
     }
   }
 
