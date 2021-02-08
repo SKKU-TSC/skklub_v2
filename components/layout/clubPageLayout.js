@@ -8,8 +8,8 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 import styled from "styled-components";
 
 import CardDeck from "react-bootstrap/CardDeck";
-import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 import { Descriptions, Badge } from "antd";
 
 import StyledHr from "../global/styledHr";
@@ -17,7 +17,7 @@ import Footer from "../global/footer";
 import ClubWebsiteButton from "../global/clubWebsiteButton";
 import Loading from "../global/loading";
 import IECheck from "../../hooks/isIE";
-import BackTopBtn from '../global/backTop'
+import BackTopBtn from "../global/backTop";
 
 import { Palette } from "color-thief-react";
 import idealTextColor from "../../hooks/textColor";
@@ -332,13 +332,13 @@ const ClubPageLayout = (props) => {
                         {info[0].meeting_time}
                       </Descriptions.Item>
                       <Descriptions.Item label="대표자 이름" span={2}>
-                      {info[0].president_name}
+                        {info[0].president_name}
                       </Descriptions.Item>
                       <Descriptions.Item label="대표자 연락처">
-                      {info[0].president_contact}
+                        {info[0].president_contact}
                       </Descriptions.Item>
                     </Descriptions>
-                    
+
                     <StyledHr className="hr" color={data[1]}></StyledHr>
                     <StyledH2>About</StyledH2>
                     <StyledP

@@ -1,16 +1,19 @@
 import { useRouter } from "next/router";
-import Link from "next/link";
+import Router from "next/router";
+
 
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 import styled from "styled-components";
 
 let univLocation;
 let univColor;
 let nextPath;
-let hrefLink;
+
 let linkDisplay;
 let navBrand;
 let navBrandFont;
@@ -42,6 +45,12 @@ const StyledCollapse = styled(Navbar.Collapse)`
   padding-top: 10px;
 `;
 
+const renderTooltip = (props) => (
+  <Tooltip id="button-tooltip" {...props}>
+    현재 준비중입니다
+  </Tooltip>
+);
+
 function GlobalNavbar(props) {
   const router = useRouter();
   let checkRoute = router.pathname;
@@ -53,7 +62,7 @@ function GlobalNavbar(props) {
       univColor = "#4d5dff";
       navBrand = "SKKLUB";
       navBrandFont = "2rem";
-      hrefLink = "/";
+
       clubType = "central-clubs";
       break;
     case "/central-clubs/suwon":
@@ -62,7 +71,7 @@ function GlobalNavbar(props) {
       nextPath = "seoul";
       navBrand = "SKKLUB";
       navBrandFont = "2rem";
-      hrefLink = "/";
+
       clubType = "central-clubs";
       break;
     case "/independent-clubs/seoul":
@@ -71,7 +80,7 @@ function GlobalNavbar(props) {
       univColor = "#4d5dff";
       navBrand = "SKKLUB";
       navBrandFont = "2rem";
-      hrefLink = "/";
+
       clubType = "independent-clubs";
       break;
     case "/independent-clubs/suwon":
@@ -80,7 +89,7 @@ function GlobalNavbar(props) {
       univColor = "green";
       navBrand = "SKKLUB";
       navBrandFont = "2rem";
-      hrefLink = "/";
+
       clubType = "independent-clubs";
       break;
     case "/groups/seoul":
@@ -89,7 +98,7 @@ function GlobalNavbar(props) {
       univColor = "#4d5dff";
       navBrand = "SKKLUB";
       navBrandFont = "2rem";
-      hrefLink = "/";
+
       clubType = "groups";
       break;
     case "/groups/suwon":
@@ -98,40 +107,33 @@ function GlobalNavbar(props) {
       univColor = "green";
       navBrand = "SKKLUB";
       navBrandFont = "2rem";
-      hrefLink = "/";
+
       clubType = "groups";
-      break;
-    case "/":
-      linkDisplay = "none";
-      navBrand = "SKKLUB";
-      navBrandFont = "2rem";
-      hrefLink = "/";
       break;
     default:
       linkDisplay = "none";
-      navBrand = "뒤로가기";
-      navBrandFont = "1.2rem";
-      hrefLink =
-        checkRoute.includes("seoul") === true
-          ? "/central-clubs/seoul"
-          : "/central-clubs/suwon";
+      navBrand = "SKKLUB";
+      navBrandFont = "2rem";
+      break;
   }
 
   return (
     <div>
       <StyledNavbar fixed="top" bg="light" expand="lg">
-        <Link href={hrefLink} scroll={false}>
-          <StyledNavBrand navbrandfont={navBrandFont}>
-            {navBrand}
-          </StyledNavBrand>
-        </Link>
+        <StyledNavBrand
+          navbrandfont={navBrandFont}
+          onClick={() => Router.back()}
+          scroll={false}
+        >
+          {navBrand}
+        </StyledNavBrand>
+
         <StyledToggle aria-controls="basic-navbar-nav"></StyledToggle>
         <StyledCollapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Item>
               <Nav.Link
-                target="blank"
-                href="https://www.notion.so/daniel2231/32c22fccdb6f440ba414638956455cc8"
+                href="/secret"
               >
                 동아리연합회란?
               </Nav.Link>
@@ -145,20 +147,34 @@ function GlobalNavbar(props) {
                 율전 캠퍼스
               </NavDropdown.Item>
             </NavDropdown>
-            <NavDropdown title="기타동아리" id="basic-nav-dropdown" disabled>
+            <NavDropdown title="기타동아리" id="basic-nav-dropdown">
               <NavDropdown.Item href="/independent-clubs/seoul">
-                준중앙동아리
+                명륜 캠퍼스
               </NavDropdown.Item>
-              <NavDropdown.Item>독립동아리</NavDropdown.Item>
+              <NavDropdown.Item href="/independent-clubs/suwon">
+                율전 캠퍼스
+              </NavDropdown.Item>
             </NavDropdown>
-            <NavDropdown title="소모임" id="basic-nav-dropdown" disabled>
-              <NavDropdown.Item href="/groups/seoul">소모임</NavDropdown.Item>
-              <NavDropdown.Item>준소모임</NavDropdown.Item>
+            <NavDropdown title="소모임" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/groups/seoul">
+                명륜 캠퍼스
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/groups/suwon">
+                율전 캠퍼스
+              </NavDropdown.Item>
             </NavDropdown>
-            <NavDropdown title="기타단체" id="basic-nav-dropdown" disabled>
-              <NavDropdown.Item href="/groups/seoul">학생단체</NavDropdown.Item>
-              <NavDropdown.Item>학회</NavDropdown.Item>
-            </NavDropdown>
+            <OverlayTrigger
+              placement="right"
+              delay={{ show: 250, hide: 400 }}
+              overlay={renderTooltip}
+            >
+              <NavDropdown title="기타단체" id="basic-nav-dropdown" disabled>
+                <NavDropdown.Item href="/groups/seoul">
+                  학생단체
+                </NavDropdown.Item>
+                <NavDropdown.Item disabled>학회</NavDropdown.Item>
+              </NavDropdown>
+            </OverlayTrigger>
             <StyledLink
               linkdisplay={linkDisplay}
               univcolor={univColor}

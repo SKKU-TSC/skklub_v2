@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import CardGallery from "./cardGallery";
+import IntroSection from "./introSection";
 
 const StyledDiv = styled.div`
   width: 100%;
-  height: 100vh;
   background-color: white;
   padding: 100px;
 
@@ -15,6 +14,7 @@ const StyledDiv = styled.div`
 const StyledText = styled.h1`
   text-align: center;
   font-size: 4em;
+  margin-bottom: 80px;
 `;
 
 function ThirdContainer() {
@@ -22,7 +22,7 @@ function ThirdContainer() {
     <div>
       <StyledDiv>
         <StyledText>부서 소개</StyledText>
-        <CardGallery />
+        <IntroSection />
       </StyledDiv>
     </div>
   );

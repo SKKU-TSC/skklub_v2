@@ -5,6 +5,7 @@ import Navbar from '../components/global/navbar'
 import FirstContainer from '../components/index/firstContainer'
 import SecondContainer from "../components/index/secondContainer"
 import ThirdContainer from "../components/index/thirdContainer"
+import Footer from "../components/global/footer"
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <FirstContainer />
       <SecondContainer />
       <ThirdContainer />
+      <Footer />
     </div>
   );
 }

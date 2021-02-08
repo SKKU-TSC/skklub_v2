@@ -4,7 +4,7 @@ const StyledFooter = styled.div`
   margin-top: auto;
   display: block;
   text-align: center;
-  background-color: #fff;
+  background-color: #F8F9FA;
 `;
 
 const FooterP = styled.p`

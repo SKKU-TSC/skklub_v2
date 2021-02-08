@@ -304,7 +304,7 @@ function CardGallery(props) {
                     category3={props.data[i].category3}
                     campus={props.data[i].campus}
                     campusData={campusData}
-                    logoPath={club.logo_path}
+                    logoPath={props.logo_path}
                   ></CardNoSSR>
                 );
               }

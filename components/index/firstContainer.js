@@ -22,6 +22,7 @@ const TextWrap = styled.div`
     width: calc(100% - 14vw);
     padding: 13.889vw 0;
     left: 6.944vw;
+    top: 100px;
   }
 `;
 
@@ -31,8 +32,9 @@ const WhiteHeader = styled.h1`
   line-height: 80px;
 
   @media (max-width: 768px) {
+    
     font-size: 4em;
-    line-height: 40px;
+    line-height: 60px;
   }
 `;
 

@@ -24,14 +24,15 @@ export default function Seoul() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [info, setInfo] = useState([]);
 
+  // function hasOneDayPassed() {
+  //   let date = new Date().toLocaleDateString();
+  //   if (localStorage.clDate == date) return false;
+  //   localStorage.clDate = date;
+  //   return true;
+  // }
+
   function shuffle(array) {
-    let currentDate = new Date().toLocaleString();
-    let date = window.localStorage.getItem("date");
-    console.log(date)
-    if (localStorage.date !== date) {
-      array.sort(() => Math.random() - 0.5);
-      localStorage.setItem('date', date)
-    }
+    array.sort(() => Math.random() - 0.5);
   }
 
   useEffect(() => {
@@ -40,7 +41,7 @@ export default function Seoul() {
         .then((res) => res.json())
         .then(
           (result) => {
-            shuffle(result);
+            // shuffle(result);
             setInfo(result);
             setIsLoaded(true);
           },

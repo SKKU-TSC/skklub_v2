@@ -4,9 +4,21 @@ import QueueAnim from "rc-queue-anim";
 import { OverPack } from "rc-scroll-anim";
 
 const DivContainer = styled.div`
-  width: 100%;
   padding: 150px 60px 150px 60px;
   background-color: #f8f8f9;
+  @media only screen and (max-width: 600px) {
+    height: 1400px;
+  }
+
+  @media (min-width: 600px) {
+    height: 1400px;
+  }
+  @media (min-width: 768px) {
+    height: 1100px;
+  }
+  @media only screen and (min-width: 992px) {
+    height: 1150px;
+  }
 `;
 
 const StyledRow = styled(Row)`
@@ -55,11 +67,13 @@ const RightTextParagraph = styled.p`
   }
 `;
 
+console.log("height:", StyledRow.offsetHeight)
+
 function SecondContainer() {
   return (
     <div>
       <DivContainer>
-        <OverPack always={false} style={{ height: "inherit" }}>
+        <OverPack always={false} style={{ height: StyledRow.offsetHeight }}>
           <QueueAnim
             className="queue-simple"
             ease={["easeOutQuart", "easeInOutQuart"]}
