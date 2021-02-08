@@ -10,8 +10,8 @@ import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import { Dropdown } from "semantic-ui-react";
 import CardDeck from "react-bootstrap/CardDeck";
 import Button from "react-bootstrap/Button";
-import IECheck from "../../hooks/isIE"
-import BackTopBtn from '../global/backTop'
+import IECheck from "../../hooks/isIE";
+import BackTopBtn from "../global/backTop";
 
 const CardNoSSR = dynamic(() => import("../global/card"), { ssr: false });
 const AlertNoSSR = dynamic(() => import("../global/alert"), { ssr: false });
@@ -87,7 +87,10 @@ function CardGallery(props) {
   let LikedClubsArray = [];
   let campusData;
 
-  if (router.pathname.includes("groups")) {
+  if (
+    router.pathname.includes("groups") ||
+    router.pathname.includes("academic-clubs")
+  ) {
     switch (router.pathname.includes("seoul")) {
       case true:
         campusData = "seoul";
