@@ -163,18 +163,14 @@ function GlobalNavbar(props) {
                 율전 캠퍼스
               </NavDropdown.Item>
             </NavDropdown>
-            <OverlayTrigger
-              placement="right"
-              delay={{ show: 250, hide: 400 }}
-              overlay={renderTooltip}
-            >
-              <NavDropdown title="기타단체" id="basic-nav-dropdown" disabled>
-                <NavDropdown.Item href="/groups/seoul">
-                  학생단체
-                </NavDropdown.Item>
-                <NavDropdown.Item disabled>학회</NavDropdown.Item>
-              </NavDropdown>
-            </OverlayTrigger>
+            <NavDropdown title="학회" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/academic-clubs/seoul">
+                명륜 캠퍼스
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/academic-clubs/suwon">
+                율전 캠퍼스
+              </NavDropdown.Item>
+            </NavDropdown>
             <StyledLink
               linkdisplay={linkDisplay}
               univcolor={univColor}

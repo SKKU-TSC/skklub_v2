@@ -38,7 +38,10 @@ const StyledH2 = styled.h2`
 `;
 
 const ProfileImage = styled.img`
-  max-width: 200px;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
   border-radius: 20px;
   float: left;
   margin-right: 20px;
@@ -202,8 +205,9 @@ const ClubPageLayout = (props) => {
       return "central-clubs";
     } else if (urlPath.includes("independent-clubs")) {
       return "independent-clubs";
+    } else if (urlPath.includes("academic-clubs")) {
+      return "academic-clubs";
     } else {
-      return "groups";
       return "groups";
     }
   }
@@ -223,6 +227,7 @@ const ClubPageLayout = (props) => {
 
   async function getData() {
     try {
+      console.log(clubType)
       // Get Data
       let response = await fetch(
         `https://admin.skklub.com/api/${clubType}/${univLocation}/${pid}`

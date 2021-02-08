@@ -131,8 +131,9 @@ function ClubCard(props) {
       return "central-clubs";
     } else if (urlPath.includes("independent-clubs")) {
       return "independent-clubs";
+    } else if (urlPath.includes("academic-clubs")) {
+      return "academic-clubs";
     } else {
-      return "groups";
       return "groups";
     }
   }
