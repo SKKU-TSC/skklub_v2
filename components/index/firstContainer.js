@@ -30,6 +30,7 @@ const WhiteHeader = styled.h1`
   color: white;
   font-size: 5em;
   line-height: 80px;
+  font-weight: 700;
 
   @media (max-width: 768px) {
     
