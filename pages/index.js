@@ -109,8 +109,7 @@ export default function Index() {
                 className="mt-2"
                 size="lg"
                 variant="outline-secondary"
-                target="blank"
-                href="https://www.notion.so/daniel2231/32c22fccdb6f440ba414638956455cc8"
+                href="/intro"
               >
                 동아리연합회란?
               </Button>

@@ -122,7 +122,7 @@ function GlobalNavbar(props) {
       <StyledNavbar fixed="top" bg="light" expand="lg">
         <StyledNavBrand
           navbrandfont={navBrandFont}
-          onClick={() => Router.back()}
+          href="/"
           scroll={false}
         >
           {navBrand}
@@ -133,7 +133,7 @@ function GlobalNavbar(props) {
           <Nav className="mr-auto">
             <Nav.Item>
               <Nav.Link
-                href="/secret"
+                href="/intro"
               >
                 동아리연합회란?
               </Nav.Link>

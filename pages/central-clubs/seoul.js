@@ -24,16 +24,6 @@ export default function Seoul() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [info, setInfo] = useState([]);
 
-  // function hasOneDayPassed() {
-  //   let date = new Date().toLocaleDateString();
-  //   if (localStorage.clDate == date) return false;
-  //   localStorage.clDate = date;
-  //   return true;
-  // }
-
-  function shuffle(array) {
-    array.sort(() => Math.random() - 0.5);
-  }
 
   useEffect(() => {
     async function getData() {
@@ -41,7 +31,6 @@ export default function Seoul() {
         .then((res) => res.json())
         .then(
           (result) => {
-            // shuffle(result);
             setInfo(result);
             setIsLoaded(true);
           },

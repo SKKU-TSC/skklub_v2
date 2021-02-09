@@ -16,17 +16,13 @@ const Main = styled.main`
 `;
 
 export default function Seoul() {
-  let color="#4d5dff";
-  let location="율전"
+  let color = "#4d5dff";
+  let location = "율전";
   let type = "준중앙/독립동아리";
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [info, setInfo] = useState([]);
-
-  function shuffle(array) {
-    array.sort(() => Math.random() - 0.5);
-  }
 
   useEffect(() => {
     async function getData() {
@@ -34,7 +30,6 @@ export default function Seoul() {
         .then((res) => res.json())
         .then(
           (result) => {
-            shuffle(result);
             setInfo(result);
             setIsLoaded(true);
           },

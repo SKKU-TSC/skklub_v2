@@ -58,13 +58,15 @@ let StyledText = styled(Card.Text)`
 `;
 
 let StyledBadge = styled(Badge)`
-  display: ${(props) => props.display};
+  //display: absolute;
+  display: none;
   bottom: 0;
   font-size: 15px;
   color: white;
-  background-color: ${(props) => props.color};
+  background-color: green;
   border-radius: 0px 0px 0px 0px;
   position: absolute;
+  z-index: 10;
   @media (max-width: 426px) {
     font-size: 10px;
   }
@@ -150,12 +152,12 @@ function ClubCard(props) {
             <ImageContainer>
               <StyledBadge
                 display={
-                  props.category1 === "준중앙동아리" ? "absolute" : "none"
+                  props.category2 !== "중앙동아리" ? "absolute" : "none"
                 }
                 color={props.campus === "명륜" ? "green" : "#4d5dff"}
                 variant="warning"
               >
-                {props.category1}
+                모집중
               </StyledBadge>
               <StyledImg
                 variant="top"

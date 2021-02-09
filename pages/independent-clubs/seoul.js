@@ -24,17 +24,12 @@ export default function Seoul() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [info, setInfo] = useState([]);
 
-  function shuffle(array) {
-    array.sort(() => Math.random() - 0.5);
-  }
-
   useEffect(() => {
     async function getData() {
       await fetch(`https://admin.skklub.com/api/independent-clubs/seoul`)
         .then((res) => res.json())
         .then(
           (result) => {
-            shuffle(result);
             setInfo(result);
             setIsLoaded(true);
           },
