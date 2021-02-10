@@ -72,6 +72,7 @@ const StyledDropdown = styled(Dropdown)`
   @media (min-width: 426px) {
     display: none !important;
   }
+  -webkit-appearance: none;
 `;
 
 let LikeMenuButton = styled(Button)`
