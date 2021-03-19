@@ -126,6 +126,23 @@ function CardGallery(props) {
       default:
         console.log("error");
     }
+  } else if (router.pathname.includes("student-org")) {
+    switch (router.pathname.includes("seoul")) {
+      case true:
+        campusData = "seoul";
+        typeData = [
+          "전체",
+          "찜한 동아리",
+        ];
+        break;
+      case false:
+        campusData = "suwon";
+        typeData = [
+          "전체",
+          "찜한 동아리",
+        ];
+        break;
+    }
   } else {
     switch (router.pathname.includes("seoul")) {
       case true:

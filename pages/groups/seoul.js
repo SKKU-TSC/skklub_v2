@@ -52,7 +52,7 @@ export default function Seoul() {
     return (
       <div>
         <Head>
-          <title>중앙동아리 - 명륜</title>
+          <title>소모임, 준소모임 - 명륜</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 

@@ -52,7 +52,7 @@ export default function Seoul() {
     return (
       <div>
         <Head>
-          <title>중앙동아리 - 율전</title>
+          <title>학회 - 율전</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 

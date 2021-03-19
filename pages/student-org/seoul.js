@@ -18,21 +18,18 @@ const Main = styled.main`
 export default function Seoul() {
   let color = "green";
   let location = "명륜";
-  let type = "학회";
+  let type = "학생단체";
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [info, setInfo] = useState([]);
 
-
-
   useEffect(() => {
     async function getData() {
-      await fetch(`https://admin.skklub.com/api/academic-clubs/seoul`)
+      await fetch(`https://admin.skklub.com/api/student-org/seoul`)
         .then((res) => res.json())
         .then(
           (result) => {
-            
             setInfo(result);
             setIsLoaded(true);
           },
@@ -53,7 +50,7 @@ export default function Seoul() {
     return (
       <div>
         <Head>
-          <title>학회 - 명륜</title>
+          <title>학생단체 - 명륜</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 

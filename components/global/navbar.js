@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import Router from "next/router";
 
-
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -98,7 +97,6 @@ function GlobalNavbar(props) {
       univColor = "#4d5dff";
       navBrand = "SKKLUB";
       navBrandFont = "2rem";
-
       clubType = "groups";
       break;
     case "/groups/suwon":
@@ -107,8 +105,23 @@ function GlobalNavbar(props) {
       univColor = "green";
       navBrand = "SKKLUB";
       navBrandFont = "2rem";
-
       clubType = "groups";
+      break;
+    case "/student-org/seoul":
+      univLocation = "율전";
+      nextPath = "suwon";
+      univColor = "#4d5dff";
+      navBrand = "SKKLUB";
+      navBrandFont = "2rem";
+      clubType = "student-org";
+      break;
+    case "/student-org/suwon":
+      univLocation = "명륜";
+      nextPath = "seoul";
+      univColor = "green";
+      navBrand = "SKKLUB";
+      navBrandFont = "2rem";
+      clubType = "student-org";
       break;
     default:
       linkDisplay = "none";
@@ -120,11 +133,7 @@ function GlobalNavbar(props) {
   return (
     <div>
       <StyledNavbar fixed="top" bg="light" expand="lg">
-        <StyledNavBrand
-          navbrandfont={navBrandFont}
-          href="/"
-          scroll={false}
-        >
+        <StyledNavBrand navbrandfont={navBrandFont} href="/" scroll={false}>
           {navBrand}
         </StyledNavBrand>
 
@@ -132,11 +141,7 @@ function GlobalNavbar(props) {
         <StyledCollapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Item>
-              <Nav.Link
-                href="/intro"
-              >
-                동아리연합회란?
-              </Nav.Link>
+              <Nav.Link href="/intro">동아리연합회란?</Nav.Link>
             </Nav.Item>
             <Nav.Link href="/central-clubs/seoul"></Nav.Link>
             <NavDropdown title="중앙동아리" id="basic-nav-dropdown">
@@ -168,6 +173,14 @@ function GlobalNavbar(props) {
                 명륜 캠퍼스
               </NavDropdown.Item>
               <NavDropdown.Item href="/academic-clubs/suwon">
+                율전 캠퍼스
+              </NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown title="학생 단체" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/student-org/seoul">
+                명륜 캠퍼스
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/student-org/suwon">
                 율전 캠퍼스
               </NavDropdown.Item>
             </NavDropdown>
