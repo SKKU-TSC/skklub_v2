@@ -39,17 +39,17 @@ function EventContainer(props) {
     case "/central-clubs/seoul":
       univLocation = "명륜";
       color = "success";
-      eventText = "🎊동아리 지원하고, 경품 받아가세요!! 🎉";
+      eventText = "🎊 중간고사 간식배부 🎉";
       displayCheck = props.display === "seoulOff" ? "none" : "";
       eventHref =
-        "https://docs.google.com/forms/d/e/1FAIpQLScg7Oejn1CxVJDz_xxotqcvxKSXsroVQGVbhJ0MbEDQ1B4aBw/viewform?usp=send_form";
+        "https://docs.google.com/forms/d/1ZNbekrLs8n0dK_3gQ8qRgfipeMLz0_DENAnka6q9zTc/viewform?edit_requested=true";
       break;
     case "/central-clubs/suwon":
       univLocation = "율전";
       color = "primary";
-      eventText = "🎊동아리 지원하고, 경품 받아가세요!! 🎉";
+      eventText = "🎊 중간고사 간식배부 🎉";
       displayCheck = props.display === "suwonOff" ? "none" : "";
-      eventHref = "https://forms.gle/bjrV3A4ek8wCZtzt6";
+      eventHref = "";
       break;
     default:
       univLocation = "undefined";
@@ -77,7 +77,7 @@ function EventContainer(props) {
               rel="noopener noreferrer"
               size = "lg"
             >
-              {univLocation} 동아리 지원하기
+              {univLocation} 간식배부 신청하기
             </Button>
           </EventBox>
         </StyledCollapse>

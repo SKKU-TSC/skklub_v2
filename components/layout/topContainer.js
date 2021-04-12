@@ -61,7 +61,7 @@ function TopContainer(props) {
 
   const router = useRouter();
 
-  let event = false;
+  let event = true;
 
   switch (router.pathname.includes("seoul")) {
     case true:
@@ -102,7 +102,7 @@ function TopContainer(props) {
             <StyledP>
               각 동아리의 상세 페이지에 하트를 눌러<br></br>동아리를 찜해보세요!
             </StyledP>
-            <EventContainer display=""></EventContainer>
+            <EventContainer display="suwonOff"></EventContainer>
           </DescContainer>
         </GlobalContainer>
       </div>
