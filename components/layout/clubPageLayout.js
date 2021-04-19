@@ -54,8 +54,8 @@ const ProfileImage = styled.img`
 const StyledDiv = styled.div`
   padding-top: 100px;
   padding-bottom: 5%;
-  margin-left: 30%;
-  margin-right: 30%;
+  margin-left: 20%;
+  margin-right: 20%;
   text-align: left;
   word-wrap: break-word;
   @media (max-width: 426px) {
