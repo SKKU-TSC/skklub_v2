@@ -4,7 +4,7 @@ import { useState } from "react";
 import EventContainer from "../global/eventContainer";
 
 import Button from "react-bootstrap/Button";
-import Collapse from "react-bootstrap/Collapse"
+import Collapse from "react-bootstrap/Collapse";
 
 import Typed from "react-typed";
 import styled from "styled-components";
@@ -39,11 +39,6 @@ const ClubNum = styled.span`
   color: ${(props) => props.color};
 `;
 
-let EventBox = styled.div`
-  padding-left: 10%;
-  margin-top: 20px;
-`;
-
 let StyledP = styled.p`
   font-size: 17px;
   line-height: 35px;
@@ -56,12 +51,12 @@ let StyledP = styled.p`
 
 function TopContainer(props) {
   const [open, setOpen] = useState(false);
+  //이벤트 컨테이너 활성화: Change state to true
+  const[isEvent, setEvent] = useState(false);
 
   let color;
 
   const router = useRouter();
-
-  let event = false;
 
   switch (router.pathname.includes("seoul")) {
     case true:
@@ -74,69 +69,34 @@ function TopContainer(props) {
       univLocation = "undefined";
   }
 
-  if (event === true) {
-    return (
-      <div>
-        <GlobalContainer>
-          <TitleContainer>
-            <Title>
-              <UnivName color={color}>
-                <Typed
-                  strings={[`성대 ${props.univLocation}`]}
-                  typeSpeed={60}
-                />
-              </UnivName>
-              <br />
-              모든 {props.clubType}를
-              <br />한 눈에!
-            </Title>
-          </TitleContainer>
-          <DescContainer>
-            <StyledP>
-              현재{" "}
-              <ClubNum color={color}>
-                <CountUp end={props.data.length} />
-              </ClubNum>
-              개의 {props.clubType}들이 등록되어 있습니다.
-            </StyledP>
-            <StyledP>
-              각 동아리의 상세 페이지에 하트를 눌러<br></br>동아리를 찜해보세요!
-            </StyledP>
-            <EventContainer display=""></EventContainer>
-          </DescContainer>
-        </GlobalContainer>
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <GlobalContainer>
-          <TitleContainer>
-            <Title>
-              <UnivName color={color}>
-                <Typed strings={[`성대 ${props.univLocation}`]} typeSpeed={60} />
-              </UnivName>
-              <br />
-              모든 {props.clubType}를
-              <br />한 눈에!
-            </Title>
-          </TitleContainer>
-          <DescContainer>
-            <StyledP>
-              현재{" "}
-              <ClubNum color={color}>
-                <CountUp end={props.data.length} />
-              </ClubNum>
-              개의 {props.clubType}들이 등록되어 있습니다.
-            </StyledP>
-            <StyledP>
-              각 동아리의 상세 페이지에 하트를 눌러<br></br>동아리를 찜해보세요!
-            </StyledP>
-          </DescContainer>
-        </GlobalContainer>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <GlobalContainer>
+        <TitleContainer>
+          <Title>
+            <UnivName color={color}>
+              <Typed strings={[`성대 ${props.univLocation}`]} typeSpeed={60} />
+            </UnivName>
+            <br />
+            모든 {props.clubType}를
+            <br />한 눈에!
+          </Title>
+        </TitleContainer>
+        <DescContainer>
+          <StyledP>
+            현재{" "}
+            <ClubNum color={color}>
+              <CountUp end={props.data.length} />
+            </ClubNum>
+            개의 {props.clubType}들이 등록되어 있습니다.
+          </StyledP>
+          <StyledP>
+            각 동아리의 상세 페이지에 하트를 눌러<br></br>동아리를 찜해보세요!
+          </StyledP>
+          <div>{isEvent? <EventContainer display="" /> : null}</div>
+        </DescContainer>
+      </GlobalContainer>
+    </div>
+  );
 }
-
 export default TopContainer;

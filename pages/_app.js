@@ -13,7 +13,7 @@ const theme = {
 };
 
 export default class MyApp extends App {
-  componentWillMount() {
+  componentDidMount() {
     const handleRouteChange = (url) => {
       gtag.pageview(url);
     };
