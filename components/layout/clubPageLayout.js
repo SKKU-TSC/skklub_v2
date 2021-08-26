@@ -216,18 +216,22 @@ const ClubPageLayout = (props) => {
 
   function getUrl(url) {
     return new Promise((resolve) => {
+  
       let img = new Image();
       let result = "/alt.jpg";
       img.src = url;
-
+      console.log(image.height)
       if (img.height !== 0) {
         result = url;
       }
+
       resolve(result);
     });
   }
 
   async function getData() {
+    let imgUrl
+    let resJSON
     try {
       console.log(clubType)
       // Get Data
@@ -236,19 +240,27 @@ const ClubPageLayout = (props) => {
       );
 
       // Data converting to JSON
-      let resJSON = await response.json();
-
+      resJSON = await response.json();
+      
+      console.log("return")
       // Parse Path
-      let imgUri = await getUrl(
+      console.log(resJSON[0].logo_path)
+    
+      imgUrl = await getUrl(
         `https://admin.skklub.com/img/logo/${resJSON[0].logo_path}`
       );
-      setInfo(resJSON);
-      setImage(imgUri);
-      setIsLoaded(true);
+     
     } catch (e) {
-      setIsLoaded(true);
+      setIsLoaded(false);
       setError(error);
     }
+    finally {
+      setInfo(resJSON);
+      setImage(imgUrl);
+      setIsLoaded(true);
+    }
+
+    
   }
 
   useEffect(() => {
@@ -257,7 +269,8 @@ const ClubPageLayout = (props) => {
 
   if (error) {
     return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
+  } else if (isLoaded == false) {
+    console.log("Data not loaded")
     return (
       <LoadingDiv>
         <Loading />
