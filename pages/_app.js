@@ -36,7 +36,7 @@ export default class MyApp extends App {
   state = {
     history: [], // keep history items in state
   };
-
+ 
   componentDidMount() {
     const { asPath } = this.props.router;
 
