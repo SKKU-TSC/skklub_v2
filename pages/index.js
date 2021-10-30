@@ -104,16 +104,6 @@ export default function Index() {
               </Button>{" "}
               <br />
             </ButtonDiv>
-            <div>
-              <Button
-                className="mt-2"
-                size="lg"
-                variant="outline-secondary"
-                href="/intro"
-              >
-                동아리연합회란?
-              </Button>
-            </div>
       
           </FrontContainer>
         </IndexContainer>
