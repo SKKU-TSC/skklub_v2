@@ -88,7 +88,6 @@ function GlobalNavbar(props) {
       univColor = "green";
       navBrand = "SKKLUB";
       navBrandFont = "2rem";
-
       clubType = "independent-clubs";
       break;
     case "/groups/seoul":
@@ -133,7 +132,7 @@ function GlobalNavbar(props) {
   return (
     <div>
       <StyledNavbar fixed="top" bg="light" expand="lg">
-        <StyledNavBrand navbrandfont={navBrandFont} href="/" scroll={false}>
+        <StyledNavBrand navbrandfont={navBrandFont} href="/" scroll="false">
           {navBrand}
         </StyledNavBrand>
 
