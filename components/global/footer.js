@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 const StyledFooter = styled.div`
-  margin-top: auto;
-  display: block;
+  width: 100%;
   text-align: center;
   background-color: #F8F9FA;
 `;

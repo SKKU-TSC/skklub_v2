@@ -6,6 +6,7 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+import { Switch } from 'antd';
 
 import styled from "styled-components";
 
@@ -43,6 +44,10 @@ const StyledToggle = styled(Navbar.Toggle)``;
 const StyledCollapse = styled(Navbar.Collapse)`
   padding-top: 10px;
 `;
+
+const StyledSwitch = styled(Switch)`
+  
+`
 
 const renderTooltip = (props) => (
   <Tooltip id="button-tooltip" {...props}>
@@ -139,9 +144,6 @@ function GlobalNavbar(props) {
         <StyledToggle aria-controls="basic-navbar-nav"></StyledToggle>
         <StyledCollapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Item>
-              <Nav.Link href="/intro">동아리연합회란?</Nav.Link>
-            </Nav.Item>
             <Nav.Link href="/central-clubs/seoul"></Nav.Link>
             <NavDropdown title="중앙동아리" id="basic-nav-dropdown">
               <NavDropdown.Item href="/central-clubs/seoul">
@@ -197,6 +199,7 @@ function GlobalNavbar(props) {
               동아리 등록하기
             </Nav.Link>
           </Nav>
+          
         </StyledCollapse>
       </StyledNavbar>
     </div>

@@ -25,6 +25,7 @@
     "react-device-detect": "^1.17.0",
     "react-dom": "^16.14.0",
     "react-ga": "^3.3.0",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-ionicons": "^1.4.6",
     "react-redux": "^7.2.4",
     "react-scripts": "^3.4.4",
