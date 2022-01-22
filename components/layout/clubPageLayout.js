@@ -21,6 +21,7 @@ import BackTopBtn from "../global/backTop";
 
 import { Palette } from "color-thief-react";
 import idealTextColor from "../../hooks/textColor";
+import { exception } from "react-ga";
 
 const StyledCardDeck = styled(CardDeck)`
   margin-top: 20px;
@@ -214,23 +215,8 @@ const ClubPageLayout = (props) => {
     }
   }
 
-  function getUrl(url) {
-    return new Promise((resolve) => {
-  
-      let img = new Image();
-      let result = "/alt.jpg";
-      img.src = url;
-      console.log(image.height)
-      if (img.height !== 0) {
-        result = url;
-      }
-
-      resolve(result);
-    });
-  }
-
   async function getData() {
-    let imgUrl
+    let img, imgUrl = 'https://admin.skklub.com/img/logo/alt.jpg'
     let resJSON
     try {
       console.log(clubType)
@@ -246,10 +232,12 @@ const ClubPageLayout = (props) => {
       // Parse Path
       console.log(resJSON[0].logo_path)
     
-      imgUrl = await getUrl(
-        `https://admin.skklub.com/img/logo/${resJSON[0].logo_path}`
-      );
-     
+      img = await fetch(`https://admin.skklub.com/img/logo/${resJSON[0].logo_path}`);
+      console.log(img.status)
+      if (img.status !== 404){
+        imgUrl = `https://admin.skklub.com/img/logo/${resJSON[0].logo_path}`
+      } 
+          
     } catch (e) {
       setIsLoaded(false);
       setError(error);
