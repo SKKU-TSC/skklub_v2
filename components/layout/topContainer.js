@@ -1,9 +1,12 @@
 import { useRouter } from "next/router";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 
 import EventContainer from "../global/eventContainer";
 
-import Typed from "typed.js"
+import Button from "react-bootstrap/Button";
+import Collapse from "react-bootstrap/Collapse";
+
+import Typed from "react-typed";
 import styled from "styled-components";
 import CountUp from "react-countup";
 
@@ -47,30 +50,6 @@ let StyledP = styled.p`
 `;
 
 function TopContainer(props) {
-  // Create reference to store the DOM element containing the animation
-	const el = useRef(null);
-  // Create reference to store the Typed instance itself
-	const typed = useRef(null);
-
-  useEffect(() => {
-    const options = {
-    	strings: [
-        `성대 ${props.univLocation}`
-      ],
-      typeSpeed: 50,
-      backSpeed: 50,
-    };
-    
-    // elRef refers to the <span> rendered below
-    typed.current = new Typed(el.current, options);
-    
-    return () => {
-      // Make sure to destroy Typed instance during cleanup
-      // to prevent memory leaks
-      typed.current.destroy();
-    }
-  }, [])
-
   const [open, setOpen] = useState(false);
   //이벤트 컨테이너 활성화: Change state to true
   const[isEvent, setEvent] = useState(false);
@@ -96,7 +75,7 @@ function TopContainer(props) {
         <TitleContainer>
           <Title>
             <UnivName color={color}>
-              <span style={{ whiteSpace: 'pre' }} ref={el} />
+              <Typed strings={[`성대 ${props.univLocation}`]} typeSpeed={60} />
             </UnivName>
             <br />
             모든 {props.clubType}를
