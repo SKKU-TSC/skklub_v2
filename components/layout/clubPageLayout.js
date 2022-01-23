@@ -25,11 +25,9 @@ import { exception } from "react-ga";
 
 const StyledCardDeck = styled(CardDeck)`
   margin-top: 20px;
-  @media (max-width: 425px) {
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: repeat(2, minmax(100px, 1fr));
-  }
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
 `;
 
 const StyledH2 = styled.h2`
@@ -46,20 +44,19 @@ const ProfileImage = styled.img`
   border-radius: 20px;
   float: left;
   margin-right: 20px;
-  @media (max-width: 425px) {
+  @media (max-width: 600px) {
     float: none;
     margin-right: 0;
   }
 `;
 
 const StyledDiv = styled.div`
-  padding-top: 100px;
   padding-bottom: 5%;
-  margin-left: 20%;
-  margin-right: 20%;
   text-align: left;
+  padding-right: 100px;
   word-wrap: break-word;
-  @media (max-width: 426px) {
+  @media (max-width: 600px) {
+    padding-right: 0;
     margin-left: 5%;
     margin-right: 5%;
   }
@@ -100,14 +97,18 @@ let StyledP = styled.p`
 `;
 
 let TopDiv = styled.div`
+  padding-top: 85px;
+  padding-left: 10%;
   width: 100vw;
-  height: 100vh;
+  height: 50vh;
   background-color: ${(props) => props.bgcolor};
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   flex-wrap: nowrap;
-  @media (max-width: 425px) {
+  @media (max-width: 600px) {
+    height: 100%;
+    padding: 185px 0 100px 0;
     flex-wrap: wrap;
     flex-direction: column;
   }
@@ -115,7 +116,7 @@ let TopDiv = styled.div`
 
 let TopDivGroup = styled.div`
   color: ${(props) => props.textColor};
-  @media (max-width: 425px) {
+  @media (max-width: 600px) {
     margin-top: 30px;
     padding-left: 25%;
     padding-right: 20%;
@@ -147,13 +148,12 @@ const SinceH3 = styled.h3`
 const SinceTime = styled.p``;
 
 let StyledCard = styled(Card)`
-  text-align: left;
+  text-align: center;
   border: ${(props) => props.bordercolor} !important;
   background-color: ${(props) => props.bgcolor};
   border-radius: 25px;
-  padding: 30px 20px 30px 20px;
-  margin-left: 5px !important;
-  margin-right: 5px !important;
+  padding: 20px 0px 20px 0px;
+  margin: 0 !important;
 `;
 
 let StyledCardName = styled.p`
@@ -179,6 +179,29 @@ let LoadingDiv = styled.div`
   justify-content: center;
   padding: 0 10%;
   margin-top: 20px;
+`;
+
+let StickyDiv = styled.div`
+  padding-top: 100px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  @media (max-width: 1200px) {
+    position: static;
+  }
+`;
+
+let DivDivider = styled.div`
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  @media (max-width: 1200px) {
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+  }
 `;
 
 const ClubPageLayout = (props) => {
@@ -209,17 +232,37 @@ const ClubPageLayout = (props) => {
     } else if (urlPath.includes("academic-clubs")) {
       return "academic-clubs";
     } else if (urlPath.includes("student-org")) {
-      return "student-org"
+      return "student-org";
     } else {
       return "groups";
     }
   }
 
+<<<<<<< Updated upstream
   async function getData() {
     let img, imgUrl = 'https://admin.skklub.com/img/logo/alt.jpg'
     let resJSON
+=======
+  function getUrl(url) {
+    return new Promise((resolve) => {
+      let img = new Image();
+      let result = "/alt.jpg";
+      img.src = url;
+      console.log(image.height);
+      if (img.height !== 0) {
+        result = url;
+      }
+
+      resolve(result);
+    });
+  }
+
+  async function getData() {
+    let imgUrl;
+    let resJSON;
+>>>>>>> Stashed changes
     try {
-      console.log(clubType)
+      console.log(clubType);
       // Get Data
       let response = await fetch(
         `https://admin.skklub.com/api/${clubType}/${univLocation}/${pid}`
@@ -227,9 +270,10 @@ const ClubPageLayout = (props) => {
 
       // Data converting to JSON
       resJSON = await response.json();
-      
-      console.log("return")
+
+      console.log("return");
       // Parse Path
+<<<<<<< Updated upstream
       console.log(resJSON[0].logo_path)
     
       img = await fetch(`https://admin.skklub.com/img/logo/${resJSON[0].logo_path}`);
@@ -238,17 +282,21 @@ const ClubPageLayout = (props) => {
         imgUrl = `https://admin.skklub.com/img/logo/${resJSON[0].logo_path}`
       } 
           
+=======
+      console.log(resJSON[0].logo_path);
+
+      imgUrl = await getUrl(
+        `https://admin.skklub.com/img/logo/${resJSON[0].logo_path}`
+      );
+>>>>>>> Stashed changes
     } catch (e) {
       setIsLoaded(false);
       setError(error);
-    }
-    finally {
+    } finally {
       setInfo(resJSON);
       setImage(imgUrl);
       setIsLoaded(true);
     }
-
-    
   }
 
   useEffect(() => {
@@ -258,7 +306,7 @@ const ClubPageLayout = (props) => {
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (isLoaded == false) {
-    console.log("Data not loaded")
+    console.log("Data not loaded");
     return (
       <LoadingDiv>
         <Loading />
@@ -320,110 +368,110 @@ const ClubPageLayout = (props) => {
                       <SinceTime>{info[0].estab_year}</SinceTime>
                     </TopDivGroup>
                   </TopDiv>
-                  <StyledDiv>
-                    <StyledHr className="hr" color={data[1]}></StyledHr>
-                    <StyledH2>Info</StyledH2>
-                    <Descriptions bordered>
-                      <Descriptions.Item label="중분류" span={2}>
-                        {info[0].category1}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="캠퍼스">
-                        {info[0].campus}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="위치" span={2}>
-                        {info[0].activity_location}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="활동 인원">
-                        {info[0].activity_num}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="모임 시간" span={3}>
-                        {info[0].meeting_time}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="대표자 이름" span={2}>
-                        {info[0].president_name}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="대표자 연락처">
-                        {info[0].president_contact}
-                      </Descriptions.Item>
-                    </Descriptions>
-
-                    <StyledHr className="hr" color={data[1]}></StyledHr>
-                    <StyledH2>About</StyledH2>
-                    <StyledP
-                      dangerouslySetInnerHTML={{ __html: info[0].intro_text }}
-                    ></StyledP>
-                    <ClubWebsiteButton
-                      textColor={loading === false && idealTextColor(data[1])}
-                      color={data[1]}
-                      link={info[0].website_link}
-                      name={info[0].cname}
-                    ></ClubWebsiteButton>
-                    <ClubWebsiteButton
-                      textColor={loading === false && idealTextColor(data[1])}
-                      color={data[1]}
-                      link={info[0].website_link2}
-                      name={info[0].cname}
-                    ></ClubWebsiteButton>
-                    <StyledHr className="hr" color={data[1]}></StyledHr>
-                    <StyledH2>Activity</StyledH2>
-                    <StyledP
-                      dangerouslySetInnerHTML={{
-                        __html: info[0].activity_info,
-                      }}
-                    ></StyledP>
-
-                    <StyledHr className="hr" color={data[1]}></StyledHr>
-                    <StyledH2>Recruiting</StyledH2>
-                    <StyledCardDeck>
-                      <StyledCard bgcolor={data[1]} bordercolor={"none"}>
-                        <StyledCardLogo>🗓</StyledCardLogo>
-                        <StyledCardName
-                          textColor={
-                            loading === false && idealTextColor(data[1])
-                          }
-                        >
-                          모집시기
-                        </StyledCardName>
-                        <StyledCardDesc
-                          textColor={
-                            loading === false && idealTextColor(data[1])
-                          }
-                        >
-                          {info[0].recruit_season}
-                        </StyledCardDesc>
-                      </StyledCard>
-                      <StyledCard bordercolor={`2px ${data[1]} solid`}>
-                        <StyledCardLogo>🙌</StyledCardLogo>
-                        <StyledCardName>모집인원</StyledCardName>
-                        <StyledCardDesc>{info[0].recruit_num}</StyledCardDesc>
-                      </StyledCard>
-                      <StyledCard bordercolor={"none"} bgcolor={data[1]}>
-                        <StyledCardLogo>🔍</StyledCardLogo>
-                        <StyledCardName
-                          textColor={
-                            loading === false && idealTextColor(data[1])
-                          }
-                        >
-                          모집방식
-                        </StyledCardName>
-                        <StyledCardDesc
-                          textColor={
-                            loading === false && idealTextColor(data[1])
-                          }
-                        >
-                          {info[0].recruit_process}
-                        </StyledCardDesc>
-                      </StyledCard>
-                      <StyledCard bordercolor={`2px ${data[1]} solid`}>
-                        <StyledCardLogo>⏰</StyledCardLogo>
-                        <StyledCardName>의무 활동기간</StyledCardName>
-                        <StyledCardDesc>
-                          {info[0].activity_period}
-                        </StyledCardDesc>
-                      </StyledCard>
-                    </StyledCardDeck>
-                    <BackTopBtn></BackTopBtn>
-                  </StyledDiv>
+                  <DivDivider>
+                    <StyledDiv>
+                      <StyledHr className="hr" color={data[1]}></StyledHr>
+                      <StyledH2>About</StyledH2>
+                      <StyledP
+                        dangerouslySetInnerHTML={{ __html: info[0].intro_text }}
+                      ></StyledP>
+                      <ClubWebsiteButton
+                        textColor={loading === false && idealTextColor(data[1])}
+                        color={data[1]}
+                        link={info[0].website_link}
+                        name={info[0].cname}
+                      ></ClubWebsiteButton>
+                      <ClubWebsiteButton
+                        textColor={loading === false && idealTextColor(data[1])}
+                        color={data[1]}
+                        link={info[0].website_link2}
+                        name={info[0].cname}
+                      ></ClubWebsiteButton>
+                      <StyledHr className="hr" color={data[1]}></StyledHr>
+                      <StyledH2>Activity</StyledH2>
+                      <StyledP
+                        dangerouslySetInnerHTML={{
+                          __html: info[0].activity_info,
+                        }}
+                      ></StyledP>
+                      <BackTopBtn></BackTopBtn>
+                    </StyledDiv>
+                    <StickyDiv>
+                      <StyledH2>Info</StyledH2>
+                      <Descriptions bordered>
+                        <Descriptions.Item label="중분류" span={2}>
+                          {info[0].category1}
+                        </Descriptions.Item>
+                        <Descriptions.Item label="캠퍼스">
+                          {info[0].campus}
+                        </Descriptions.Item>
+                        <Descriptions.Item label="위치" span={2}>
+                          {info[0].activity_location}
+                        </Descriptions.Item>
+                        <Descriptions.Item label="활동 인원">
+                          {info[0].activity_num}
+                        </Descriptions.Item>
+                        <Descriptions.Item label="모임 시간" span={3}>
+                          {info[0].meeting_time}
+                        </Descriptions.Item>
+                        <Descriptions.Item label="대표자 이름" span={2}>
+                          {info[0].president_name}
+                        </Descriptions.Item>
+                        <Descriptions.Item label="대표자 연락처">
+                          {info[0].president_contact}
+                        </Descriptions.Item>
+                      </Descriptions>
+                      <StyledH2>Recruiting</StyledH2>
+                      <StyledCardDeck>
+                        <StyledCard bgcolor={data[1]} bordercolor={"none"}>
+                          <StyledCardLogo>🗓</StyledCardLogo>
+                          <StyledCardName
+                            textColor={
+                              loading === false && idealTextColor(data[1])
+                            }
+                          >
+                            모집시기
+                          </StyledCardName>
+                          <StyledCardDesc
+                            textColor={
+                              loading === false && idealTextColor(data[1])
+                            }
+                          >
+                            {info[0].recruit_season}
+                          </StyledCardDesc>
+                        </StyledCard>
+                        <StyledCard bordercolor={`2px ${data[1]} solid`}>
+                          <StyledCardLogo>🙌</StyledCardLogo>
+                          <StyledCardName>모집인원</StyledCardName>
+                          <StyledCardDesc>{info[0].recruit_num}</StyledCardDesc>
+                        </StyledCard>
+                        <StyledCard bordercolor={`2px ${data[1]} solid`}>
+                          <StyledCardLogo>🔍</StyledCardLogo>
+                          <StyledCardName
+                            
+                          >
+                            모집방식
+                          </StyledCardName>
+                          <StyledCardDesc
+                            
+                          >
+                            {info[0].recruit_process}
+                          </StyledCardDesc>
+                        </StyledCard>
+                        <StyledCard bordercolor={"none"} bgcolor={data[1]}>
+                          <StyledCardLogo>⏰</StyledCardLogo>
+                          <StyledCardName textColor={
+                              loading === false && idealTextColor(data[1])
+                            }>의무 활동기간</StyledCardName>
+                          <StyledCardDesc textColor={
+                              loading === false && idealTextColor(data[1])
+                            }>
+                            {info[0].activity_period}
+                          </StyledCardDesc>
+                        </StyledCard>
+                      </StyledCardDeck>
+                    </StickyDiv>
+                  </DivDivider>
                 </div>
               );
             }

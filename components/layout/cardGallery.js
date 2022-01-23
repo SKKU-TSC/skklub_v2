@@ -25,7 +25,7 @@ const StyledCardDeck = styled(CardDeck)`
   margin: 0 10%;
   padding-top: 20px;
 
-  @media (max-width: 425px) {
+  @media (max-width: 600px) {
     grid-gap: 10px;
     grid-template-columns: repeat(2, minmax(100px, 1fr));
   }
@@ -62,14 +62,14 @@ const StyledButton = styled.div`
     background-color: ${(props) => props.univcolor};
     color: white;
   }
-  @media (max-width: 425px) {
+  @media (max-width: 600px) {
     display: none;
   }
 `;
 
 const StyledDropdown = styled(Dropdown)`
   margin-left: 10%;
-  @media (min-width: 426px) {
+  @media (min-width: 600px) {
     display: none !important;
   }
   -webkit-appearance: none;
@@ -77,7 +77,7 @@ const StyledDropdown = styled(Dropdown)`
 
 let LikeMenuButton = styled(Button)`
   margin-left: 10px;
-  @media (min-width: 426px) {
+  @media (min-width: 600px) {
     display: none;
   }
 `;
