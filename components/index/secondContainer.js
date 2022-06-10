@@ -86,7 +86,7 @@ function SecondContainer() {
                 <RightTextTitle>
                   안녕하세요,
                   <br />
-                  동아리연합회 동행입니다!
+                  동아리연합회 for:동 입니다!
                 </RightTextTitle>
                 <RightTextParagraph>
                   성균관대학교 동아리연합회는 민주적인 절차를 통해 우리 대학

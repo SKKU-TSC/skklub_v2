@@ -55,7 +55,7 @@ function FirstContainer() {
           <QueueAnim delay={300} className="queue-simple">
             <WhiteHeader key="a">성균관대학교</WhiteHeader>
             <WhiteHeader key="b">동아리연합회</WhiteHeader>
-            <WhiteHeader key="c">"동행"</WhiteHeader>
+            <WhiteHeader key="c">"for:동"</WhiteHeader>
           </QueueAnim>
         </TextWrap>
       </DivContainer>
