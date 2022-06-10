@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>동아리연합회: "동행"</title>
+        <title>동아리연합회: "for:동"</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar></Navbar>

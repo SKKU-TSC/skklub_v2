@@ -28,7 +28,7 @@ function IntroSection() {
           align="middle"
           style={{ padding: "0% auto" }}
         >
-          <ColImage src="../사무국.svg" />
+          <ColImage src="../1.svg" />
         </Col>
         <Col className="gutter-row" xs={24} md={16}>
           <h1>사무국</h1>
@@ -53,7 +53,7 @@ function IntroSection() {
           align="middle"
           style={{ padding: "0% auto" }}
         >
-          <ColImage src="../총무.svg" />
+          <ColImage src="../2.svg" />
         </Col>
         <Col className="gutter-row" xs={24} md={16}>
           <h1>사무국 총무팀</h1>
@@ -79,7 +79,7 @@ function IntroSection() {
           align="middle"
           style={{ padding: "0% auto" }}
         >
-          <ColImage src="../대내사업국.svg" />
+          <ColImage src="../3.svg" />
         </Col>
         <Col className="gutter-row" xs={24} md={16}>
           <h1>대내사업국</h1>
@@ -103,7 +103,7 @@ function IntroSection() {
           align="middle"
           style={{ padding: "0% auto" }}
         >
-          <ColImage src="../행사기획국.svg" />
+          <ColImage src="../4.svg" />
         </Col>
         <Col className="gutter-row" xs={24} md={16}>
           <h1>행사기획국</h1>
@@ -127,7 +127,7 @@ function IntroSection() {
           align="middle"
           style={{ padding: "0% auto" }}
         >
-          <ColImage src="../홍보국.svg" />
+          <ColImage src="../5.svg" />
         </Col>
 
         <Col className="gutter-row" xs={24} md={16}>
@@ -154,7 +154,7 @@ function IntroSection() {
           align="middle"
           style={{ padding: "0% auto" }}
         >
-          <ColImage src="../디자인.svg" />
+          <ColImage src="../6.svg" />
         </Col>
 
         <Col className="gutter-row" xs={24} md={16}>
@@ -179,7 +179,7 @@ function IntroSection() {
           align="middle"
           style={{ padding: "0% auto" }}
         >
-          <ColImage src="../소통국.svg" />
+          <ColImage src="../7.svg" />
         </Col>
 
         <Col className="gutter-row" xs={24} md={16}>
