@@ -192,7 +192,7 @@ function GlobalNavbar(props) {
             </StyledLink>
             <Nav.Link
               target="blank"
-              href="http://admin.skklub.com/register/regular/"
+              href="https://admin.skklub.com/register/extra/"
             >
               동아리 등록하기
             </Nav.Link>
